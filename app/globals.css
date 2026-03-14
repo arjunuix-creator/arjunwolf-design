@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #070707;
+  --foreground: #eaeaea;
+  --surface: #14171c;
+  --accent-red: #B30000;
+  --accent-red-bright: #FF2A2A;
+  --accent-gold: #D4AF37;
+  --text-muted: #8a8f98;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-accent-red: var(--accent-red);
+  --color-accent-red-bright: var(--accent-red-bright);
+  --color-accent-gold: var(--accent-gold);
+  --color-text-muted: var(--text-muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Custom fonts — place font files in /public/fonts/ */
+@font-face {
+  font-family: 'The Last Shuriken';
+  src: local('The Last Shuriken');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Blast Dragon';
+  src: local('Blast Dragon');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gingsul Demo';
+  src: local('Gingsul Demo');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kanzuri';
+  src: local('Kanzuri');
+  font-display: swap;
+}
+
+html {
+  /* Lenis smooth scroll handles this — native smooth-scroll disabled to avoid conflicts */
+  scroll-behavior: auto;
+}
+
+/* Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Blast Dragon', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide default cursor on pointer devices — replaced by SamuraiCursor */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
+.font-heading {
+  font-family: 'The Last Shuriken', 'Orbitron', 'Rajdhani', system-ui, sans-serif;
+}
+
+.font-kanji {
+  font-family: 'Gingsul Demo', 'Noto Serif JP', serif;
+}
+
+.font-quote {
+  font-family: 'Kanzuri', 'Noto Serif JP', 'Georgia', serif;
+}
+
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 2px;
+}
+
+/* Hide scrollbar for inner card content panels */
+.scrollbar-hidden::-webkit-scrollbar { display: none; }
+.scrollbar-hidden { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Hide scrollbar for the Works horizontal track (Chrome/Safari) */
+#works [style*="cursor"]::-webkit-scrollbar { display: none; }
+
+/* ── Global section vertical rhythm ─────────────────────────────────────── */
+section {
+  padding-top:    120px;
+  padding-bottom: 120px;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding-top:    80px;
+    padding-bottom: 80px;
+  }
+}
+
+/* Works is GSAP-pinned at 100vh — no vertical padding */
+#works {
+  padding-top:    0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* ── Consistent card grid spacing ───────────────────────────────────────── */
+.card-grid {
+  gap: 40px;
+}
+@media (max-width: 768px) {
+  .card-grid {
+    gap: 28px;
+  }
+}
+
+/* Logo grid is tighter — 8 cols can't absorb 40px without overflow */
+.logo-grid {
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .logo-grid {
+    gap: 14px;
+  }
+}
+
+/* ── Section heading hierarchy spacing ──────────────────────────────────── */
+/*
+  Structure expected:
+    .section-header
+      <p>  ← section label
+      <h2> ← main heading
+      <div>← optional subtitle / decorative row
+      <p>  ← description
+*/
+.section-header {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            0;            /* no automatic gap — we set margins explicitly */
+  margin-bottom:  48px;         /* description → section content */
+}
+
+/* Every child after the first gets a 12px top gap (label → heading) */
+.section-header > * + * { margin-top: 12px; }
+
+/* Heading gets an extra 12px below → total 24px to whatever follows */
+.section-header > h2    { margin-bottom: 12px; }
+
+/* ── Shared section container ───────────────────────────────────────────── */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+@media (max-width: 480px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ── Responsive section vertical rhythm ─────────────────────────────────── */
+.section-spacing {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+@media (max-width: 768px) {
+  .section-spacing {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+/* ── Minimum touch target size (WCAG 2.5.5 / Apple HIG 44pt) ───────────── */
+button,
+a {
+  min-height: 44px;
+}
+
+/* ── Text selection — site accent red ───────────────────────────────────── */
+::selection {
+  background: rgba(255, 42, 42, 0.75);
+  color: white;
+}
+::-moz-selection {
+  background: rgba(255, 42, 42, 0.75);
+  color: white;
 }
