@@ -311,11 +311,11 @@ export default function Hero() {
           {/* Main statement */}
           <motion.div variants={fadeUp} className="flex flex-col gap-[12px]">
             <p className="font-['The_Last_Shuriken',sans-serif] text-[22px] sm:text-[26px] lg:text-[32px] leading-[1.45] text-[#eaeaea]">
-              Designing digital experiences where{' '}
+              Designing enterprise and fintech products where{' '}
               <span style={{ color: '#FF2A2A', textShadow: '0 0 24px rgba(255,42,42,0.45)' }}>
                 human empathy
               </span>{' '}
-              meets simplicity.
+              meets clarity and simplicity.
             </p>
             <p
               className="font-['Blast_Dragon',sans-serif] text-[15px] sm:text-[17px] lg:text-[18px] leading-[34px] tracking-[1.5px]"

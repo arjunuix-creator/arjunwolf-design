@@ -131,7 +131,7 @@ export default function Clients() {
           <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30" />
         </div>
         <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/55 tracking-[0.5px] mt-3 text-center max-w-[480px] leading-relaxed">
-          Designing enterprise platforms and digital products for global organizations.
+          Trusted by teams at
         </p>
       </motion.div>
 

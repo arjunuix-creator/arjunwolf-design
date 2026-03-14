@@ -18,10 +18,12 @@ export type CaseStudy = {
   imageAlt: string
   imageBg: string
   imagePosition: "left" | "right"
+  href?: string
 }
 
 
 import { useRef, useEffect } from "react"
+import Link from "next/link"
 import MagneticButton from "./MagneticButton"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -149,9 +151,18 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
       <div className="pt-1">
         <MagneticButton maxShift={5}>
-          <span className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[1.4px] uppercase text-[#D4AF37]">
-            View Case Study <span className="text-base leading-none">→</span>
-          </span>
+          {study.href ? (
+            <Link
+              href={study.href}
+              className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[1.4px] uppercase text-[#D4AF37]"
+            >
+              View Case Study <span className="text-base leading-none">→</span>
+            </Link>
+          ) : (
+            <span className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[1.4px] uppercase text-[#D4AF37]">
+              View Case Study <span className="text-base leading-none">→</span>
+            </span>
+          )}
         </MagneticButton>
       </div>
     </div>

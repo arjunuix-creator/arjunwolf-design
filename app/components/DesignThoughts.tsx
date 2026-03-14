@@ -80,7 +80,7 @@ export default function DesignThoughts() {
           <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30" />
         </div>
         <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/60 tracking-[0.5px] mt-3 text-center max-w-[480px] leading-relaxed">
-          Essays on product design, AI workflows, and system thinking.
+          Occasionally writing about design systems, AI workflows, and product thinking.
         </p>
       </motion.div>
 

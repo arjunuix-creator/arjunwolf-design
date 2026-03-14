@@ -33,6 +33,7 @@ const studies = [
     users: 'Bank Managers, Financial Analysts, Loan Managers',
     platform: 'Desktop-first (25–30 screens), expanded to 150+ screens including mobile and tablet',
     meta: { role: 'Lead UI/UX Designer', duration: '36 Months', team: 'Solo Designer', year: '2025' },
+    href: '/work/tu-cibil',
   },
   {
     id: 2,
@@ -170,9 +171,11 @@ export default function Home() {
         <SectionDivider />
 
         {/* ── Design Thoughts ─────────────────────────────────────────────── */}
-        <SectionReveal>
-          <DesignThoughts />
-        </SectionReveal>
+        <div id="writing">
+          <SectionReveal>
+            <DesignThoughts />
+          </SectionReveal>
+        </div>
 
         <SectionDivider />
 

@@ -43,7 +43,7 @@
 }
 
 html {
-  /* Lenis smooth scroll handles this — native smooth-scroll disabled to avoid conflicts */
+  /* Lenis owns all scrolling — native smooth-scroll and padding-top offsets must be off */
   scroll-behavior: auto;
 }
 

@@ -43,7 +43,12 @@ export default function ScrollIndicator() {
   }, [])
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById(id);
+    if (!el) return;
+    // Route through Lenis — never use native scrollIntoView alongside Lenis
+    window.dispatchEvent(
+      new CustomEvent('lenis:scrollTo', { detail: { target: el } })
+    );
   }
 
   /* Only render on large screens via CSS — avoids SSR mismatch */

@@ -193,6 +193,16 @@ export default function Footer() {
           Available for select projects and strategic UX leadership roles.
         </motion.p>
 
+        {/* Availability line */}
+        <motion.p
+          className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/70 leading-[24px] tracking-[0.5px] max-w-[500px] text-center"
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.28, ease: EASE }}
+        >
+          Currently open to design leadership roles and impactful product collaborations.
+        </motion.p>
+
         {/* Availability badge */}
         <motion.div
           className="flex items-center gap-2 px-4 py-[7px] rounded-full"
