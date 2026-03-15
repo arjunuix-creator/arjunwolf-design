@@ -22,7 +22,7 @@ export type CaseStudy = {
 }
 
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import Link from "next/link"
 import MagneticButton from "./MagneticButton"
 import gsap from "gsap"
@@ -195,9 +195,22 @@ export default function WorksSection({ studies }: Props) {
   const stepperRef  = useRef<HTMLDivElement>(null)
   const dotsRef     = useRef<HTMLDivElement>(null)
 
+  // isMobile starts false (SSR-safe) and is set after mount
+  const [isMobile, setIsMobile] = useState(false)
+
   useEffect(() => {
-    // Skip stacked scroll animation on mobile — rendered as vertical list instead
-    if (typeof window !== "undefined" && window.innerWidth < 768) return
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  useEffect(() => {
+    // Kill any existing ScrollTriggers when switching to mobile
+    if (isMobile) {
+      ScrollTrigger.getAll().forEach(t => t.kill())
+      return
+    }
 
     const ctx = gsap.context(() => {
       const wrappers = gsap.utils.toArray<HTMLElement>(".stack-wrapper", stackRef.current)
@@ -240,7 +253,6 @@ export default function WorksSection({ studies }: Props) {
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          // Derive active card from scroll progress each frame
           onUpdate: (self) => {
             const active = Math.min(
               Math.round(self.progress * (wrappers.length - 1)),
@@ -266,8 +278,77 @@ export default function WorksSection({ studies }: Props) {
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [isMobile])
 
+  const viewAllButton = (
+    <div className="flex-shrink-0 flex justify-center items-center py-5 z-50 px-5 md:px-0">
+      <a
+        href="https://www.behance.net/arjunwolfdesigns"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center gap-3 px-7 py-3 rounded-full text-[12px] font-semibold tracking-[2px] uppercase transition-all duration-300"
+        style={{
+          border:      '1px solid rgba(212,175,55,0.3)',
+          color:       '#D4AF37',
+          background:  'rgba(212,175,55,0.04)',
+          boxShadow:   '0 0 0px rgba(212,175,55,0)',
+        }}
+        onMouseEnter={e => {
+          const el = e.currentTarget
+          el.style.border     = '1px solid rgba(212,175,55,0.7)'
+          el.style.background = 'rgba(212,175,55,0.08)'
+          el.style.boxShadow  = '0 0 24px rgba(212,175,55,0.15)'
+        }}
+        onMouseLeave={e => {
+          const el = e.currentTarget
+          el.style.border     = '1px solid rgba(212,175,55,0.3)'
+          el.style.background = 'rgba(212,175,55,0.04)'
+          el.style.boxShadow  = '0 0 0px rgba(212,175,55,0)'
+        }}
+      >
+        View All Case Studies
+        <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  )
+
+  const sectionHeader = (
+    <div className="section-header text-center flex-shrink-0 !mb-0 pb-6 px-5 md:px-0">
+      <p className="text-[#D4AF37] text-[10px] tracking-[4px] uppercase mb-2">
+        Selected Work
+      </p>
+      <h2
+        className="text-white text-[44px] leading-none"
+        style={{ fontFamily: "'The Last Shuriken', sans-serif" }}
+      >
+        Works
+      </h2>
+      <p className="text-[#8a8f98] text-[13px] tracking-[3px] uppercase mt-2">
+        Case Studies
+      </p>
+    </div>
+  )
+
+  // ── Mobile layout: normal vertical cards, no GSAP pinning ───────────────
+  if (isMobile) {
+    return (
+      <section
+        ref={sectionRef}
+        id="works"
+        className="bg-[#070707] flex flex-col overflow-x-hidden"
+      >
+        {sectionHeader}
+        <div className="w-full mx-auto flex flex-col gap-10 px-5 pb-6">
+          {studies.map((study, i) => (
+            <StudyCard key={study.id} study={study} index={i} />
+          ))}
+        </div>
+        {viewAllButton}
+      </section>
+    )
+  }
+
+  // ── Desktop layout: stacked scroll animation ─────────────────────────────
   return (
     <section
       ref={sectionRef}
@@ -275,26 +356,13 @@ export default function WorksSection({ studies }: Props) {
       className="bg-[#070707] flex flex-col overflow-x-hidden"
       style={{ height: "100vh" }}
     >
-      <div className="section-header text-center flex-shrink-0 !mb-0 pb-6 px-5 md:px-0">
-        <p className="text-[#D4AF37] text-[10px] tracking-[4px] uppercase mb-2">
-          Selected Work
-        </p>
-        <h2
-          className="text-white text-[44px] leading-none"
-          style={{ fontFamily: "'The Last Shuriken', sans-serif" }}
-        >
-          Works
-        </h2>
-        <p className="text-[#8a8f98] text-[13px] tracking-[3px] uppercase mt-2">
-          Case Studies
-        </p>
-      </div>
+      {sectionHeader}
 
-      {/* Stepper — scrollable on mobile */}
+      {/* Stepper */}
       <div
         ref={stepperRef}
-        className="flex items-center justify-center gap-4 md:gap-5 pb-6 flex-shrink-0
-          overflow-x-auto scrollbar-hidden px-5 md:px-0 whitespace-nowrap"
+        className="flex items-center justify-center gap-5 pb-6 flex-shrink-0
+          overflow-x-auto scrollbar-hidden px-5 whitespace-nowrap"
       >
         {studies.map((study, i) => (
           <div key={study.id} className="flex items-center gap-5">
@@ -317,7 +385,7 @@ export default function WorksSection({ studies }: Props) {
         {studies.map((study, i) => (
           <div
             key={study.id}
-            className="stack-wrapper absolute inset-0 flex items-center justify-center px-5 py-4 md:px-6 md:py-0"
+            className="stack-wrapper absolute inset-0 flex items-center justify-center px-6 py-0"
             style={{ zIndex: i + 1 }}
           >
             <StudyCard study={study} index={i} />
@@ -339,36 +407,7 @@ export default function WorksSection({ studies }: Props) {
         </div>
       </div>
 
-      {/* View All Case Studies */}
-      <div className="flex-shrink-0 flex justify-center items-center py-5 z-50 px-5 md:px-0">
-        <a
-          href="https://www.behance.net/arjunwolfdesigns"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-3 px-7 py-3 rounded-full text-[12px] font-semibold tracking-[2px] uppercase transition-all duration-300"
-          style={{
-            border:      '1px solid rgba(212,175,55,0.3)',
-            color:       '#D4AF37',
-            background:  'rgba(212,175,55,0.04)',
-            boxShadow:   '0 0 0px rgba(212,175,55,0)',
-          }}
-          onMouseEnter={e => {
-            const el = e.currentTarget
-            el.style.border     = '1px solid rgba(212,175,55,0.7)'
-            el.style.background = 'rgba(212,175,55,0.08)'
-            el.style.boxShadow  = '0 0 24px rgba(212,175,55,0.15)'
-          }}
-          onMouseLeave={e => {
-            const el = e.currentTarget
-            el.style.border     = '1px solid rgba(212,175,55,0.3)'
-            el.style.background = 'rgba(212,175,55,0.04)'
-            el.style.boxShadow  = '0 0 0px rgba(212,175,55,0)'
-          }}
-        >
-          View All Case Studies
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-        </a>
-      </div>
+      {viewAllButton}
     </section>
   )
 }
