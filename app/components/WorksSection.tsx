@@ -150,14 +150,16 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
       </div>
 
       <div className="pt-1">
-        <MagneticButton maxShift={5}>
-          <Link
-            href={study.href}
-            className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[1.4px] uppercase text-[#D4AF37]"
-          >
-            View Case Study <span className="text-base leading-none">→</span>
-          </Link>
-        </MagneticButton>
+        {study.href && (
+          <MagneticButton maxShift={5}>
+            <Link
+              href={study.href}
+              className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[1.4px] uppercase text-[#D4AF37]"
+            >
+              View Case Study <span className="text-base leading-none">→</span>
+            </Link>
+          </MagneticButton>
+        )}
       </div>
     </div>
   )
