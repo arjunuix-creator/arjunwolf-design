@@ -18,7 +18,7 @@ export type CaseStudy = {
   imageAlt: string
   imageBg: string
   imagePosition: "left" | "right"
-  href?: string
+  href: string
 }
 
 
@@ -151,18 +151,12 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
       <div className="pt-1">
         <MagneticButton maxShift={5}>
-          {study.href ? (
-            <Link
-              href={study.href}
-              className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[1.4px] uppercase text-[#D4AF37]"
-            >
-              View Case Study <span className="text-base leading-none">→</span>
-            </Link>
-          ) : (
-            <span className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[1.4px] uppercase text-[#D4AF37]">
-              View Case Study <span className="text-base leading-none">→</span>
-            </span>
-          )}
+          <Link
+            href={study.href}
+            className="inline-flex items-center gap-2 text-[12px] font-semibold tracking-[1.4px] uppercase text-[#D4AF37]"
+          >
+            View Case Study <span className="text-base leading-none">→</span>
+          </Link>
         </MagneticButton>
       </div>
     </div>

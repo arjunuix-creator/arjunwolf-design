@@ -1,31 +1,10 @@
-import WorksSection from './WorksSection';
+import WorksSection, { CaseStudy } from './WorksSection';
 
 /* ─── Local preview images (public/designs/) ────────────────────────────── */
 const tucibilScreenSrc  = '/designs/tu-cibil.png';
 const holotrakScreenSrc = '/designs/rmt-holotrack.png';
 const phawareSrc        = '/designs/ph-aware.png';
 const finovaScreenSrc   = '/designs/finov-ai.png';
-
-/* ─── Case study data ──────────────────────────────────────────────────── */
-type CaseStudy = {
-  id: number
-  title: string
-  category: string
-  categoryColor: string
-  description: string
-  users: string
-  platform: string
-  meta: {
-  role: string
-  duration: string
-  team: string
-  year?: string
-}
-  imageSrc: string
-  imageAlt: string
-  imageBg: string
-  imagePosition: "left" | "right"
-}
 
 const studies: CaseStudy[] = [
   {
@@ -56,6 +35,7 @@ const studies: CaseStudy[] = [
     imageAlt      : 'RMT Holotrack screens',
     imageBg       : '#2ac19f',
     imagePosition : 'right',
+    href          : '/work/rmt-holotrack',
   },
   {
     id            : 3,
@@ -70,6 +50,7 @@ const studies: CaseStudy[] = [
     imageAlt      : 'PH Aware screens',
     imageBg       : '#fe626c',
     imagePosition : 'left',
+    href          : '/work/ph-aware',
   },
   {
     id            : 4,
@@ -84,6 +65,7 @@ const studies: CaseStudy[] = [
     imageAlt      : 'Finova Expense Tracker screens',
     imageBg       : '#02112b',
     imagePosition : 'right',
+    href          : '/work/finova-expense-tracker',
   },
 ];
 
