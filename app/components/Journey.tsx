@@ -102,6 +102,8 @@ export default function Journey() {
   const lineFillRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (window.innerWidth < 768) return;
+
     const ctx = gsap.context(() => {
 
       /* 1 ── Scroll-scrubbed line fill ──────────────────────────────────── */
@@ -258,7 +260,7 @@ export default function Journey() {
                   w-full md:w-[calc(50%-32px)] md:pr-12 md:justify-end flex-shrink-0
                 `}>
                   {isLeft && (
-                    <div className="milestone-card opacity-45 w-full md:max-w-[380px]">
+                    <div className="milestone-card md:opacity-45 w-full md:max-w-[380px]">
                       <MilestoneCard item={item} align="right" />
                     </div>
                   )}
@@ -286,7 +288,7 @@ export default function Journey() {
                   w-full md:w-[calc(50%-32px)] md:pl-12 flex-shrink-0
                 `}>
                   {!isLeft && (
-                    <div className="milestone-card opacity-45 w-full md:max-w-[380px]">
+                    <div className="milestone-card md:opacity-45 w-full md:max-w-[380px]">
                       <MilestoneCard item={item} align="left" />
                     </div>
                   )}

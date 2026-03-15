@@ -311,6 +311,12 @@ export default function Skills() {
   }, [activeIndex])
 
   useEffect(() => {
+    if (window.innerWidth < 768) {
+      gsap.set([headerRef.current, toolsHeaderRef.current], { opacity: 1, y: 0 });
+      gsap.set(gsap.utils.toArray('.tool-chip', toolsGridRef.current), { opacity: 1, y: 0, scale: 1 });
+      return;
+    }
+
     const ctx = gsap.context(() => {
 
       gsap.fromTo(headerRef.current,
