@@ -196,6 +196,9 @@ export default function WorksSection({ studies }: Props) {
   const dotsRef     = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // Skip stacked scroll animation on mobile — rendered as vertical list instead
+    if (typeof window !== "undefined" && window.innerWidth < 768) return
+
     const ctx = gsap.context(() => {
       const wrappers = gsap.utils.toArray<HTMLElement>(".stack-wrapper", stackRef.current)
       const steps    = gsap.utils.toArray<HTMLElement>(".case-step",     stepperRef.current)
@@ -269,10 +272,10 @@ export default function WorksSection({ studies }: Props) {
     <section
       ref={sectionRef}
       id="works"
-      className="bg-[#070707] flex flex-col"
+      className="bg-[#070707] flex flex-col overflow-x-hidden"
       style={{ height: "100vh" }}
     >
-      <div className="section-header text-center flex-shrink-0 !mb-0 pb-6">
+      <div className="section-header text-center flex-shrink-0 !mb-0 pb-6 px-5 md:px-0">
         <p className="text-[#D4AF37] text-[10px] tracking-[4px] uppercase mb-2">
           Selected Work
         </p>
@@ -290,8 +293,8 @@ export default function WorksSection({ studies }: Props) {
       {/* Stepper — scrollable on mobile */}
       <div
         ref={stepperRef}
-        className="flex items-center gap-4 md:gap-5 pb-6 flex-shrink-0
-          overflow-x-auto scrollbar-hidden px-4 md:px-0 md:justify-center"
+        className="flex items-center justify-center gap-4 md:gap-5 pb-6 flex-shrink-0
+          overflow-x-auto scrollbar-hidden px-5 md:px-0 whitespace-nowrap"
       >
         {studies.map((study, i) => (
           <div key={study.id} className="flex items-center gap-5">
@@ -310,11 +313,11 @@ export default function WorksSection({ studies }: Props) {
         ))}
       </div>
 
-      <div ref={stackRef} className="relative flex-1 overflow-hidden">
+      <div ref={stackRef} className="stack-area relative flex-1 overflow-hidden">
         {studies.map((study, i) => (
           <div
             key={study.id}
-            className="stack-wrapper absolute inset-0 flex items-center justify-center px-4 py-3 md:px-6 md:py-0"
+            className="stack-wrapper absolute inset-0 flex items-center justify-center px-5 py-4 md:px-6 md:py-0"
             style={{ zIndex: i + 1 }}
           >
             <StudyCard study={study} index={i} />
@@ -324,7 +327,7 @@ export default function WorksSection({ studies }: Props) {
         {/* Side progress dots */}
         <div
           ref={dotsRef}
-          className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50"
+          className="progress-dots absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50"
         >
           {studies.map((_, i) => (
             <div
@@ -337,7 +340,7 @@ export default function WorksSection({ studies }: Props) {
       </div>
 
       {/* View All Case Studies */}
-      <div className="flex-shrink-0 flex justify-center items-center py-5 z-50">
+      <div className="flex-shrink-0 flex justify-center items-center py-5 z-50 px-5 md:px-0">
         <a
           href="https://www.behance.net/arjunwolfdesigns"
           target="_blank"

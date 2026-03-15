@@ -135,6 +135,33 @@ section {
   padding-bottom: 0 !important;
 }
 
+/* ── Works section: mobile vertical layout (disable stacked scroll) ──────── */
+@media (max-width: 767px) {
+  /* Override the inline height: 100vh */
+  #works {
+    height: auto !important;
+  }
+  /* Stack area becomes a normal flow column instead of a positioned container */
+  #works .stack-area {
+    flex: none !important;
+    position: static !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding-bottom: 20px !important;
+  }
+  /* Wrappers become static block elements instead of absolute overlays */
+  #works .stack-wrapper {
+    position: static !important;
+    inset: auto !important;
+  }
+  /* Hide side progress dots — not meaningful without scroll animation */
+  #works .progress-dots {
+    display: none !important;
+  }
+}
+
 /* ── Consistent card grid spacing ───────────────────────────────────────── */
 .card-grid {
   gap: 40px;

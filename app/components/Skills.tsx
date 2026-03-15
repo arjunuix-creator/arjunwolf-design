@@ -361,12 +361,12 @@ export default function Skills() {
         <h2 className="font-['The_Last_Shuriken',sans-serif] text-[56px] text-white text-center leading-none">
           Design Capabilities
         </h2>
-        <div className="flex items-center gap-4 mt-1">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase">
+        <div className="flex items-center justify-center gap-4 mt-1 mx-auto max-w-[600px] px-5 md:px-0">
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30 flex-shrink-0" />
+          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase text-center">
             UX Design Expertise
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30 flex-shrink-0" />
         </div>
       </div>
 
