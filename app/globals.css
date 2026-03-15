@@ -18,27 +18,42 @@
   --color-accent-red-bright: var(--accent-red-bright);
   --color-accent-gold: var(--accent-gold);
   --color-text-muted: var(--text-muted);
+
+  /* Custom font families — use as font-blast-dragon, font-shuriken, etc. */
+  --font-family-blast-dragon: 'Blast Dragon', 'Inter', system-ui, sans-serif;
+  --font-family-shuriken: 'The Last Shuriken', system-ui, sans-serif;
+  --font-family-kanji: 'Gingsul Demo', serif;
+  --font-family-kanzuri: 'Kanzuri', serif;
+  --font-family-inter: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
-/* Custom fonts — place font files in /public/fonts/ */
+/* Custom fonts — served from /public/fonts/ */
 @font-face {
   font-family: 'The Last Shuriken';
-  src: local('The Last Shuriken');
+  src: url('/fonts/The-Last-Shuriken.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Blast Dragon';
-  src: local('Blast Dragon');
+  src: url('/fonts/Blast-Dragon.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gingsul Demo';
-  src: local('Gingsul Demo');
+  src: url('/fonts/Gingsul-Demo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Kanzuri';
-  src: local('Kanzuri');
+  src: url('/fonts/Kanzuri.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -61,7 +76,7 @@ html.lenis, html.lenis body {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Blast Dragon', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-family: var(--font-family-blast-dragon);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -71,15 +86,15 @@ body {
 }
 
 .font-heading {
-  font-family: 'The Last Shuriken', 'Orbitron', 'Rajdhani', system-ui, sans-serif;
+  font-family: var(--font-family-shuriken);
 }
 
 .font-kanji {
-  font-family: 'Gingsul Demo', 'Noto Serif JP', serif;
+  font-family: var(--font-family-kanji);
 }
 
 .font-quote {
-  font-family: 'Kanzuri', 'Noto Serif JP', 'Georgia', serif;
+  font-family: var(--font-family-kanzuri);
 }
 
 
