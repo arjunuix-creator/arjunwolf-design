@@ -66,19 +66,16 @@ function Divider() {
 }
 
 /* ── Full-width image block ──────────────────────────────────────────────── */
-function FullImage({ src, alt, aspect = '16/7' }: { src: string; alt: string; aspect?: string }) {
+function FullImage({ src, alt }: { src: string; alt: string }) {
   return (
     <Reveal>
-      <div
-        className="w-full relative overflow-hidden rounded-2xl bg-[#0e1117] border border-white/[0.06]"
-        style={{ aspectRatio: aspect }}
-      >
+      <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
         <Image
           src={src}
           alt={alt}
-          fill
-          className="object-cover object-top"
-          sizes="100vw"
+          width={1600}
+          height={900}
+          className="w-full h-auto object-contain rounded-xl"
         />
       </div>
     </Reveal>
@@ -182,128 +179,131 @@ export default function TuCibilCaseStudy() {
           />
 
           <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-            {/* Tag */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-            >
-              <span className="inline-flex items-center px-4 py-[7px] rounded-full
-                font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-white
-                bg-[#002563] border border-[#002563]/60 mb-8">
-                FinTech Case Study
-              </span>
-            </motion.div>
+              {/* Left: hero content */}
+              <div>
+                {/* Tag */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
+                >
+                  <span className="inline-flex items-center px-4 py-[7px] rounded-full
+                    font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-white
+                    bg-[#002563] border border-[#002563]/60 mb-8">
+                    FinTech Case Study
+                  </span>
+                </motion.div>
 
-            {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 32 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
-              className="font-['The_Last_Shuriken',sans-serif] text-white
-                text-[52px] sm:text-[72px] md:text-[96px] lg:text-[112px]
-                leading-[1.0] tracking-tight mb-5 max-w-[900px]"
-            >
-              TU{' '}
-              <span style={{ color: '#D4AF37' }}>CIBIL</span>
-            </motion.h1>
+                {/* Title */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 32 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
+                  className="font-['The_Last_Shuriken',sans-serif] text-white
+                    text-[52px] sm:text-[72px] md:text-[80px] lg:text-[96px]
+                    leading-[1.0] tracking-tight mb-5"
+                >
+                  TU{' '}
+                  <span style={{ color: '#D4AF37' }}>CIBIL</span>
+                </motion.h1>
 
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.38, ease: EASE }}
-              className="font-['The_Last_Shuriken',sans-serif] text-white/40 text-[18px] sm:text-[22px] leading-tight mb-6 max-w-[700px]"
-            >
-              Modernizing India's credit decision infrastructure
-            </motion.p>
+                {/* Subtitle */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.38, ease: EASE }}
+                  className="font-['The_Last_Shuriken',sans-serif] text-white/40 text-[18px] sm:text-[22px] leading-tight mb-6"
+                >
+                  Modernizing India's credit decision infrastructure
+                </motion.p>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.46, ease: EASE }}
-              className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                leading-[30px] tracking-[0.3px] max-w-[560px] mb-12"
-            >
-              A ground-up redesign of India's national credit bureau platform — a high-security
-              enterprise system used daily by banks and financial institutions to evaluate
-              creditworthiness, manage risk, and make real-time lending decisions at scale.
-            </motion.p>
+                {/* Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.85, delay: 0.46, ease: EASE }}
+                  className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
+                    leading-[30px] tracking-[0.3px] mb-12"
+                >
+                  A ground-up redesign of India's national credit bureau platform — a high-security
+                  enterprise system used daily by banks and financial institutions to evaluate
+                  creditworthiness, manage risk, and make real-time lending decisions at scale.
+                </motion.p>
 
-            {/* Meta + Responsibilities */}
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col gap-8 pt-8 border-t border-white/[0.06]"
-            >
-              {/* Meta row */}
-              <div className="flex flex-wrap gap-x-10 gap-y-5">
-                {[
-                  { label: 'Role',     value: 'Lead UX Designer' },
-                  { label: 'Duration', value: '36 Months'        },
-                  { label: 'Team',     value: 'Solo Designer'    },
-                ].map(m => (
-                  <motion.div key={m.label} variants={fadeUp} className="flex flex-col gap-[5px]">
+                {/* Meta + Responsibilities */}
+                <motion.div
+                  variants={stagger}
+                  initial="hidden"
+                  animate="visible"
+                  className="flex flex-col gap-8 pt-8 border-t border-white/[0.06]"
+                >
+                  {/* Meta row */}
+                  <div className="flex flex-wrap gap-x-10 gap-y-5">
+                    {[
+                      { label: 'Role',     value: 'Lead UX Designer' },
+                      { label: 'Duration', value: '36 Months'        },
+                      { label: 'Team',     value: 'Solo Designer'    },
+                    ].map(m => (
+                      <motion.div key={m.label} variants={fadeUp} className="flex flex-col gap-[5px]">
+                        <span className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[2px] uppercase text-white/30">
+                          {m.label}
+                        </span>
+                        <span className="font-['Blast_Dragon',sans-serif] text-[14px] font-semibold text-white/90 whitespace-nowrap">
+                          {m.value}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* My Responsibility */}
+                  <motion.div variants={fadeUp} className="flex flex-col gap-3">
                     <span className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[2px] uppercase text-white/30">
-                      {m.label}
+                      My Responsibility
                     </span>
-                    <span className="font-['Blast_Dragon',sans-serif] text-[14px] font-semibold text-white/90 whitespace-nowrap">
-                      {m.value}
-                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        'UX Strategy',
+                        'Product Architecture',
+                        'Design System',
+                        'Interaction Design',
+                        'Stakeholder Alignment',
+                      ].map(r => (
+                        <span
+                          key={r}
+                          className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[1.5px] uppercase
+                            px-4 py-[6px] rounded-full text-white/70 border border-white/[0.08] bg-white/[0.03]"
+                        >
+                          {r}
+                        </span>
+                      ))}
+                    </div>
                   </motion.div>
-                ))}
+                </motion.div>
               </div>
 
-              {/* My Responsibility */}
-              <motion.div variants={fadeUp} className="flex flex-col gap-3">
-                <span className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[2px] uppercase text-white/30">
-                  My Responsibility
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    'UX Strategy',
-                    'Product Architecture',
-                    'Design System',
-                    'Interaction Design',
-                    'Stakeholder Alignment',
-                  ].map(r => (
-                    <span
-                      key={r}
-                      className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[1.5px] uppercase
-                        px-4 py-[6px] rounded-full text-white/70 border border-white/[0.08] bg-white/[0.03]"
-                    >
-                      {r}
-                    </span>
-                  ))}
+              {/* Right: hero image */}
+              <motion.div
+                initial={{ opacity: 0, x: 48 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1.1, delay: 0.5, ease: EASE }}
+                className="w-full"
+              >
+                <div className="bg-black/40 p-4 rounded-xl" style={{ boxShadow: '0 40px 100px rgba(0,0,0,0.7)' }}>
+                  <Image
+                    src="/designs/tu-cibil/hero-image.png"
+                    alt="TU CIBIL — Credit Intelligence Platform"
+                    width={1600}
+                    height={900}
+                    priority
+                    className="w-full h-auto object-contain rounded-xl"
+                  />
                 </div>
               </motion.div>
-            </motion.div>
-          </div>
 
-          {/* Hero image */}
-          <motion.div
-            initial={{ opacity: 0, y: 48 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.6, ease: EASE }}
-            className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 mt-20"
-          >
-            <div className="w-full aspect-[16/7] relative overflow-hidden rounded-2xl bg-[#0e1117] border border-white/[0.06]"
-              style={{ boxShadow: '0 40px 100px rgba(0,0,0,0.7)' }}
-            >
-              <Image
-                src="/designs/tu-cibil/hero-image.png"
-                alt="TU CIBIL — Credit Intelligence Platform"
-                fill
-                priority
-                className="object-cover object-center"
-                sizes="100vw"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#070707] to-transparent pointer-events-none" />
             </div>
-          </motion.div>
+          </div>
         </section>
 
         {/* ── 2. THE PROBLEM – LEGACY SYSTEM ───────────────────────────────── */}
@@ -370,7 +370,6 @@ export default function TuCibilCaseStudy() {
             <FullImage
               src="/designs/tu-cibil/before-image.png"
               alt="TU CIBIL legacy interface — before redesign"
-              aspect="16/7"
             />
             <Reveal>
               <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
@@ -439,7 +438,6 @@ export default function TuCibilCaseStudy() {
             <FullImage
               src="/designs/tu-cibil/data-hierarchy-imagepng.png"
               alt="TU CIBIL — data hierarchy and information architecture"
-              aspect="16/7"
             />
             <Reveal>
               <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
@@ -507,33 +505,39 @@ export default function TuCibilCaseStudy() {
         <section className="relative w-full py-24">
           <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
 
-            <Reveal>
-              <Label>UX Exploration</Label>
-              <SectionHeading>
-                Structure first.{' '}
-                <span style={{ color: '#e10600' }}>Visual polish later.</span>
-              </SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                leading-[30px] tracking-[0.3px] max-w-[640px] mb-14">
-                Low-fidelity wireframes were the primary tool for stress-testing the architecture.
-                Before investing in visual design, I needed to validate three things: did the layout
-                structure match how users actually think about credit data, did the proposed workflow
-                reduce steps versus the legacy system, and did information prioritization hold up
-                under real task scenarios. Wireframes surfaced the structural failures quickly —
-                and cheaply — before any pixel work began.
-              </p>
-            </Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <Reveal>
+                <Label>UX Exploration</Label>
+                <SectionHeading>
+                  Structure first.{' '}
+                  <span style={{ color: '#e10600' }}>Visual polish later.</span>
+                </SectionHeading>
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
+                  leading-[30px] tracking-[0.3px]">
+                  Low-fidelity wireframes were the primary tool for stress-testing the architecture.
+                  Before investing in visual design, I needed to validate three things: did the layout
+                  structure match how users actually think about credit data, did the proposed workflow
+                  reduce steps versus the legacy system, and did information prioritization hold up
+                  under real task scenarios. Wireframes surfaced the structural failures quickly —
+                  and cheaply — before any pixel work began.
+                </p>
+              </Reveal>
 
-            <FullImage
-              src="/designs/tu-cibil/wireframe-image.png"
-              alt="TU CIBIL — wireframe exploration"
-              aspect="16/7"
-            />
-            <Reveal>
-              <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
-                Low-Fidelity Wireframes — Structural Exploration
-              </p>
-            </Reveal>
+              <Reveal delay={0.15}>
+                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
+                  <Image
+                    src="/designs/tu-cibil/wireframe-image.png"
+                    alt="TU CIBIL — wireframe exploration"
+                    width={1600}
+                    height={900}
+                    className="w-full h-auto object-contain rounded-xl"
+                  />
+                </div>
+                <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
+                  Low-Fidelity Wireframes — Structural Exploration
+                </p>
+              </Reveal>
+            </div>
           </div>
         </section>
 
@@ -581,14 +585,13 @@ export default function TuCibilCaseStudy() {
               </Reveal>
 
               <Reveal delay={0.15}>
-                <div className="w-full relative overflow-hidden rounded-2xl bg-[#0e1117] border border-white/[0.06]"
-                  style={{ aspectRatio: '4/5' }}>
+                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
                   <Image
                     src="/designs/tu-cibil/progressive-stepper-image.png"
                     alt="TU CIBIL — progressive stepper interaction"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    width={1600}
+                    height={2000}
+                    className="w-full h-auto object-contain rounded-xl"
                   />
                 </div>
               </Reveal>
@@ -644,7 +647,6 @@ export default function TuCibilCaseStudy() {
             <FullImage
               src="/designs/tu-cibil/dashboard-image.png"
               alt="TU CIBIL — redesigned dashboard"
-              aspect="16/7"
             />
             <Reveal>
               <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
@@ -674,51 +676,47 @@ export default function TuCibilCaseStudy() {
 
             {/* Desktop */}
             <Reveal className="mb-8">
-              <div className="w-full relative overflow-hidden rounded-2xl bg-[#0e1117] border border-white/[0.06]">
-                <div className="aspect-[21/9] relative">
+              <div className="max-w-[1200px] mx-auto">
+                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
                   <Image
                     src="/designs/tu-cibil/desktop-images.png"
                     alt="TU CIBIL — desktop screens"
-                    fill
-                    className="object-cover object-top"
-                    sizes="100vw"
+                    width={1600}
+                    height={686}
+                    className="w-full h-auto object-contain rounded-xl"
                   />
                 </div>
+                <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-3 text-center">
+                  Desktop — Primary Workspace
+                </p>
               </div>
-              <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-3 text-center">
-                Desktop — Primary Workspace
-              </p>
             </Reveal>
 
             {/* Mobile + Responsive */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1200px] mx-auto">
               <Reveal>
-                <div className="w-full relative overflow-hidden rounded-2xl bg-[#0e1117] border border-white/[0.06]">
-                  <div className="aspect-[4/3] relative">
-                    <Image
-                      src="/designs/tu-cibil/mobile-images.png"
-                      alt="TU CIBIL — mobile screens"
-                      fill
-                      className="object-cover object-top"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
+                  <Image
+                    src="/designs/tu-cibil/mobile-images.png"
+                    alt="TU CIBIL — mobile screens"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-contain rounded-xl"
+                  />
                 </div>
                 <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-3 text-center">
                   Mobile — Quick Insights Access
                 </p>
               </Reveal>
               <Reveal delay={0.12}>
-                <div className="w-full relative overflow-hidden rounded-2xl bg-[#0e1117] border border-white/[0.06]">
-                  <div className="aspect-[4/3] relative">
-                    <Image
-                      src="/designs/tu-cibil/responsive-image.png"
-                      alt="TU CIBIL — responsive layout"
-                      fill
-                      className="object-cover object-top"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
+                  <Image
+                    src="/designs/tu-cibil/responsive-image.png"
+                    alt="TU CIBIL — responsive layout"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-contain rounded-xl"
+                  />
                 </div>
                 <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-3 text-center">
                   Responsive Enterprise UI System
@@ -784,7 +782,6 @@ export default function TuCibilCaseStudy() {
             <FullImage
               src="/designs/tu-cibil/after-image.png"
               alt="TU CIBIL — redesigned system after launch"
-              aspect="16/7"
             />
             <Reveal>
               <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
