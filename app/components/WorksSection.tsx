@@ -18,7 +18,7 @@ export type CaseStudy = {
   imageAlt: string
   imageBg: string
   imagePosition: "left" | "right"
-  href: string
+  href?: string
 }
 
 
