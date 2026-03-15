@@ -41,6 +41,7 @@ const studies: CaseStudy[] = [
     imageAlt      : 'Tu CIBIL app screens',
     imageBg       : '#002563',
     imagePosition : 'left',
+    href          : '/work/tu-cibil',
   },
   {
     id            : 2,
