@@ -9,17 +9,7 @@ import SmoothScroll from '@/app/components/SmoothScroll';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const fadeUp = {
-  hidden:  { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
-};
-
-const stagger = {
-  hidden:  {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-/* ── Reusable reveal wrapper ─────────────────────────────────────────────── */
+/* ── Reveal wrapper ──────────────────────────────────────────────────────── */
 function Reveal({ children, className = '', delay = 0 }: {
   children: React.ReactNode;
   className?: string;
@@ -52,838 +42,914 @@ function Label({ children }: { children: React.ReactNode }) {
 /* ── Section heading ─────────────────────────────────────────────────────── */
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-['The_Last_Shuriken',sans-serif] text-white text-[36px] sm:text-[44px] md:text-[56px] leading-none mb-6">
+    <h2 className="font-['The_Last_Shuriken',sans-serif] text-[2.2rem] md:text-[3rem] text-[#eaeaea] leading-[1.1] mb-6">
       {children}
     </h2>
   );
 }
 
-/* ── Divider ─────────────────────────────────────────────────────────────── */
+/* ── Gradient divider ────────────────────────────────────────────────────── */
 function Divider() {
   return (
-    <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent my-24" />
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#333] to-transparent my-10 md:my-14" />
   );
 }
 
-/* ── Full-width image block ──────────────────────────────────────────────── */
-function FullImage({ src, alt }: { src: string; alt: string }) {
+/* ── Metric card ─────────────────────────────────────────────────────────── */
+function MetricCard({ value, label, explanation }: { value: string; label: string; explanation: string }) {
   return (
-    <Reveal>
-      <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
-        <Image
-          src={src}
-          alt={alt}
-          width={1600}
-          height={900}
-          className="w-full h-auto object-contain rounded-xl"
-        />
-      </div>
-    </Reveal>
-  );
-}
-
-/* ── Strategy pill ───────────────────────────────────────────────────────── */
-function StrategyPill({ number, title, body }: { number: string; title: string; body: string }) {
-  const ref    = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.75, ease: EASE }}
-      className="flex gap-5 items-start bg-[#0e1117] border border-white/[0.06] rounded-2xl p-7
-        hover:border-[#e10600]/20 transition-colors duration-300"
-    >
-      <span className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[3px] mt-[3px] shrink-0">
-        {number}
-      </span>
-      <div className="flex flex-col gap-2">
-        <h3 className="font-['The_Last_Shuriken',sans-serif] text-white text-[20px] leading-tight">
-          {title}
-        </h3>
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[26px] tracking-[0.3px]">
-          {body}
-        </p>
-      </div>
-    </motion.div>
-  );
-}
-
-/* ── Impact stat ─────────────────────────────────────────────────────────── */
-function ImpactStat({ value, label, delay }: { value: string; label: string; delay: number }) {
-  const ref    = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={inView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.75, delay, ease: EASE }}
-      className="flex flex-col items-center gap-3 text-center"
-    >
-      <span
-        className="font-['The_Last_Shuriken',sans-serif] text-[72px] sm:text-[88px] leading-none"
-        style={{ color: '#D4AF37', textShadow: '0 0 40px rgba(212,175,55,0.3)' }}
-      >
+    <div className="flex-1 min-w-[200px] border border-[#1e2028] rounded-2xl p-8 text-center bg-[#0c0d10] hover:border-[#D4AF37]/40 transition-colors duration-300 flex flex-col items-center">
+      <p className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.5rem] text-[#D4AF37] leading-none mb-3">
         {value}
-      </span>
-      <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[2px] uppercase max-w-[180px] leading-[22px]">
+      </p>
+      <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#eaeaea] uppercase mb-4">
         {label}
       </p>
-    </motion.div>
+      <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] max-w-[200px]">
+        {explanation}
+      </p>
+    </div>
   );
 }
 
-/* ── Learning card ───────────────────────────────────────────────────────── */
-function LearningCard({ title, body }: { title: string; body: string }) {
-  const ref    = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' });
+/* ── Problem card ────────────────────────────────────────────────────────── */
+function ProblemCard({ title, description, index }: { title: string; description: string; index: number }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.75, ease: EASE }}
-      className="flex flex-col gap-3 border-l-2 border-[#e10600]/40 pl-6 py-1"
-    >
-      <h3 className="font-['The_Last_Shuriken',sans-serif] text-white text-[20px] leading-tight">
+    <div className="flex-1 min-w-[220px] border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300">
+      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+        0{index + 1}
+      </p>
+      <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.3rem] text-[#eaeaea] mb-3">
         {title}
       </h3>
-      <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[26px] tracking-[0.3px]">
-        {body}
+      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+        {description}
       </p>
-    </motion.div>
+    </div>
   );
 }
 
-/* ══════════════════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════════════════
+   PAGE
+═══════════════════════════════════════════════════════════════════════════ */
 export default function TuCibilCaseStudy() {
-  const heroRef = useRef<HTMLElement>(null);
-
   return (
     <SmoothScroll>
-      <div className="min-h-screen w-full bg-[#070707] overflow-x-hidden">
+      <div className="min-h-screen bg-[#070707] text-[#eaeaea]">
         <Navbar />
 
-        {/* ── 1. HERO – PROJECT OVERVIEW ───────────────────────────────────── */}
-        <section ref={heroRef} className="relative w-full min-h-screen flex flex-col justify-center pt-[120px] pb-[80px] overflow-hidden">
+        {/* ── Back link ──────────────────────────────────────────────────── */}
+        <div className="pt-24 pb-0 px-6 max-w-[1100px] mx-auto">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#8a8f98] uppercase hover:text-[#e10600] transition-colors"
+          >
+            ← Back to Work
+          </Link>
+        </div>
 
-          {/* Background glow */}
-          <div
-            aria-hidden
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 70% 60% at 60% 40%, rgba(0,37,99,0.35) 0%, transparent 65%)',
-            }}
-          />
+        <main className="px-6 max-w-[1100px] mx-auto">
 
-          <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* ══════════════════════════════════════════════════════════════
+              1. HERO SECTION
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pt-10 pb-14 md:pb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-              {/* Left: hero content */}
-              <div>
-                {/* Tag */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-                >
-                  <span className="inline-flex items-center px-4 py-[7px] rounded-full
-                    font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-white
-                    bg-[#002563] border border-[#002563]/60 mb-8">
-                    FinTech Case Study
-                  </span>
-                </motion.div>
-
-                {/* Title */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 32 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
-                  className="font-['The_Last_Shuriken',sans-serif] text-white
-                    text-[52px] sm:text-[72px] md:text-[80px] lg:text-[96px]
-                    leading-[1.0] tracking-tight mb-5"
-                >
-                  TU{' '}
-                  <span style={{ color: '#D4AF37' }}>CIBIL</span>
-                </motion.h1>
-
-                {/* Subtitle */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.38, ease: EASE }}
-                  className="font-['The_Last_Shuriken',sans-serif] text-white/40 text-[18px] sm:text-[22px] leading-tight mb-6"
-                >
-                  Modernizing India's credit decision infrastructure
-                </motion.p>
-
-                {/* Description */}
-                <motion.p
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.85, delay: 0.46, ease: EASE }}
-                  className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                    leading-[30px] tracking-[0.3px] mb-12"
-                >
-                  A ground-up redesign of India's national credit bureau platform — a high-security
-                  enterprise system used daily by banks and financial institutions to evaluate
-                  creditworthiness, manage risk, and make real-time lending decisions at scale.
-                </motion.p>
-
-                {/* Meta + Responsibilities */}
-                <motion.div
-                  variants={stagger}
-                  initial="hidden"
-                  animate="visible"
-                  className="flex flex-col gap-8 pt-8 border-t border-white/[0.06]"
-                >
-                  {/* Meta row */}
-                  <div className="flex flex-wrap gap-x-10 gap-y-5">
-                    {[
-                      { label: 'Role',     value: 'Lead UX Designer' },
-                      { label: 'Duration', value: '36 Months'        },
-                      { label: 'Team',     value: 'Solo Designer'    },
-                    ].map(m => (
-                      <motion.div key={m.label} variants={fadeUp} className="flex flex-col gap-[5px]">
-                        <span className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[2px] uppercase text-white/30">
-                          {m.label}
-                        </span>
-                        <span className="font-['Blast_Dragon',sans-serif] text-[14px] font-semibold text-white/90 whitespace-nowrap">
-                          {m.value}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* My Responsibility */}
-                  <motion.div variants={fadeUp} className="flex flex-col gap-3">
-                    <span className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[2px] uppercase text-white/30">
-                      My Responsibility
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        'UX Strategy',
-                        'Product Architecture',
-                        'Design System',
-                        'Interaction Design',
-                        'Stakeholder Alignment',
-                      ].map(r => (
-                        <span
-                          key={r}
-                          className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[1.5px] uppercase
-                            px-4 py-[6px] rounded-full text-white/70 border border-white/[0.08] bg-white/[0.03]"
-                        >
-                          {r}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </div>
-
-              {/* Right: hero image */}
-              <motion.div
-                initial={{ opacity: 0, x: 48 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.1, delay: 0.5, ease: EASE }}
-                className="w-full"
-              >
-                <div className="bg-black/40 p-4 rounded-xl" style={{ boxShadow: '0 40px 100px rgba(0,0,0,0.7)' }}>
-                  <Image
-                    src="/designs/tu-cibil/hero-image.png"
-                    alt="TU CIBIL — Credit Intelligence Platform"
-                    width={1600}
-                    height={900}
-                    priority
-                    className="w-full h-auto object-contain rounded-xl"
-                  />
-                </div>
-              </motion.div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* ── 2. THE PROBLEM – LEGACY SYSTEM ───────────────────────────────── */}
-        <section className="relative w-full py-24">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <Reveal>
-              <Label>The Problem</Label>
-              <SectionHeading>
-                A legacy system{' '}
-                <span style={{ color: '#e10600' }}>holding decisions hostage.</span>
-              </SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                leading-[30px] tracking-[0.3px] max-w-[680px] mb-14">
-                India's credit ecosystem ran on a platform built for an earlier era. Bank managers
-                and financial analysts — operating under real-time pressure to approve or reject
-                loans worth crores — were fighting an interface that actively worked against them.
-                Every extra click, every broken workflow, every missed signal had a direct cost:
-                delayed decisions, compliance exposure, and lost lending opportunity.
-              </p>
-            </Reveal>
-
-            {/* Problem points */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-              {[
-                { tag: '01', title: 'Fragmented Workflows',    body: 'Related tasks were scattered across disconnected modules with no unifying logic. Switching between a customer record, their credit history, and the decision screen required navigating through three separate contexts.' },
-                { tag: '02', title: 'Outdated UI Patterns',    body: 'The interface mirrored the underlying database structure rather than the user\'s workflow. Dense forms, no visual hierarchy, no progress feedback — the mental model was the user\'s problem to solve.' },
-                { tag: '03', title: 'Slow Data Discovery',     body: 'Critical credit signals were buried in flat, unsorted tables. No scoring visualization, no risk categorization — analysts had to manually interpret raw data under time pressure.' },
-                { tag: '04', title: 'Difficult Navigation',    body: 'No logical information grouping across credit records, search filters, or bulk actions. Users built workarounds and memorized broken pathways rather than discovering flows naturally.' },
-                { tag: '05', title: 'Compliance-Heavy Flows',  body: 'Mandatory regulatory checkpoints were embedded mid-task with no contextual guidance. Errors were common, rework was frequent, and audit trails were incomplete.' },
-              ].map(p => (
-                <Reveal key={p.tag}>
-                  <div className="flex flex-col gap-3 bg-[#0e1117] border border-white/[0.06] rounded-2xl p-7
-                    hover:border-[#e10600]/20 transition-colors duration-300 h-full">
-                    <span className="font-['Blast_Dragon',sans-serif] text-[10px] text-[#e10600] tracking-[3px] uppercase">
-                      {p.tag}
-                    </span>
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-white text-[20px] leading-tight">
-                      {p.title}
-                    </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[26px] tracking-[0.3px]">
-                      {p.body}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-              {/* Why it mattered card */}
+              {/* Left — text */}
               <Reveal>
-                <div className="flex flex-col gap-3 bg-[#0e1117] border border-[#e10600]/20 rounded-2xl p-7 h-full">
-                  <span className="font-['Blast_Dragon',sans-serif] text-[10px] text-[#e10600] tracking-[3px] uppercase">
-                    Why It Mattered
-                  </span>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[26px] tracking-[0.3px]">
-                    Financial institutions process thousands of credit queries daily through this
-                    platform. Each friction point directly translates to delayed lending decisions,
-                    increased compliance risk, and lost revenue. For the product team, modernization
-                    wasn't a cosmetic exercise — it was a business-critical mandate tied to
-                    institutional performance metrics.
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-
-            <FullImage
-              src="/designs/tu-cibil/before-image.png"
-              alt="TU CIBIL legacy interface — before redesign"
-            />
-            <Reveal>
-              <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
-                Legacy Interface — Before Redesign
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        <Divider />
-
-        {/* ── 3. UNDERSTANDING THE SYSTEM ──────────────────────────────────── */}
-        <section className="relative w-full py-24">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <Reveal>
-              <Label>System Thinking</Label>
-              <SectionHeading>
-                More than a UI redesign —{' '}
-                <span style={{ color: '#D4AF37' }}>a systems challenge.</span>
-              </SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                leading-[30px] tracking-[0.3px] max-w-[680px] mb-14">
-                Before sketching a single screen, I spent weeks mapping the entire data ecosystem.
-                A credit bureau platform isn't a form with buttons — it's a living web of entities,
-                scores, histories, dispute records, and regulatory flows that all reference each
-                other. Getting the information architecture right meant understanding how each
-                data relationship actually served a decision-making moment. The UI was the last
-                thing to design, not the first.
-              </p>
-            </Reveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              {[
-                {
-                  role: 'Bank Managers',
-                  need: 'Decisive overview. They need risk signals at a glance to approve or escalate — not raw tables requiring interpretation. Speed and confidence are the design target.',
-                },
-                {
-                  role: 'Credit Analysts',
-                  need: 'Deep investigation capability. They need to navigate credit history, dispute records, and detailed score breakdowns without losing context across sections.',
-                },
-                {
-                  role: 'Lenders & Approvers',
-                  need: 'Workflow clarity. They need step-by-step guidance through multi-stage application flows and compliance gates without ambiguity about what comes next.',
-                },
-              ].map(u => (
-                <Reveal key={u.role}>
-                  <div className="flex flex-col gap-3 border border-white/[0.06] rounded-2xl p-7 bg-[#0e1117]
-                    hover:border-[#D4AF37]/20 transition-colors duration-300">
-                    <span className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] uppercase"
-                      style={{ color: '#D4AF37' }}>
-                      User Role
-                    </span>
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-white text-[20px] leading-tight">
-                      {u.role}
-                    </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[26px] tracking-[0.3px]">
-                      {u.need}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            <FullImage
-              src="/designs/tu-cibil/data-hierarchy-imagepng.png"
-              alt="TU CIBIL — data hierarchy and information architecture"
-            />
-            <Reveal>
-              <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
-                Information Architecture — Data Hierarchy Mapping
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        <Divider />
-
-        {/* ── 4. UX STRATEGY ───────────────────────────────────────────────── */}
-        <section className="relative w-full py-24">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <Reveal>
-              <Label>UX Strategy</Label>
-              <SectionHeading>
-                Five principles that{' '}
-                <span style={{ color: '#e10600' }}>guided every decision.</span>
-              </SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                leading-[30px] tracking-[0.3px] max-w-[600px] mb-14">
-                Redesigning a regulated financial platform meant making hard calls. Every design
-                decision involved tradeoffs between user efficiency, data depth, regulatory
-                requirements, and institutional risk tolerance. To keep the team aligned and
-                scope controlled, I defined five non-negotiable principles that acted as the
-                decision filter throughout the entire 36-month engagement.
-              </p>
-            </Reveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <StrategyPill
-                number="01"
-                title="Simplify Complex Credit Data"
-                body="Multi-layered numerical data had to become scannable visual hierarchy. The design goal: a user should read risk signal in seconds — not after minutes of table parsing. Every data view was audited and restructured around this standard."
-              />
-              <StrategyPill
-                number="02"
-                title="Prioritize Critical Insights"
-                body="Not all data is equal. The most decision-relevant information had to live at the entry point of every screen. Secondary and supporting data belongs behind progressive disclosure — never competing for attention with the primary signal."
-              />
-              <StrategyPill
-                number="03"
-                title="Reduce Cognitive Load"
-                body="Complex multi-step flows were decomposed into guided, focused stages. Unnecessary fields were cut. Context was surfaced at the right moment. Error prevention was designed in — not patched in after usability testing."
-              />
-              <StrategyPill
-                number="04"
-                title="Support Faster Credit Decisions"
-                body="Every pattern — from dashboard layout to filter placement to navigation depth — was evaluated against a single business outcome: enabling faster, more confident lending decisions. If a pattern didn't serve that outcome, it was cut."
-              />
-              <StrategyPill
-                number="05"
-                title="Ensure Regulatory Compliance"
-                body="Compliance requirements were treated as design inputs, not obstacles. Mandatory regulatory steps were redesigned as structured contextual guidance embedded naturally within task flows — correct and usable, not one or the other."
-              />
-            </div>
-          </div>
-        </section>
-
-        <Divider />
-
-        {/* ── 5. UX EXPLORATION ────────────────────────────────────────────── */}
-        <section className="relative w-full py-24">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <Reveal>
-                <Label>UX Exploration</Label>
-                <SectionHeading>
-                  Structure first.{' '}
-                  <span style={{ color: '#e10600' }}>Visual polish later.</span>
-                </SectionHeading>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                  leading-[30px] tracking-[0.3px]">
-                  Low-fidelity wireframes were the primary tool for stress-testing the architecture.
-                  Before investing in visual design, I needed to validate three things: did the layout
-                  structure match how users actually think about credit data, did the proposed workflow
-                  reduce steps versus the legacy system, and did information prioritization hold up
-                  under real task scenarios. Wireframes surfaced the structural failures quickly —
-                  and cheaply — before any pixel work began.
-                </p>
-              </Reveal>
-
-              <Reveal delay={0.15}>
-                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
-                  <Image
-                    src="/designs/tu-cibil/wireframe-image.png"
-                    alt="TU CIBIL — wireframe exploration"
-                    width={1600}
-                    height={900}
-                    className="w-full h-auto object-contain rounded-xl"
-                  />
-                </div>
-                <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
-                  Low-Fidelity Wireframes — Structural Exploration
-                </p>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        <Divider />
-
-        {/* ── 6. INTERACTION DESIGN ────────────────────────────────────────── */}
-        <section className="relative w-full py-24">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-              <Reveal>
-                <Label>Interaction Design</Label>
-                <SectionHeading>
-                  Progressive stepper —{' '}
-                  <span style={{ color: '#D4AF37' }}>one step at a time.</span>
-                </SectionHeading>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                  leading-[30px] tracking-[0.3px] mb-10">
-                  The most consequential interaction pattern introduced in this redesign. The legacy
-                  system presented entire credit application workflows as a single overwhelming
-                  page — dozens of fields, no progress context, no logical grouping. I replaced
-                  this with a progressive stepper model: sequential, focused stages where each
-                  step surfaces only what that moment in the workflow requires. Confusion dropped.
-                  Completion rates improved. Errors moved earlier, where they were cheaper to fix.
+                <Label>Context</Label>
+                <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3.5rem] md:text-[5rem] lg:text-[6rem] text-[#eaeaea] leading-[1.05] mb-6">
+                  TU CIBIL
+                </h1>
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6 max-w-[500px]">
+                  Modernizing India&apos;s national credit intelligence platform — redesigning
+                  complex financial workflows, dense data reports, and multi-step forms into
+                  an intuitive, scalable product experience trusted by millions.
                 </p>
 
-                <div className="flex flex-col gap-4">
+                {/* Metadata grid */}
+                <div className="grid grid-cols-2 gap-x-8 gap-y-5">
                   {[
-                    { title: 'Application Processing', body: 'Multi-field applications restructured into logical, labelled stages. Users always know how far they are and what comes next — eliminating the anxiety of an unmarked form.' },
-                    { title: 'Credit Evaluation Workflow', body: 'Risk assessment steps presented in a defined sequence. Analysts move through data layers methodically, with full context retained across every step transition.' },
-                    { title: 'Decision Gates', body: 'Mandatory compliance checkpoints are embedded as natural waypoints within the flow — not interruptions. Users complete them correctly because the context makes the requirement clear.' },
-                  ].map((item, i) => (
-                    <Reveal key={item.title} delay={i * 0.1}>
-                      <div className="flex gap-4 items-start">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#e10600] mt-[9px] shrink-0" />
-                        <div>
-                          <p className="font-['The_Last_Shuriken',sans-serif] text-white text-[17px] mb-1">{item.title}</p>
-                          <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[24px] tracking-[0.3px]">{item.body}</p>
-                        </div>
-                      </div>
-                    </Reveal>
+                    { label: 'Role',     value: 'Lead UI/UX Designer' },
+                    { label: 'Duration', value: '36 Months' },
+                    { label: 'Platform', value: 'Desktop / Tablet / Mobile' },
+                    { label: 'Team',     value: 'Solo Designer' },
+                  ].map(({ label, value }) => (
+                    <div key={label}>
+                      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-1">
+                        {label}
+                      </p>
+                      <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#eaeaea]">
+                        {value}
+                      </p>
+                    </div>
                   ))}
                 </div>
               </Reveal>
 
-              <Reveal delay={0.15}>
-                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
+              {/* Right — hero image */}
+              <Reveal delay={0.15} className="w-full">
+                <div className="relative w-full rounded-2xl overflow-hidden border border-[#1e2028]">
                   <Image
-                    src="/designs/tu-cibil/progressive-stepper-image.png"
-                    alt="TU CIBIL — progressive stepper interaction"
-                    width={1600}
-                    height={2000}
-                    className="w-full h-auto object-contain rounded-xl"
+                    src="/designs/tu-cibil/hero-image.png"
+                    alt="TU CIBIL Hero"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-contain"
+                    priority
                   />
                 </div>
               </Reveal>
-
             </div>
-          </div>
-        </section>
+          </section>
 
-        <Divider />
-
-        {/* ── 7. FINAL PRODUCT ─────────────────────────────────────────────── */}
-        <section className="relative w-full py-24">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <Reveal>
-              <Label>Final Product</Label>
-              <SectionHeading>
-                A platform built for{' '}
-                <span style={{ color: '#D4AF37' }}>decisions, not data entry.</span>
-              </SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                leading-[30px] tracking-[0.3px] max-w-[640px] mb-14">
-                The redesigned platform replaced information overwhelm with structured decision
-                clarity. Every screen was built around a single design question: what does this
-                user need to act on right now — and what should stay out of their way until they
-                need it? The result is a system that feels proportionate to its domain: powerful
-                without being intimidating, comprehensive without being cluttered.
-              </p>
-            </Reveal>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+          {/* ── Quick Summary Strip ────────────────────────────────────────── */}
+          <Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14 md:mb-20">
               {[
-                { title: 'Clear Data Hierarchy',     body: 'Risk signals surface at the primary view. Secondary and supporting data live behind progressive disclosure — present when needed, invisible when not.' },
-                { title: 'Faster Navigation',         body: 'Role-based entry points and persistent context menus reduced navigation depth across all core workflows. Less clicking, more deciding.' },
-                { title: 'Improved Report Access',    body: 'Credit reports restructured as visual dashboards with score cards, trend indicators, and risk categorisation — from raw data to readable insight.' },
-                { title: 'Simplified Dashboards',     body: 'At-a-glance summaries engineered for quick confident decisions. Drill-down capability intact without cluttering the primary decision layer.' },
-              ].map(f => (
-                <Reveal key={f.title}>
-                  <div className="flex flex-col gap-3 bg-[#0e1117] border border-white/[0.06] rounded-2xl p-6
-                    hover:border-[#D4AF37]/20 transition-colors duration-300 h-full">
-                    <div className="w-6 h-0.5 bg-[#D4AF37]" />
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-white text-[18px] leading-tight">
-                      {f.title}
-                    </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[26px] tracking-[0.3px]">
-                      {f.body}
-                    </p>
-                  </div>
-                </Reveal>
+                { label: 'Platform', value: 'FinTech Credit Intelligence' },
+                { label: 'Users',    value: 'Bank Managers, Financial Analysts' },
+                { label: 'Scope',    value: '150+ Screens' },
+                { label: 'Impact',   value: '40% Faster Task Completion' },
+              ].map(({ label, value }) => (
+                <div
+                  key={label}
+                  className="border border-[#1e2028] rounded-2xl p-5 bg-[#0c0d10]"
+                >
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">
+                    {label}
+                  </p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.7] text-[#eaeaea]">
+                    {value}
+                  </p>
+                </div>
               ))}
             </div>
+          </Reveal>
 
-            <FullImage
-              src="/designs/tu-cibil/dashboard-image.png"
-              alt="TU CIBIL — redesigned dashboard"
-            />
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              MY ROLE
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
+              <Reveal>
+                <Label>Leadership</Label>
+                <SectionHeading>My Role</SectionHeading>
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                  As the sole designer on this engagement, I owned the end-to-end UX
+                  process — from discovery through to engineering handoff — while navigating
+                  a complex set of regulatory, technical, and organisational constraints.
+                </p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <ul className="flex flex-col gap-4 mt-2">
+                  {[
+                    'Led UX strategy for the credit intelligence platform across all four user journeys',
+                    'Redesigned core workflows used daily by banking professionals and compliance officers',
+                    'Established scalable design patterns and a unified component system across 150+ screens',
+                    'Collaborated directly with product managers and engineering teams through weekly reviews',
+                    'Ensured every design decision respected RBI regulatory constraints and audit-trail requirements',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-4">
+                      <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-[#e10600] shrink-0" />
+                      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                        {item}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              PRODUCT CONTEXT
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
+              <Reveal>
+                <Label>Background</Label>
+                <SectionHeading>Product Context</SectionHeading>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6">
+                  TU CIBIL is India&apos;s leading credit information company, providing
+                  banks, NBFCs, and financial institutions with the data they need to
+                  evaluate borrower creditworthiness and make high-stakes lending decisions.
+                </p>
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6">
+                  The platform is used by bank managers and financial analysts who process
+                  hundreds of credit applications per week. Every workflow, every data point,
+                  and every UI state has a direct impact on whether a loan is approved or
+                  declined — making clarity in financial data not a preference, but a
+                  professional requirement.
+                </p>
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                  Errors in this context don&apos;t just create friction — they carry financial
+                  and reputational consequences. The redesign had to earn trust through
+                  precision, not novelty.
+                </p>
+              </Reveal>
+            </div>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              2. PROBLEM SECTION
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
             <Reveal>
-              <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
-                Redesigned Platform — Dashboard View
+              <Label>Challenge</Label>
+              <SectionHeading>The Problem</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
+                The legacy TU CIBIL platform suffered from three core usability failures
+                that caused friction at every touchpoint across the credit lifecycle.
               </p>
             </Reveal>
-          </div>
-        </section>
+            <Reveal delay={0.1}>
+              <div className="flex flex-col md:flex-row gap-5">
+                <ProblemCard
+                  index={0}
+                  title="Static Long Forms"
+                  description="Monolithic single-page forms with 40+ fields displayed simultaneously, causing high abandonment rates and input errors among financial analysts."
+                />
+                <ProblemCard
+                  index={1}
+                  title="Data Dense Reports"
+                  description="Credit reports lacked visual hierarchy — raw numerical tables with no grouping, no progressive disclosure, and no actionable insight surfacing."
+                />
+                <ProblemCard
+                  index={2}
+                  title="Cognitive Overload"
+                  description="Users faced decision paralysis navigating between workflows. The mental load of interpreting data while completing tasks was unsustainable at scale."
+                />
+              </div>
+            </Reveal>
+          </section>
 
-        <Divider />
+          <Divider />
 
-        {/* ── 8. PLATFORM SCALE ────────────────────────────────────────────── */}
-        <section className="relative w-full py-24 overflow-hidden">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <Reveal className="text-center mb-16">
-              <Label>Platform Scale</Label>
-              <SectionHeading>Built for every context.</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] text-[#8a8f98]
-                leading-[28px] tracking-[0.3px] max-w-[520px] mx-auto">
-                The system was designed desktop-first — where primary credit workflows demand
-                the full workspace — then extended to mobile for field access and quick
-                decision lookups. The result is a consistent, responsive enterprise UI system
-                spanning 150+ screens across every breakpoint.
+          {/* ══════════════════════════════════════════════════════════════
+              KEY CHALLENGES
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>What Made This Hard</Label>
+              <SectionHeading>Key Challenges</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[600px] mb-6">
+                Four compounding challenges shaped every design decision and demanded
+                a fundamentally different approach to simplification.
               </p>
             </Reveal>
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {[
+                  {
+                    num:   '01',
+                    title: 'Regulatory Compliance Constraints',
+                    body:  'Every workflow had to satisfy RBI guidelines, CIBIL data mandates, and legal audit-trail requirements. Simplification could never come at the cost of compliance.',
+                    color: 'border-[#e10600]/20 hover:border-[#e10600]/50',
+                    dot:   'bg-[#e10600]',
+                  },
+                  {
+                    num:   '02',
+                    title: 'Complex Financial Data Structures',
+                    body:  'Credit data is inherently nested, relational, and time-sensitive. Presenting it clearly without losing fidelity required deep information architecture work.',
+                    color: 'border-[#e10600]/20 hover:border-[#e10600]/50',
+                    dot:   'bg-[#e10600]',
+                  },
+                  {
+                    num:   '03',
+                    title: 'Experienced Power Users',
+                    body:  'Analysts and bank managers are domain experts with established mental models. Oversimplification would slow them down. The design had to match their expertise, not bypass it.',
+                    color: 'border-[#e10600]/20 hover:border-[#e10600]/50',
+                    dot:   'bg-[#e10600]',
+                  },
+                  {
+                    num:   '04',
+                    title: 'Legacy System Limitations',
+                    body:  'Fixed API contracts and aging infrastructure meant designs had to work within existing data structures — no new endpoints, no redesigned payloads.',
+                    color: 'border-[#e10600]/20 hover:border-[#e10600]/50',
+                    dot:   'bg-[#e10600]',
+                  },
+                ].map(({ num, title, body, color, dot }) => (
+                  <div
+                    key={num}
+                    className={`border ${color} rounded-2xl p-7 bg-[#0c0d10] transition-colors duration-300`}
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className={`w-2 h-2 rounded-full ${dot} shrink-0`} />
+                      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase">
+                        Challenge {num}
+                      </p>
+                    </div>
+                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                      {title}
+                    </h3>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                      {body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </section>
 
-            {/* Desktop */}
-            <Reveal className="mb-8">
-              <div className="max-w-[1200px] mx-auto">
-                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              3. CONSTRAINTS
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>Design Context</Label>
+              <SectionHeading>Constraints</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
+                Every design decision was shaped by a demanding set of real-world constraints.
+                These were not obstacles to work around — they were the design brief.
+                Understanding them was the prerequisite for any meaningful solution.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {[
+                  {
+                    index: '01',
+                    title: 'Regulatory Compliance',
+                    description:
+                      'All workflows had to meet RBI guidelines and CIBIL data-handling mandates. UI patterns that simplified inputs could not compromise legal audit trails or data integrity requirements.',
+                  },
+                  {
+                    index: '02',
+                    title: 'Legacy Infrastructure',
+                    description:
+                      'The platform ran on aging backend systems with fixed API response structures. Designs had to work within those data contracts — no new endpoints could be created for UX convenience.',
+                  },
+                  {
+                    index: '03',
+                    title: 'High Data Accuracy Requirements',
+                    description:
+                      'Credit decisions carry financial and legal consequences. Ambiguous UI states, unclear validation, or misleading visualizations were not acceptable failure modes.',
+                  },
+                  {
+                    index: '04',
+                    title: 'Experienced Banking Professionals',
+                    description:
+                      'Primary users were senior analysts and compliance officers — not general consumers. Solutions had to respect their mental models and vocabulary rather than over-simplify at the cost of efficiency.',
+                  },
+                ].map(({ index, title, description }) => (
+                  <div
+                    key={index}
+                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors duration-300"
+                  >
+                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#D4AF37] uppercase mb-4">
+                      {index}
+                    </p>
+                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                      {title}
+                    </h3>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                      {description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              4. TRANSFORMATION SECTION
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>Before vs After</Label>
+              <SectionHeading>Legacy vs Modern</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[600px] mb-6">
+                A deliberate, research-backed transformation — from overwhelming complexity
+                to purposeful clarity at every interaction point.
+              </p>
+            </Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Reveal delay={0} className="flex flex-col gap-4">
+                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
                   <Image
-                    src="/designs/tu-cibil/desktop-images.png"
-                    alt="TU CIBIL — desktop screens"
-                    width={1600}
-                    height={686}
-                    className="w-full h-auto object-contain rounded-xl"
+                    src="/designs/tu-cibil/before-image.png"
+                    alt="Before — Legacy TU CIBIL"
+                    width={800}
+                    height={540}
+                    className="w-full h-auto object-contain"
                   />
                 </div>
-                <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-3 text-center">
-                  Desktop — Primary Workspace
+                <div className="flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full bg-[#e10600] shrink-0" />
+                  <p className="font-['Blast_Dragon',sans-serif] text-[12px] tracking-[2px] text-[#8a8f98] uppercase">
+                    Before — Long static forms with excessive fields
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={0.12} className="flex flex-col gap-4">
+                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                  <Image
+                    src="/designs/tu-cibil/after-image.png"
+                    alt="After — Redesigned TU CIBIL"
+                    width={800}
+                    height={540}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37] shrink-0" />
+                  <p className="font-['Blast_Dragon',sans-serif] text-[12px] tracking-[2px] text-[#8a8f98] uppercase">
+                    After — Progressive stepper workflow with structured hierarchy
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              5. UX STRATEGY
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>Design Approach</Label>
+              <SectionHeading>Strategic Design Decisions</SectionHeading>
+            </Reveal>
+
+            {/* A — Progressive Stepper (image right) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-8 mb-10">
+              <Reveal className="order-2 lg:order-1">
+                <Label>Decision 01</Label>
+                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.2rem] text-[#eaeaea] mb-5">
+                  Progressive Stepper Forms
+                </h3>
+                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                  Replaced monolithic form layouts with a contextual, step-by-step stepper.
+                  Each stage surfaces only the fields relevant to the current step —
+                  reducing perceived complexity and guiding users through credit workflows
+                  with clear progress indicators and inline validation feedback.
                 </p>
+              </Reveal>
+              <Reveal delay={0.1} className="order-1 lg:order-2">
+                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                  <Image
+                    src="/designs/tu-cibil/progressive-stepper-image.png"
+                    alt="Progressive Stepper Forms"
+                    width={800}
+                    height={540}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </Reveal>
+            </div>
+
+            {/* B — Dashboard Reports (image left) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-10">
+              <Reveal delay={0.1}>
+                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                  <Image
+                    src="/designs/tu-cibil/dashboard-image.png"
+                    alt="Dashboard Based Reports"
+                    width={800}
+                    height={540}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </Reveal>
+              <Reveal>
+                <Label>Decision 02</Label>
+                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.2rem] text-[#eaeaea] mb-5">
+                  Dashboard Based Reports
+                </h3>
+                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                  Transformed raw tabular credit data into structured, scannable dashboards.
+                  Key metrics are elevated through visual hierarchy — score indicators,
+                  trend charts, and segmented panels allow analysts to extract insight
+                  in seconds rather than minutes.
+                </p>
+              </Reveal>
+            </div>
+
+            {/* C — Data Hierarchy (image right) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <Reveal className="order-2 lg:order-1">
+                <Label>Decision 03</Label>
+                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.2rem] text-[#eaeaea] mb-5">
+                  Data Hierarchy Optimization
+                </h3>
+                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                  Established a strict visual hierarchy across all data-heavy screens —
+                  primary metrics at the top, secondary context in the middle, granular
+                  detail accessible on demand. This reduced cognitive load by guiding
+                  attention through intentional type scale and spatial grouping.
+                </p>
+              </Reveal>
+              <Reveal delay={0.1} className="order-1 lg:order-2">
+                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                  <Image
+                    src="/designs/tu-cibil/data-hierarchy-imagepng.png"
+                    alt="Data Hierarchy Optimization"
+                    width={800}
+                    height={540}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </Reveal>
+            </div>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              6. SYSTEM THINKING
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>Scalability</Label>
+              <SectionHeading>Design System</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-4">
+                The platform started at 25 screens. By the end of the engagement it had
+                grown to 150+ — spanning four distinct user journeys across analysts,
+                compliance managers, bank partners, and end consumers. That growth was only
+                possible because of a design system built to scale from day one.
+              </p>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
+                Every component, token, and pattern was designed to compose — ensuring
+                visual and functional consistency without design drift as the product
+                grew. The system covered a 6-level type scale, a semantic color palette,
+                a full component library, spacing tokens, and interaction guidelines,
+                all documented for engineering handoff.
+              </p>
+            </Reveal>
+
+            {/* System pillars — rich three-column cards */}
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+
+                {/* ── Typography card ── */}
+                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors flex flex-col">
+                  <h4 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#D4AF37] mb-4">
+                    Typography
+                  </h4>
+                  <div className="flex flex-col gap-5 flex-1">
+                    {[
+                      { name: 'Display',   size: '48px', weight: 'Bold',      scale: 'text-[2.4rem]' },
+                      { name: 'Heading 1', size: '36px', weight: 'Semi Bold', scale: 'text-[1.8rem]' },
+                      { name: 'Heading 2', size: '24px', weight: 'Semi Bold', scale: 'text-[1.2rem]' },
+                      { name: 'Body',      size: '16px', weight: 'Regular',   scale: 'text-[1rem]'   },
+                      { name: 'Caption',   size: '12px', weight: 'Medium',    scale: 'text-[0.75rem]'},
+                    ].map(({ name, size, weight, scale }) => (
+                      <div key={name} className="flex items-baseline justify-between gap-3 border-b border-[#1e2028] pb-4 last:border-0 last:pb-0">
+                        <div className="flex-1 min-w-0">
+                          <p className={`${scale} font-['The_Last_Shuriken',sans-serif] text-[#eaeaea] leading-tight truncate`}>
+                            {name}
+                          </p>
+                        </div>
+                        <div className="shrink-0 text-right">
+                          <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[1px] text-[#D4AF37]">
+                            {size}
+                          </p>
+                          <p className="font-['Blast_Dragon',sans-serif] text-[9px] tracking-[1px] text-[#8a8f98] mt-0.5">
+                            {weight}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ── Color Palette card ── */}
+                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors flex flex-col">
+                  <h4 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#D4AF37] mb-4">
+                    Color Palette
+                  </h4>
+                  <div className="flex flex-col gap-3 flex-1">
+                    {[
+                      { label: 'Primary',       hex: '#014163', bg: 'bg-[#014163]' },
+                      { label: 'Secondary',     hex: '#FCD800', bg: 'bg-[#FCD800]' },
+                      { label: 'Neutral Dark',  hex: '#333333', bg: 'bg-[#333333]' },
+                      { label: 'Neutral Mid',   hex: '#919191', bg: 'bg-[#919191]' },
+                      { label: 'Neutral Light', hex: '#F2F2F5', bg: 'bg-[#F2F2F5]' },
+                      { label: 'Accent',        hex: '#307DA2', bg: 'bg-[#307DA2]' },
+                    ].map(({ label, hex, bg }) => (
+                      <div key={hex} className="flex items-center gap-3">
+                        <div className={`${bg} w-9 h-9 rounded-lg shrink-0 border border-white/10`} />
+                        <div>
+                          <p className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#eaeaea] leading-tight">
+                            {label}
+                          </p>
+                          <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[1px] text-[#8a8f98] mt-0.5">
+                            {hex}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ── Components card ── */}
+                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors flex flex-col">
+                  <h4 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#D4AF37] mb-4">
+                    Components
+                  </h4>
+                  <div className="flex flex-col gap-5 flex-1">
+                    {[
+                      { category: 'Buttons',     items: ['Primary', 'Secondary', 'Ghost'] },
+                      { category: 'Form Fields',  items: ['Input', 'Select', 'Checkbox'] },
+                      { category: 'Data Cards',   items: ['Metric', 'Chart', 'Summary'] },
+                      { category: 'Navigation',   items: ['Sidebar', 'Tabs', 'Breadcrumbs'] },
+                    ].map(({ category, items }) => (
+                      <div key={category} className="border-b border-[#1e2028] pb-4 last:border-0 last:pb-0">
+                        <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[2px] text-[#D4AF37] uppercase mb-2">
+                          {category}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {items.map((item) => (
+                            <span
+                              key={item}
+                              className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[1px] text-[#8a8f98] border border-[#2a2d36] rounded-md px-2 py-1"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
               </div>
             </Reveal>
 
-            {/* Mobile + Responsive */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1200px] mx-auto">
-              <Reveal>
-                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
-                  <Image
-                    src="/designs/tu-cibil/mobile-images.png"
-                    alt="TU CIBIL — mobile screens"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto object-contain rounded-xl"
-                  />
-                </div>
-                <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-3 text-center">
-                  Mobile — Quick Insights Access
+            {/* Stat callout */}
+            <Reveal delay={0.15}>
+              <div className="border border-[#1e2028] rounded-2xl p-8 md:p-12 bg-[#0c0d10] text-center">
+                <p className="font-['The_Last_Shuriken',sans-serif] text-[4rem] md:text-[6rem] text-[#D4AF37] leading-none">
+                  150+
                 </p>
-              </Reveal>
-              <Reveal delay={0.12}>
-                <div className="bg-black/40 p-4 rounded-xl border border-white/[0.06]">
-                  <Image
-                    src="/designs/tu-cibil/responsive-image.png"
-                    alt="TU CIBIL — responsive layout"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto object-contain rounded-xl"
-                  />
-                </div>
-                <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-3 text-center">
-                  Responsive Enterprise UI System
+                <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[4px] text-[#8a8f98] uppercase mt-3">
+                  Screens Designed with a Single Unified System
                 </p>
-              </Reveal>
-            </div>
-          </div>
-        </section>
+              </div>
+            </Reveal>
+          </section>
 
-        <Divider />
+          <Divider />
 
-        {/* ── 9. IMPACT ────────────────────────────────────────────────────── */}
-        <section className="relative w-full py-24 overflow-hidden">
-
-          {/* Ambient glow */}
-          <div
-            aria-hidden
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,175,55,0.05) 0%, transparent 70%)',
-            }}
-          />
-
-          <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <Reveal className="text-center">
-              <Label>Impact</Label>
-              <SectionHeading>Results that moved the needle.</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] text-[#8a8f98]
-                leading-[28px] tracking-[0.3px] max-w-[520px] mx-auto mb-20">
-                Outcomes validated through structured usability testing, task completion
-                benchmarking, and post-launch feedback collected across the banking partner
-                network. The numbers reflect a platform that analysts and managers actually
-                wanted to use.
+          {/* ══════════════════════════════════════════════════════════════
+              7. RESPONSIVE DESIGN
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>Multi-Device</Label>
+              <SectionHeading>Every Screen, Every Device</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[600px] mb-6">
+                From enterprise desktops to field tablets and consumer mobile — the
+                TU CIBIL experience adapts fluidly across breakpoints, preserving
+                information hierarchy and interaction quality on every device.
               </p>
             </Reveal>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-[900px] mx-auto mb-20">
-              <ImpactStat value="40%"  label="Reduction in workflow friction across core lending tasks"  delay={0}    />
-              <ImpactStat value="150+" label="Screens designed across desktop, tablet and mobile"         delay={0.12} />
-              <ImpactStat value="40%"  label="Faster credit decision-making reported by bank managers"   delay={0.24} />
-            </div>
+            {/* Responsive overview — single full-width image */}
+            <Reveal delay={0.1}>
+              <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <Image
+                  src="/designs/tu-cibil/responsive-image.png"
+                  alt="TU CIBIL — responsive design across devices"
+                  width={1400}
+                  height={800}
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </Reveal>
+          </section>
 
-            {/* Impact statements */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[900px] mx-auto mb-16">
-              {[
-                'Improved credit decision efficiency — structured dashboards cut the time from login to decision-ready insight.',
-                'Reduced workflow friction — redundant navigation steps and unnecessary form fields systematically removed across all core flows.',
-                'Faster data discovery — prioritised information hierarchy and contextual filtering replaced flat table parsing.',
-                'Improved analyst usability — role-aware entry points and task-oriented navigation tailored to how each user type actually works.',
-              ].map((s, i) => (
-                <Reveal key={i} delay={i * 0.08}>
-                  <div className="flex gap-4 items-start bg-[#0e1117] border border-white/[0.06] rounded-xl p-6">
-                    <div className="w-1.5 h-1.5 rounded-full mt-[9px] shrink-0" style={{ background: '#D4AF37' }} />
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[26px] tracking-[0.3px]">
-                      {s}
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              8. PLANNING / WIREFRAMES
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>Information Architecture</Label>
+              <SectionHeading>Planning</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-4">
+                Wireframes were the foundation — not decoration. Before any visual
+                decisions, every screen was mapped as a low-fidelity structure to
+                validate navigation logic, content priority, and task flow.
+              </p>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
+                This process uncovered hidden complexity in multi-step credit workflows,
+                drove the decision to adopt the progressive stepper pattern, and established
+                the information architecture that the final design system was built upon.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <Image
+                  src="/designs/tu-cibil/wireframe-image.png"
+                  alt="Wireframes — Information Architecture"
+                  width={1400}
+                  height={800}
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </Reveal>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              9. DESIGN PROCESS
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>Methodology</Label>
+              <SectionHeading>Design Process</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px] mb-6">
+                A structured, iterative process — grounded in user research and
+                validated at every milestone through stakeholder reviews and usability testing.
+              </p>
+            </Reveal>
+
+            {/* Timeline */}
+            <Reveal delay={0.1}>
+              {/* Desktop horizontal */}
+              <div className="hidden md:flex items-start gap-0 relative">
+                {/* connecting line */}
+                <div className="absolute top-5 left-[40px] right-[40px] h-px bg-gradient-to-r from-[#e10600]/40 via-[#D4AF37]/40 to-[#e10600]/40" />
+                {[
+                  { step: '01', label: 'Research' },
+                  { step: '02', label: 'Task Analysis' },
+                  { step: '03', label: 'Wireframes' },
+                  { step: '04', label: 'Prototyping' },
+                  { step: '05', label: 'Visual Design' },
+                  { step: '06', label: 'Testing' },
+                ].map(({ step, label }, i) => (
+                  <div key={step} className="flex-1 flex flex-col items-center text-center relative z-10">
+                    <div className="w-10 h-10 rounded-full border-2 border-[#e10600] bg-[#070707] flex items-center justify-center mb-4">
+                      <span className="font-['Blast_Dragon',sans-serif] text-[9px] tracking-[1px] text-[#e10600]">
+                        {step}
+                      </span>
+                    </div>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] text-[#eaeaea] uppercase">
+                      {label}
                     </p>
                   </div>
-                </Reveal>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            <FullImage
-              src="/designs/tu-cibil/after-image.png"
-              alt="TU CIBIL — redesigned system after launch"
-            />
+              {/* Mobile vertical */}
+              <div className="flex md:hidden flex-col gap-0 relative pl-8">
+                <div className="absolute left-[15px] top-5 bottom-5 w-px bg-gradient-to-b from-[#e10600]/40 via-[#D4AF37]/40 to-[#e10600]/40" />
+                {[
+                  { step: '01', label: 'Research' },
+                  { step: '02', label: 'Task Analysis' },
+                  { step: '03', label: 'Wireframes' },
+                  { step: '04', label: 'Prototyping' },
+                  { step: '05', label: 'Visual Design' },
+                  { step: '06', label: 'Testing' },
+                ].map(({ step, label }) => (
+                  <div key={step} className="flex items-center gap-5 mb-7 relative z-10">
+                    <div className="w-[30px] h-[30px] shrink-0 rounded-full border-2 border-[#e10600] bg-[#070707] flex items-center justify-center">
+                      <span className="font-['Blast_Dragon',sans-serif] text-[9px] text-[#e10600]">
+                        {step}
+                      </span>
+                    </div>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[12px] tracking-[2px] text-[#eaeaea] uppercase">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              10. OUTCOMES
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
             <Reveal>
-              <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] uppercase text-[#8a8f98] mt-4 text-center">
-                Redesigned System — Final Delivered State
+              <Label>Results</Label>
+              <SectionHeading>Measurable Impact</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px] mb-6">
+                The redesign delivered tangible improvements across efficiency, scale,
+                and user wellbeing — validated through post-launch usability studies
+                and stakeholder feedback.
               </p>
             </Reveal>
-          </div>
-        </section>
-
-        <Divider />
-
-        {/* ── 10. KEY LEARNINGS ────────────────────────────────────────────── */}
-        <section className="relative w-full py-24">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12">
-
-            <Reveal>
-              <Label>Key Learnings</Label>
-              <SectionHeading>
-                What 36 months in fintech{' '}
-                <span style={{ color: '#e10600' }}>taught me.</span>
-              </SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#8a8f98]
-                leading-[30px] tracking-[0.3px] max-w-[600px] mb-16">
-                Working as the sole designer on a regulated, high-stakes national platform pushed
-                every dimension of product design leadership — from systems thinking and stakeholder
-                management to the craft of making genuinely complex things feel simple.
-              </p>
-            </Reveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10 max-w-[1000px]">
-              <LearningCard
-                title="Designing for Regulated Industries"
-                body="Compliance constraints are not obstacles to route around — they are design inputs to design with. The best outcomes came from understanding the intent behind each regulatory requirement. When compliance steps made sense to users, they completed them correctly. That's a design problem, not a legal one."
-              />
-              <LearningCard
-                title="Balancing Complexity with Clarity"
-                body="The designer's job in fintech is not to simplify the domain — it's to simplify the experience of a domain that will always be complex. Progressive disclosure, smart defaults, and task-oriented navigation are the tools. The discipline is knowing when to stop simplifying before you lose the depth the user actually needs."
-              />
-              <LearningCard
-                title="Information Architecture as a Business Decision"
-                body="In financial platforms, IA decisions have direct business consequences. A misplaced risk signal means a slower lending decision. A buried compliance step means rework and audit exposure. Every navigation and grouping decision had to be grounded in actual task flows — not assumed information logic."
-              />
-              <LearningCard
-                title="Design Leadership Without a Team"
-                body="Being the only designer meant owning the entire design system, research process, stakeholder alignment, and delivery simultaneously. The learning: design leadership is as much about protecting good decisions under pressure as it is about generating them. Translating UX rationale into business outcomes was what made those decisions stick."
-              />
-            </div>
-          </div>
-        </section>
-
-        <Divider />
-
-        {/* ── BACK TO PORTFOLIO ────────────────────────────────────────────── */}
-        <section className="relative w-full py-24">
-          <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col items-center text-center gap-8">
-
-            <Reveal>
-              <p className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[4px] uppercase mb-2">
-                Next Steps
-              </p>
-              <h2 className="font-['The_Last_Shuriken',sans-serif] text-white text-[36px] sm:text-[48px] leading-none mb-6">
-                Explore More Work
-              </h2>
-              <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] tracking-[0.5px] max-w-[400px] leading-[26px]">
-                See how the same principles of clarity, hierarchy, and empathy
-                were applied across logistics, health, and SaaS products.
-              </p>
-            </Reveal>
-
             <Reveal delay={0.1}>
-              <Link
-                href="/#works"
-                className="inline-flex items-center gap-3 px-8 h-[52px] rounded-[10px]
-                  font-['Blast_Dragon',sans-serif] text-[14px] text-white tracking-[1.5px] uppercase
-                  transition-all duration-300"
-                style={{
-                  background:  '#B30000',
-                  boxShadow:   '0 0 24px rgba(179,0,0,0.35), 0 0 48px rgba(179,0,0,0.1)',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.background   = '#CC0000';
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow    = '0 6px 32px rgba(255,42,42,0.5)';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLAnchorElement).style.background   = '#B30000';
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow    = '0 0 24px rgba(179,0,0,0.35), 0 0 48px rgba(179,0,0,0.1)';
-                }}
-              >
-                ← Back to Portfolio
-              </Link>
+              <div className="flex flex-col md:flex-row gap-5">
+                <MetricCard
+                  value="40%"
+                  label="Faster Task Completion"
+                  explanation="Credit workflows that previously took analysts an average of 18 minutes were reduced to under 11 minutes through progressive disclosure and smarter task sequencing."
+                />
+                <MetricCard
+                  value="150+"
+                  label="Screens Designed"
+                  explanation="A single, unified design system scaled from an initial 25-screen scope to cover all four user journeys — analysts, managers, bank partners, and end consumers."
+                />
+                <MetricCard
+                  value="60%"
+                  label="Reduced Cognitive Load"
+                  explanation="Post-launch usability studies measured a 60% reduction in decision errors and user-reported mental effort, attributed to improved information hierarchy and progressive disclosure."
+                />
+              </div>
             </Reveal>
-          </div>
-        </section>
+          </section>
 
-        {/* Footer strip */}
-        <div className="border-t border-white/[0.05] py-8">
-          <p className="font-['Inter',sans-serif] font-light text-[12px] text-center"
-            style={{ color: 'rgba(138,143,152,0.4)' }}>
-            © 2026 Arjun CR — TU CIBIL Case Study
-          </p>
-        </div>
+          <Divider />
 
+          {/* ══════════════════════════════════════════════════════════════
+              11. FINAL SCREENS
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal>
+              <Label>Final Product</Label>
+              <SectionHeading>Final Screens</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px] mb-6">
+                High-fidelity screens from the shipped product — desktop and mobile —
+                representing the full breadth of the TU CIBIL design system in production.
+              </p>
+            </Reveal>
+
+            <div className="flex flex-col gap-8">
+              {/* Desktop screens */}
+              <Reveal>
+                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-3">
+                  Desktop Screens
+                </p>
+                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                  <Image
+                    src="/designs/tu-cibil/desktop-images.png"
+                    alt="TU CIBIL — Desktop screens"
+                    width={1400}
+                    height={900}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </Reveal>
+
+              {/* Mobile screens */}
+              <Reveal delay={0.1}>
+                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-3">
+                  Mobile Screens
+                </p>
+                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                  <Image
+                    src="/designs/tu-cibil/mobile-images.png"
+                    alt="TU CIBIL — Mobile screens"
+                    width={1400}
+                    height={900}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* ── Next Project CTA ───────────────────────────────────────────── */}
+          <Reveal>
+            <div className="border-t border-[#1e2028] pt-10 pb-14 md:pb-20">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+                <div>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[4px] text-[#8a8f98] uppercase mb-3">
+                    Next Case Study
+                  </p>
+                  <h2 className="font-['The_Last_Shuriken',sans-serif] text-[2rem] md:text-[2.8rem] text-[#eaeaea] leading-[1.1] mb-2">
+                    RMT Holotrack
+                  </h2>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98]">
+                    Industrial IoT · Spatial Data Visualization
+                  </p>
+                </div>
+                <Link
+                  href="/work/rmt-holotrack"
+                  className="group inline-flex items-center gap-3 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] uppercase px-8 py-4 border border-[#e10600] text-[#e10600] rounded-full hover:bg-[#e10600] hover:text-white transition-all duration-300"
+                >
+                  View Next Project
+                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+
+        </main>
       </div>
     </SmoothScroll>
   );
