@@ -99,7 +99,7 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
       {/* Parallax target — slightly oversized so edges stay covered */}
       <div
         ref={imgRef}
-        className="absolute inset-[-4%] bg-cover bg-center"
+        className="absolute inset-[-4%] bg-contain bg-center bg-no-repeat"
         style={{
           backgroundColor: study.imageBg,
           backgroundImage: `url(${study.imageSrc})`,
@@ -167,7 +167,7 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
   return (
     <div
       ref={cardRef}
-      className="case-card w-full max-w-[1400px] mx-auto bg-[#14171c] rounded-[20px] md:rounded-[24px] flex flex-col md:flex-row overflow-hidden md:h-[720px]"
+      className="case-card w-full max-w-[1200px] mx-auto bg-[#14171c] rounded-[20px] md:rounded-[24px] flex flex-col md:flex-row overflow-hidden md:h-[720px]"
       style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.5)" }}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
@@ -334,7 +334,7 @@ export default function WorksSection({ studies }: Props) {
         className="bg-[#070707] flex flex-col overflow-x-hidden"
       >
         {sectionHeader}
-        <div className="w-full mx-auto flex flex-col gap-10 px-5 pb-6">
+        <div className="w-full mx-auto flex flex-col gap-12 px-5 pb-6">
           {studies.map((study, i) => (
             <StudyCard key={study.id} study={study} index={i} />
           ))}

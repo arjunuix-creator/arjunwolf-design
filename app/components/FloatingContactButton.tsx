@@ -5,32 +5,44 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FloatingContactButton() {
   const [visible, setVisible] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
       setVisible(window.scrollY > window.innerHeight * 0.8);
     };
+    const onResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    onResize();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
+  const bottom = isDesktop ? 32 : 24;
+  const right  = isDesktop ? 32 : 20;
+  const scale  = isDesktop ? 1  : 0.9;
+
   return (
-    /* md:hidden — only rendered on screens below 768px */
     <AnimatePresence>
       {visible && (
         <motion.a
           href="mailto:arjunuix@gmail.com"
-          initial={{ opacity: 0, y: 16, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0,  scale: 1   }}
-          exit={{    opacity: 0, y: 16, scale: 0.9 }}
+          initial={{ opacity: 0, y: 16, scale: scale * 0.9 }}
+          animate={{ opacity: 1, y: 0,  scale: scale }}
+          exit={{    opacity: 0, y: 16, scale: scale * 0.9 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{   scale: 0.97 }}
-          className="md:hidden fixed z-[9990]"
+          whileHover={{ scale: scale * 1.05 }}
+          whileTap={{   scale: scale * 0.97 }}
+          className="fixed z-[9990]"
           style={{
-            bottom:        24,
-            right:         20,
+            bottom,
+            right,
             background:    '#ff2a2a',
             color:         '#ffffff',
             borderRadius:  50,
