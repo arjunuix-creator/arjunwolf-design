@@ -136,17 +136,17 @@ export default function RmtHolotrackCaseStudy() {
             {/* Title + meta */}
             <Reveal className="mb-10">
               <Label>Logistics Platform Case Study</Label>
-              <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] text-[#eaeaea] leading-[1.05] mb-6">
+              <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] text-[#eaeaea] leading-[1.05] mb-4">
                 Re-Engineering Warehouse Operations
               </h1>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-8 max-w-[640px]">
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6 max-w-[640px]">
                 A modular platform designed to simplify warehouse operations, enable remote
                 asset monitoring, and provide real-time operational insights for logistics
                 teams managing large scale distribution environments.
               </p>
 
               {/* Metadata row */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                 {[
                   { label: 'Role',     value: 'Lead UI/UX Designer' },
                   { label: 'Duration', value: '12 Months' },
@@ -626,6 +626,45 @@ export default function RmtHolotrackCaseStudy() {
                   label="Major Operational Modules Unified"
                   explanation="Fleet tracking, asset monitoring, order management, role access, and reporting consolidated into one coherent platform."
                 />
+              </div>
+            </Reveal>
+
+            {/* Qualitative outcome cards */}
+            <Reveal delay={0.15}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                {[
+                  {
+                    title: 'Real-Time Warehouse Operations Platform',
+                    description: 'Transformed fragmented manual processes into a unified, real-time operations platform — giving logistics teams live visibility into every aspect of warehouse activity.',
+                  },
+                  {
+                    title: 'Fleet and Asset Monitoring Dashboards',
+                    description: 'Designed dedicated monitoring dashboards that surface fleet location, equipment status, and movement patterns in real time across multiple warehouse zones.',
+                  },
+                  {
+                    title: 'Role-Based Operational Control for Logistics Teams',
+                    description: 'Built a role-based access architecture that tailors the interface to each user type — warehouse supervisors, operations directors, and field teams — surfacing only what is relevant.',
+                  },
+                  {
+                    title: 'Improved Visibility Across Distributed Warehouse Systems',
+                    description: 'Replaced disconnected tooling with a single source of truth — enabling operations managers to act on exceptions and make data-driven decisions across distributed warehouse networks.',
+                  },
+                ].map(({ title, description }) => (
+                  <div
+                    key={title}
+                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors duration-300"
+                  >
+                    <div className="w-6 h-6 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-4">
+                      <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                    </div>
+                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                      {title}
+                    </h3>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+                      {description}
+                    </p>
+                  </div>
+                ))}
               </div>
             </Reveal>
           </section>

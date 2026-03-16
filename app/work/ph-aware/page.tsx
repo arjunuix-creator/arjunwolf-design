@@ -177,10 +177,10 @@ export default function PhAwareCaseStudy() {
               {/* Left — text */}
               <Reveal>
                 <Label>Health Tech · Mobile App</Label>
-                <h1 className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.8rem] lg:text-[4.4rem] text-[#eaeaea] leading-[1.05] mb-6">
+                <h1 className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.8rem] lg:text-[4.4rem] text-[#eaeaea] leading-[1.05] mb-4">
                   Designing a Digital Awareness Platform for Pulmonary Arterial Hypertension
                 </h1>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-8 max-w-[480px]">
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6 max-w-[480px]">
                   A patient-focused platform that helps people understand symptoms,
                   manage treatment awareness, and access reliable health information.
                 </p>
@@ -222,7 +222,45 @@ export default function PhAwareCaseStudy() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════
-              2. REAL-WORLD CHALLENGES
+              2. MY ROLE
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="py-16 md:py-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+              <Reveal>
+                <Label>Leadership</Label>
+                <SectionHeading>My Role</SectionHeading>
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                  As the sole designer on this engagement, I owned the end-to-end UX
+                  process — from discovery through to engineering handoff — while
+                  designing a platform that needed to balance clinical credibility with
+                  emotional warmth for patients navigating a rare chronic illness.
+                </p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <ul className="flex flex-col gap-4 lg:mt-[5.5rem]">
+                  {[
+                    'Led UX strategy for a patient-facing mobile health awareness platform',
+                    'Designed mobile-first experience for PAH patient education and awareness',
+                    'Created a visual language that balanced clinical credibility with emotional warmth',
+                    'Structured complex medical information into accessible, guided patient flows',
+                    'Built a reusable component system for scalable health content delivery',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-4">
+                      <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-[#e10600] shrink-0" />
+                      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                        {item}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              3. REAL-WORLD CHALLENGES
           ══════════════════════════════════════════════════════════════ */}
           <section className="py-16 md:py-24">
             <Reveal className="mb-8">
@@ -594,16 +632,16 @@ export default function PhAwareCaseStudy() {
             <Reveal delay={0.1}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <ImpactCard
-                  title="Improved Awareness"
+                  title="Improved Accessibility to Healthcare Information"
                   description="Patients better understand their symptoms and treatment pathways through clear, visual health content."
                 />
                 <ImpactCard
-                  title="Simplified Education"
-                  description="Complex health information made accessible through plain language, guided flows, and visual storytelling."
+                  title="Mobile-First Awareness Platform"
+                  description="Complex health information made accessible through plain language, guided flows, and visual storytelling — designed for on-the-go use."
                 />
                 <ImpactCard
-                  title="Empowered Patients"
-                  description="Users gain confidence managing their health journey — reducing anxiety and improving treatment adherence."
+                  title="Simplified Complex Medical Education Content"
+                  description="Users gain confidence managing their health journey — reducing anxiety and improving treatment adherence through structured, approachable content."
                 />
               </div>
             </Reveal>

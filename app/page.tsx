@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import LeadershipImpact from './components/LeadershipImpact';
 import About from './components/About';
 import DesignPhilosophy from './components/DesignPhilosophy';
 import WorksSection from './components/WorksSection';
@@ -97,6 +98,13 @@ export default function Home() {
         <div id="hero" className="relative">
           <Hero />
         </div>
+
+        <SectionDivider />
+
+        {/* ── Leadership Impact ────────────────────────────────────────────── */}
+        <SectionReveal>
+          <LeadershipImpact />
+        </SectionReveal>
 
         <SectionDivider />
 

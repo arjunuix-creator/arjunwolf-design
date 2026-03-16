@@ -119,7 +119,7 @@ export default function TuCibilCaseStudy() {
               {/* Left — text */}
               <Reveal>
                 <Label>Context</Label>
-                <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3.5rem] md:text-[5rem] lg:text-[6rem] text-[#eaeaea] leading-[1.05] mb-6">
+                <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3.5rem] md:text-[5rem] lg:text-[6rem] text-[#eaeaea] leading-[1.05] mb-4">
                   TU CIBIL
                 </h1>
                 <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6 max-w-[500px]">
@@ -867,6 +867,45 @@ export default function TuCibilCaseStudy() {
                   label="Reduced Cognitive Load"
                   explanation="Post-launch usability studies measured a 60% reduction in decision errors and user-reported mental effort, attributed to improved information hierarchy and progressive disclosure."
                 />
+              </div>
+            </Reveal>
+
+            {/* Qualitative outcome cards */}
+            <Reveal delay={0.15}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+                {[
+                  {
+                    title: '150+ Production Screens Designed',
+                    description: 'From an initial 25-screen scope, the platform grew to 150+ production screens across four distinct user journeys — all within a single unified design system.',
+                  },
+                  {
+                    title: 'Platform Used by Banking Analysts Nationwide',
+                    description: 'The redesigned platform is trusted by bank managers and financial analysts across India to evaluate creditworthiness and make high-stakes lending decisions.',
+                  },
+                  {
+                    title: 'Simplified Complex Credit Reporting Workflows',
+                    description: 'Dense data reports and monolithic forms were transformed into structured, scannable dashboards and progressive stepper flows that match how analysts actually think.',
+                  },
+                  {
+                    title: 'Improved Operational Efficiency for Financial Decision Makers',
+                    description: 'By reducing cognitive load and streamlining multi-step workflows, the redesign enabled analysts to process more applications accurately and with less effort.',
+                  },
+                ].map(({ title, description }) => (
+                  <div
+                    key={title}
+                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors duration-300"
+                  >
+                    <div className="w-6 h-6 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-4">
+                      <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                    </div>
+                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                      {title}
+                    </h3>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+                      {description}
+                    </p>
+                  </div>
+                ))}
               </div>
             </Reveal>
           </section>

@@ -243,6 +243,12 @@ section {
   }
 }
 
+/* ── Case study paragraph readability ───────────────────────────────────── */
+.case-body {
+  line-height: 1.6;
+  max-width: 720px;
+}
+
 /* ── Minimum touch target size (WCAG 2.5.5 / Apple HIG 44pt) ───────────── */
 button,
 a {
