@@ -63,6 +63,7 @@ const studies = [
     users: 'Bank Managers, Financial Analysts, Loan Managers',
     platform: 'Desktop-first (25–30 screens), expanded to 150+ screens including mobile and tablet',
     meta: { role: 'Lead UI/UX Designer', duration: '36 Months', team: 'Solo Designer', year: '2025' },
+    href: '/work/ph-aware',
   },
   {
     id: 4,
@@ -77,6 +78,7 @@ const studies = [
     users: 'Warehouse & Fleet Ops',
     platform: 'Desktop & Tablet',
     meta: { role: 'Lead UI/UX Designer', duration: '6 hours', team: 'Solo Designer', year: '2026' },
+    href: '/work/finova',
   },
 ];
 
@@ -99,7 +101,9 @@ export default function Home() {
         <SectionDivider />
 
         {/* ── About / Design Philosophy — neutral ─────────────────────────── */}
-        <About />
+        <div id="about">
+          <About />
+        </div>
         <SectionDivider />
         <DesignPhilosophy />
         <SectionDivider />
@@ -121,7 +125,7 @@ export default function Home() {
         <SectionDivider />
 
         {/* ── Journey ─────────────────────────────────────────────────────── */}
-        <div id="journey" className="relative">
+        <div id="experience" className="relative">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 z-0"

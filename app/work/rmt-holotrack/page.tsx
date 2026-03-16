@@ -51,14 +51,32 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 /* ── Gradient divider ────────────────────────────────────────────────────── */
 function Divider() {
   return (
-    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#333] to-transparent my-10 md:my-14" />
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#333] to-transparent" />
+  );
+}
+
+/* ── Full-width image block ──────────────────────────────────────────────── */
+function ImageBlock({ src, alt, width = 1400, height = 900 }: {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      className="w-full h-auto object-contain rounded-2xl block mx-auto max-w-[1200px]"
+    />
   );
 }
 
 /* ── Metric card ─────────────────────────────────────────────────────────── */
 function MetricCard({ value, label, explanation }: { value: string; label: string; explanation: string }) {
   return (
-    <div className="flex-1 min-w-[200px] border border-[#1e2028] rounded-2xl p-8 text-center bg-[#0c0d10] hover:border-[#D4AF37]/40 transition-colors duration-300 flex flex-col items-center">
+    <div className="border border-[#1e2028] rounded-2xl p-8 text-center bg-[#0c0d10] hover:border-[#D4AF37]/40 transition-colors duration-300 flex flex-col items-center">
       <p className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.5rem] text-[#D4AF37] leading-none mb-3">
         {value}
       </p>
@@ -75,7 +93,7 @@ function MetricCard({ value, label, explanation }: { value: string; label: strin
 /* ── Problem card ────────────────────────────────────────────────────────── */
 function ProblemCard({ title, description, index }: { title: string; description: string; index: number }) {
   return (
-    <div className="flex-1 min-w-[220px] border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300">
+    <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300">
       <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
         0{index + 1}
       </p>
@@ -111,22 +129,24 @@ export default function RmtHolotrackCaseStudy() {
         <main className="px-6 max-w-[1100px] mx-auto">
 
           {/* ══════════════════════════════════════════════════════════════
-              1. HERO SECTION
+              1. HERO
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pt-10 pb-14 md:pb-20">
-            {/* Top — text content */}
-            <Reveal className="mb-8">
+          <section className="pt-10 pb-16 md:pb-24">
+
+            {/* Title + meta */}
+            <Reveal className="mb-10">
               <Label>Logistics Platform Case Study</Label>
               <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] text-[#eaeaea] leading-[1.05] mb-6">
                 Re-Engineering Warehouse Operations
               </h1>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-8 max-w-[680px]">
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-8 max-w-[640px]">
                 A modular platform designed to simplify warehouse operations, enable remote
                 asset monitoring, and provide real-time operational insights for logistics
                 teams managing large scale distribution environments.
               </p>
+
               {/* Metadata row */}
-              <div className="flex flex-wrap gap-x-10 gap-y-5">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
                   { label: 'Role',     value: 'Lead UI/UX Designer' },
                   { label: 'Duration', value: '12 Months' },
@@ -145,18 +165,14 @@ export default function RmtHolotrackCaseStudy() {
               </div>
             </Reveal>
 
-            {/* Bottom — hero image full width */}
-            <Reveal delay={0.15} className="w-full">
-              <div className="relative w-full rounded-2xl overflow-hidden border border-[#1e2028]">
-                <Image
-                  src="/designs/rmt/hero-image.png"
-                  alt="RMT Holotrack Hero"
-                  width={1400}
-                  height={800}
-                  className="w-full h-auto object-contain"
-                  priority
-                />
-              </div>
+            {/* Hero image — full width below title */}
+            <Reveal delay={0.15}>
+              <ImageBlock
+                src="/designs/rmt/hero-image.png"
+                alt="RMT Holotrack — Hero"
+                width={1400}
+                height={800}
+              />
             </Reveal>
           </section>
 
@@ -165,8 +181,8 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               2. MY ROLE
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
+          <section className="py-16 md:py-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
               <Reveal>
                 <Label>Leadership</Label>
                 <SectionHeading>My Role</SectionHeading>
@@ -178,7 +194,7 @@ export default function RmtHolotrackCaseStudy() {
                 </p>
               </Reveal>
               <Reveal delay={0.1}>
-                <ul className="flex flex-col gap-4 mt-2">
+                <ul className="flex flex-col gap-4 lg:mt-[5.5rem]">
                   {[
                     'Led UX strategy for logistics operations platform',
                     'Designed modular system architecture for warehouse workflows',
@@ -201,20 +217,20 @@ export default function RmtHolotrackCaseStudy() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════
-              3. PROBLEM SECTION
+              3. PROBLEM
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <Reveal>
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-8">
               <Label>Challenge</Label>
               <SectionHeading>Operations ran on gut instinct, not real-time data.</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
                 Warehouse teams were making critical operational decisions without the data
                 infrastructure to support them — leading to inefficiency, asset loss, and
                 reactive rather than proactive management.
               </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <ProblemCard
                   index={0}
                   title="Operational Blind Spots"
@@ -239,11 +255,11 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               4. MODULAR PLATFORM DESIGN
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <Reveal>
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-10">
               <Label>System Thinking</Label>
               <SectionHeading>Modular Platform Design</SectionHeading>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
                 <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
                   The platform was architected as a set of independent operational modules —
                   each addressing a distinct function within the warehouse lifecycle. Rather
@@ -258,15 +274,12 @@ export default function RmtHolotrackCaseStudy() {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
-                <Image
-                  src="/designs/rmt/system-architecture.png"
-                  alt="RMT Holotrack — System Architecture"
-                  width={1400}
-                  height={900}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
+              <ImageBlock
+                src="/designs/rmt/system-architecture.png"
+                alt="RMT Holotrack — System Architecture"
+                width={1400}
+                height={900}
+              />
             </Reveal>
           </section>
 
@@ -275,21 +288,20 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               5. DESIGN PROCESS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <Reveal>
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-10">
               <Label>Methodology</Label>
               <SectionHeading>Design Process</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px] mb-6">
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
                 A structured, iterative process — grounded in field research and
                 validated at every milestone through stakeholder reviews and usability testing.
               </p>
             </Reveal>
 
             {/* Timeline */}
-            <Reveal delay={0.1}>
+            <Reveal delay={0.1} className="mb-10">
               {/* Desktop horizontal */}
               <div className="hidden md:flex items-start gap-0 relative">
-                {/* connecting line */}
                 <div className="absolute top-5 left-[40px] right-[40px] h-px bg-gradient-to-r from-[#e10600]/40 via-[#D4AF37]/40 to-[#e10600]/40" />
                 {[
                   { step: '01', label: 'Research' },
@@ -338,16 +350,13 @@ export default function RmtHolotrackCaseStudy() {
             </Reveal>
 
             {/* Wireframe image */}
-            <Reveal delay={0.15} className="mt-10">
-              <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
-                <Image
-                  src="/designs/rmt/rmt-wireframe.png"
-                  alt="RMT Holotrack — Wireframes"
-                  width={1400}
-                  height={800}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
+            <Reveal delay={0.15}>
+              <ImageBlock
+                src="/designs/rmt/rmt-wireframe.png"
+                alt="RMT Holotrack — Wireframes"
+                width={1400}
+                height={800}
+              />
             </Reveal>
           </section>
 
@@ -356,100 +365,85 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               6. CORE DESIGN PILLARS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <Reveal>
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-12">
               <Label>Design Approach</Label>
               <SectionHeading>Core Design Pillars</SectionHeading>
             </Reveal>
 
-            {/* A — Control Tower Dashboard */}
-            <div className="mt-8 mb-14">
+            {/* Pillar 01 — text left / image right */}
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-12 items-center mb-16 md:mb-24">
               <Reveal>
                 <Label>Pillar 01</Label>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-8">
-                  <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.5rem] text-[#eaeaea] leading-[1.1]">
-                    Control Tower Dashboard
-                  </h3>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98] self-end">
-                    The control tower dashboard gives operations managers a unified view of
-                    all warehouse activity from a single screen. Key metrics — fleet status,
-                    active orders, resource utilisation, and exception alerts — are surfaced
-                    at the top level so that critical decisions can be made in seconds without
-                    drilling through multiple tools or reports.
-                  </p>
-                </div>
+                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.4rem] text-[#eaeaea] leading-[1.1] mb-5">
+                  Control Tower Dashboard
+                </h3>
+                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                  The control tower dashboard gives operations managers a unified view of
+                  all warehouse activity from a single screen. Key metrics — fleet status,
+                  active orders, resource utilisation, and exception alerts — are surfaced
+                  at the top level so that critical decisions can be made in seconds without
+                  drilling through multiple tools or reports.
+                </p>
               </Reveal>
               <Reveal delay={0.1}>
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
-                  <Image
-                    src="/designs/rmt/dashboard.png"
-                    alt="Control Tower Dashboard"
-                    width={1400}
-                    height={900}
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+                <ImageBlock
+                  src="/designs/rmt/dashboard.png"
+                  alt="Control Tower Dashboard"
+                  width={1400}
+                  height={900}
+                />
               </Reveal>
             </div>
 
-            {/* B — Role Based Access Architecture */}
-            <div className="mb-14">
-              <Reveal>
+            {/* Pillar 02 — image left / text right */}
+            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 items-center mb-16 md:mb-24">
+              <Reveal className="order-2 lg:order-1">
+                <ImageBlock
+                  src="/designs/rmt/role-based.png"
+                  alt="Role Based Access Architecture"
+                  width={1400}
+                  height={900}
+                />
+              </Reveal>
+              <Reveal delay={0.1} className="order-1 lg:order-2">
                 <Label>Pillar 02</Label>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-8">
-                  <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.5rem] text-[#eaeaea] leading-[1.1]">
-                    Role Based Access Architecture
-                  </h3>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98] self-end">
-                    Different operational roles require fundamentally different views of the
-                    same data. Warehouse supervisors need granular task-level detail;
-                    operations directors need high-level performance trends. The role-based
-                    architecture tailors the interface to each user type — surfacing only
-                    what is relevant, reducing noise, and ensuring the right people have
-                    access to the right controls.
-                  </p>
-                </div>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
-                  <Image
-                    src="/designs/rmt/role-based.png"
-                    alt="Role Based Access Architecture"
-                    width={1400}
-                    height={900}
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.4rem] text-[#eaeaea] leading-[1.1] mb-5">
+                  Role Based Access Architecture
+                </h3>
+                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                  Different operational roles require fundamentally different views of the
+                  same data. Warehouse supervisors need granular task-level detail;
+                  operations directors need high-level performance trends. The role-based
+                  architecture tailors the interface to each user type — surfacing only
+                  what is relevant, reducing noise, and ensuring the right people have
+                  access to the right controls.
+                </p>
               </Reveal>
             </div>
 
-            {/* C — Workflow Simplification */}
-            <div>
+            {/* Pillar 03 — text left / image right */}
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-12 items-center">
               <Reveal>
                 <Label>Pillar 03</Label>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-8">
-                  <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.5rem] text-[#eaeaea] leading-[1.1]">
-                    Workflow Simplification
-                  </h3>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98] self-end">
-                    Complex warehouse workflows — goods receipt, pick-and-pack, dispatch,
-                    and exception handling — were mapped, analysed, and redesigned as
-                    guided task flows. Multi-step processes were broken into clear sequential
-                    stages with contextual validation and inline guidance, reducing training
-                    overhead and cutting task completion time across the operations team.
-                  </p>
-                </div>
+                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.4rem] text-[#eaeaea] leading-[1.1] mb-5">
+                  Workflow Simplification
+                </h3>
+                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                  Complex warehouse workflows — goods receipt, pick-and-pack, dispatch,
+                  and exception handling — were mapped, analysed, and redesigned as
+                  guided task flows. Multi-step processes were broken into clear sequential
+                  stages with contextual validation and inline guidance, reducing training
+                  overhead and cutting task completion time across the operations team.
+                </p>
               </Reveal>
               <Reveal delay={0.1}>
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
-                  <Image
-                    src="/designs/rmt/workflow-simp.png"
-                    alt="Workflow Simplification"
-                    width={1400}
-                    height={900}
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+                <ImageBlock
+                  src="/designs/rmt/workflow-simp.png"
+                  alt="Workflow Simplification"
+                  width={1400}
+                  height={900}
+                />
               </Reveal>
             </div>
           </section>
@@ -459,11 +453,11 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               7. OPERATIONAL MONITORING
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <Reveal>
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-8">
               <Label>Remote Asset Monitoring</Label>
               <SectionHeading>Operational Awareness at a Glance</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
                 The asset monitoring module gives logistics teams continuous visibility
                 into fleet location, equipment status, and movement patterns — all
                 updated in real time. Teams can track assets across multiple warehouse
@@ -472,15 +466,12 @@ export default function RmtHolotrackCaseStudy() {
               </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
-                <Image
-                  src="/designs/rmt/remote-asset-mon.png"
-                  alt="Remote Asset Monitoring"
-                  width={1400}
-                  height={800}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
+              <ImageBlock
+                src="/designs/rmt/remote-asset-mon.png"
+                alt="Remote Asset Monitoring"
+                width={1400}
+                height={800}
+              />
             </Reveal>
           </section>
 
@@ -489,25 +480,27 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               8. COMPONENT LIBRARY
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <Reveal>
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-8">
               <Label>Scalability</Label>
               <SectionHeading>Component Library</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-4">
-                The platform's growth from core modules to a full operational suite was
-                only possible because of a component library built for scale from the
-                start. Every element was designed to compose cleanly — ensuring visual
-                and functional consistency as the product expanded.
-              </p>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
-                All components were documented for engineering handoff, covering interaction
-                states, data-binding patterns, and responsive behaviour across desktop
-                and tablet breakpoints.
-              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                  The platform's growth from core modules to a full operational suite was
+                  only possible because of a component library built for scale from the
+                  start. Every element was designed to compose cleanly — ensuring visual
+                  and functional consistency as the product expanded.
+                </p>
+                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                  All components were documented for engineering handoff, covering interaction
+                  states, data-binding patterns, and responsive behaviour across desktop
+                  and tablet breakpoints.
+                </p>
+              </div>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                 {[
                   {
                     category: 'Buttons',
@@ -561,48 +554,42 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               9. FINAL SCREENS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <Reveal>
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-10">
               <Label>Final Product</Label>
               <SectionHeading>Desktop &amp; Mobile System</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px] mb-6">
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
                 High-fidelity screens from the shipped product — representing the full
                 breadth of the RMT Holotrack design system across desktop and mobile
                 form factors.
               </p>
             </Reveal>
 
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-10">
               {/* Desktop screens */}
               <Reveal>
-                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-3">
+                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-4">
                   Desktop Screens
                 </p>
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
-                  <Image
-                    src="/designs/rmt/desktop-screens.png"
-                    alt="RMT Holotrack — Desktop Screens"
-                    width={1400}
-                    height={900}
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+                <ImageBlock
+                  src="/designs/rmt/desktop-screens.png"
+                  alt="RMT Holotrack — Desktop Screens"
+                  width={1400}
+                  height={900}
+                />
               </Reveal>
 
               {/* Mobile screens */}
               <Reveal delay={0.1}>
-                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-3">
+                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-4">
                   Mobile Screens
                 </p>
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
-                  <Image
-                    src="/designs/rmt/mobile-screens.png"
-                    alt="RMT Holotrack — Mobile Screens"
-                    width={1400}
-                    height={900}
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+                <ImageBlock
+                  src="/designs/rmt/mobile-screens.png"
+                  alt="RMT Holotrack — Mobile Screens"
+                  width={1400}
+                  height={900}
+                />
               </Reveal>
             </div>
           </section>
@@ -612,18 +599,18 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               10. IMPACT
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
-            <Reveal>
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-8">
               <Label>Results</Label>
               <SectionHeading>Impact</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px] mb-6">
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
                 The platform delivered measurable improvements across visibility,
                 efficiency, and operational cohesion — replacing fragmented tooling
                 with a unified system built around how teams actually work.
               </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="flex flex-col md:flex-row gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <MetricCard
                   value="100%"
                   label="Operational Visibility"
@@ -645,7 +632,7 @@ export default function RmtHolotrackCaseStudy() {
 
           {/* ── Next Project CTA ───────────────────────────────────────────── */}
           <Reveal>
-            <div className="border-t border-[#1e2028] pt-10 pb-14 md:pb-20">
+            <div className="border-t border-[#1e2028] pt-10 pb-16 md:pb-24">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                 <div>
                   <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[4px] text-[#8a8f98] uppercase mb-3">
@@ -663,8 +650,7 @@ export default function RmtHolotrackCaseStudy() {
                   className="group inline-flex items-center gap-3 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] uppercase px-8 py-4 border border-[#e10600] text-[#e10600] rounded-full hover:bg-[#e10600] hover:text-white transition-all duration-300"
                 >
                   PH Aware →
-                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                  </span>
+                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>

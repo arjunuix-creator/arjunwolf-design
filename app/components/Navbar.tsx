@@ -10,10 +10,10 @@ const logoSrc =
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const navLinks = [
-  { label: 'About',      hash: '#about',   sectionId: 'about'   },
-  { label: 'Work',       hash: '#works',   sectionId: 'works'   },
-  { label: 'Experience', hash: '#journey', sectionId: 'journey' },
-  { label: 'Writing',    hash: '#writing', sectionId: 'writing' },
+  { label: 'About',      hash: '#about',      sectionId: 'about'      },
+  { label: 'Work',       hash: '#works',      sectionId: 'works'      },
+  { label: 'Experience', hash: '#experience', sectionId: 'experience' },
+  { label: 'Writing',    hash: '#writing',    sectionId: 'writing'    },
 ];
 
 export default function Navbar() {
@@ -88,6 +88,16 @@ export default function Navbar() {
   const isActive = (sectionId: string) => activeId === sectionId;
   const isContactActive = activeId === 'contact';
 
+  // On sub-pages, force a hard navigation so the browser natively scrolls
+  // to the hash anchor before Lenis initialises (soft Next.js navigation
+  // mounts the page but never triggers the browser's scroll-to-anchor).
+  const hardNav = (hash: string) => (e: React.MouseEvent) => {
+    if (!isHome) {
+      e.preventDefault();
+      window.location.href = `/${hash}`;
+    }
+  };
+
   return (
     <>
       <motion.nav
@@ -133,6 +143,7 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={href}
+                  onClick={hardNav(link.hash)}
                   className="relative flex items-center h-[36px] whitespace-nowrap
                     font-['Blast_Dragon',sans-serif] text-[14px]
                     tracking-[0.08em] transition-all duration-300 group"
@@ -154,6 +165,7 @@ export default function Navbar() {
 
             <motion.a
               href={isHome ? '#contact' : '/#contact'}
+              onClick={hardNav('#contact')}
               className="flex items-center justify-center px-[22px] h-[38px] rounded-[7px]
                 font-['Blast_Dragon',sans-serif] text-[14px] tracking-[0.06em] whitespace-nowrap
                 transition-all duration-300"
@@ -223,7 +235,7 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => { hardNav(link.hash)(e); setMenuOpen(false); }}
                   className="px-6 py-4 font-['Blast_Dragon',sans-serif] text-[15px] tracking-[0.08em]
                     border-b border-white/5 transition-all duration-200"
                   style={{
@@ -238,7 +250,7 @@ export default function Navbar() {
             })}
             <a
               href={isHome ? '#contact' : '/#contact'}
-              onClick={() => setMenuOpen(false)}
+              onClick={(e) => { hardNav('#contact')(e); setMenuOpen(false); }}
               className="px-6 py-4 font-['Blast_Dragon',sans-serif] text-[15px] tracking-[0.08em]
                 transition-colors duration-200"
               style={{ color: isContactActive ? '#ffffff' : '#FF2A2A' }}
