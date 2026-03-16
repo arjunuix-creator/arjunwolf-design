@@ -48,6 +48,7 @@ const studies = [
     users: 'Warehouse & Fleet Ops',
     platform: 'Desktop & Tablet',
     meta: { role: 'Lead UI/UX Designer', duration: '12 Months', team: 'Solo Designer', year: '2022' },
+    href: '/work/rmt-holotrack',
   },
   {
     id: 3,

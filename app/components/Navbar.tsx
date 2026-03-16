@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const logoSrc =
@@ -9,13 +10,15 @@ const logoSrc =
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const navLinks = [
-  { label: 'About',      href: '#about',   sectionId: 'about'   },
-  { label: 'Work',       href: '#works',   sectionId: 'works'   },
-  { label: 'Experience', href: '#journey', sectionId: 'journey' },
-  { label: 'Writing',    href: '#writing', sectionId: 'writing' },
+  { label: 'About',      hash: '#about',   sectionId: 'about'   },
+  { label: 'Work',       hash: '#works',   sectionId: 'works'   },
+  { label: 'Experience', hash: '#journey', sectionId: 'journey' },
+  { label: 'Writing',    hash: '#writing', sectionId: 'writing' },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const [scrolled,   setScrolled]   = useState(false);
   const [menuOpen,   setMenuOpen]   = useState(false);
   const [activeId,   setActiveId]   = useState<string>('');
@@ -109,7 +112,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <motion.a
-            href="#"
+            href={isHome ? '#' : '/'}
             className="shrink-0 block h-[56px] w-[44px]"
             whileHover={{ scale: 1.06 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
@@ -125,10 +128,11 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(link => {
               const active = isActive(link.sectionId);
+              const href = isHome ? link.hash : `/${link.hash}`;
               return (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={href}
                   className="relative flex items-center h-[36px] whitespace-nowrap
                     font-['Blast_Dragon',sans-serif] text-[14px]
                     tracking-[0.08em] transition-all duration-300 group"
@@ -149,7 +153,7 @@ export default function Navbar() {
             })}
 
             <motion.a
-              href="#contact"
+              href={isHome ? '#contact' : '/#contact'}
               className="flex items-center justify-center px-[22px] h-[38px] rounded-[7px]
                 font-['Blast_Dragon',sans-serif] text-[14px] tracking-[0.06em] whitespace-nowrap
                 transition-all duration-300"
@@ -214,10 +218,11 @@ export default function Navbar() {
           >
             {navLinks.map(link => {
               const active = isActive(link.sectionId);
+              const href = isHome ? link.hash : `/${link.hash}`;
               return (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={href}
                   onClick={() => setMenuOpen(false)}
                   className="px-6 py-4 font-['Blast_Dragon',sans-serif] text-[15px] tracking-[0.08em]
                     border-b border-white/5 transition-all duration-200"
@@ -232,7 +237,7 @@ export default function Navbar() {
               );
             })}
             <a
-              href="#contact"
+              href={isHome ? '#contact' : '/#contact'}
               onClick={() => setMenuOpen(false)}
               className="px-6 py-4 font-['Blast_Dragon',sans-serif] text-[15px] tracking-[0.08em]
                 transition-colors duration-200"
