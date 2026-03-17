@@ -213,8 +213,8 @@ section {
 /* Every child after the first gets a 12px top gap (label → heading) */
 .section-header > * + * { margin-top: 12px; }
 
-/* Heading gets an extra 12px below → total 24px to whatever follows */
-.section-header > h2    { margin-bottom: 12px; }
+/* Heading gets 16px below to the next element (decorative row or description) */
+.section-header > h2    { margin-bottom: 16px; }
 
 /* ── Shared section container ───────────────────────────────────────────── */
 .container {
@@ -263,4 +263,94 @@ a {
 ::-moz-selection {
   background: rgba(255, 42, 42, 0.75);
   color: white;
+}
+
+/* ── Typography hierarchy normalization ─────────────────────────────────── */
+/*
+  Section h2 titles are normalized to 36px with 1.2 line-height.
+  Non-layered CSS beats @layer utilities, so this overrides responsive Tailwind classes.
+*/
+.section-header h2 {
+  font-size: 36px;
+  line-height: 1.2;
+}
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: 28px;
+  }
+}
+@media (max-width: 480px) {
+  .section-header h2 {
+    font-size: 24px;
+  }
+}
+
+/* Subheadings */
+.subheading {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* Body text constrained width and rhythm */
+.body-text {
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+/* ── Premium image presentation ─────────────────────────────────────────── */
+.img-premium {
+  max-width: 100%;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Case study image wrapper — immersive, centered, capped at 1000px */
+.img-case-study-wrap {
+  max-width: 1000px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.img-case-study-wrap img {
+  max-width: 100%;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  display: block;
+}
+@media (max-width: 768px) {
+  .img-case-study-wrap {
+    max-width: 100%;
+  }
+}
+
+/* ── CTA button polish ───────────────────────────────────────────────────── */
+.btn-cta {
+  padding: 16px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-cta:hover {
+  transform: scale(1.04);
+}
+
+/* ── Card hover lift — shared across card grids ─────────────────────────── */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+}
+
+/* ── Section flow improvements ───────────────────────────────────────────── */
+/* Ensure paragraphs within section bodies have proper rhythm */
+.section-body p {
+  line-height: 1.6;
+  max-width: 720px;
 }

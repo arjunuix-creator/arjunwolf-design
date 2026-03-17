@@ -183,7 +183,7 @@ export default function Principles() {
     >
       {/* ── Heading block ── */}
       <motion.div
-        className="flex flex-col items-center gap-3"
+        className="section-header"
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: EASE }}
@@ -191,7 +191,7 @@ export default function Principles() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#D4AF37] tracking-[4px] uppercase">
           How I Live
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] sm:text-[44px] md:text-[56px] text-[#eaeaea] text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[#eaeaea] text-center">
           Principles I Live By
         </h2>
         <p className="font-['Kanzuri',serif] text-[18px] text-[#8a8f98] text-center max-w-[520px] leading-[32px] mt-[40px]">

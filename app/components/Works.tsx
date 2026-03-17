@@ -1,7 +1,7 @@
 import WorksSection, { CaseStudy } from './WorksSection';
 
 /* ─── Local preview images (public/designs/) ────────────────────────────── */
-const tucibilScreenSrc  = '/designs/tu-cibil.png';
+const tucibilScreenSrc  = '/designs/tu-cibil.png?v=2';
 const holotrakScreenSrc = '/designs/rmt-holotrack.png';
 const phawareSrc        = '/designs/ph-aware.png';
 const finovaScreenSrc   = '/designs/finov-ai.png';
@@ -9,15 +9,15 @@ const finovaScreenSrc   = '/designs/finov-ai.png';
 const studies: CaseStudy[] = [
   {
     id            : 1,
-    title         : 'Tu CIBIL',
+    title         : 'TI Credit Report',
     category      : 'FinTech Case Study',
     categoryColor : '#002563',
-    description   : 'I led the end-to-end UX strategy and execution for a high-security national credit bureau platform used by banking professionals to evaluate creditworthiness and make loan decisions. The challenge was to modernize a legacy, compliance-heavy system without compromising regulatory integrity.',
+    description   : 'I led the end-to-end UX strategy and execution for a high-security enterprise credit intelligence platform used by banking professionals to evaluate creditworthiness and make loan decisions. The challenge was to modernize a legacy, compliance-heavy system without compromising regulatory integrity.',
     users         : 'Bank Managers, Financial Analysts, Loan Managers',
     platform      : 'Desktop-first (25–30 screens), expanded to 150+ screens including mobile and tablet',
     meta          : { role: 'Lead UI/UX Designer', duration: '36 Months', team: 'Solo Designer', year: '2025' },
     imageSrc      : tucibilScreenSrc,
-    imageAlt      : 'Tu CIBIL app screens',
+    imageAlt      : 'TI Credit Report app screens',
     imageBg       : '#002563',
     imagePosition : 'left',
     href          : '/work/tu-cibil',

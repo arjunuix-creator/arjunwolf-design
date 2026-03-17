@@ -304,24 +304,24 @@ export default function Hero() {
               className="font-['Blast_Dragon',sans-serif] text-[13px] sm:text-[16px] lg:text-[22px] leading-none tracking-[3px] mt-3"
               style={{ color: '#e10600' }}
             >
-              Lead UX Designer · Design Leader
+              Lead UI/UX Designer
             </p>
           </motion.div>
 
           {/* Main statement */}
           <motion.div variants={fadeUp} className="flex flex-col gap-[12px]">
             <p className="font-['The_Last_Shuriken',sans-serif] text-[22px] sm:text-[26px] lg:text-[32px] leading-[1.45] text-[#eaeaea]">
-              Designing enterprise and fintech products where{' '}
-              <span style={{ color: '#FF2A2A', textShadow: '0 0 24px rgba(255,42,42,0.45)' }}>
-                human empathy
-              </span>{' '}
-              meets clarity and simplicity.
+              12+ years designing enterprise and fintech systems.
             </p>
             <p
               className="font-['Blast_Dragon',sans-serif] text-[15px] sm:text-[17px] lg:text-[18px] leading-[34px] tracking-[1.5px]"
               style={{ color: '#8a8f98' }}
             >
-              12+ years designing fintech and enterprise products.
+              Combining{' '}
+              <span style={{ color: '#FF2A2A', textShadow: '0 0 24px rgba(255,42,42,0.45)' }}>
+                human empathy
+              </span>{' '}
+              with AI-driven design to simplify complexity.
             </p>
           </motion.div>
 
@@ -330,10 +330,10 @@ export default function Hero() {
             <MagneticButton>
               <motion.a
                 href="#works"
-                className="relative flex items-center justify-center px-[22px] sm:px-[28px] h-[44px] sm:h-[48px] rounded-[8px]
-                  font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-white whitespace-nowrap"
+                className="relative flex items-center justify-center px-7 py-4 rounded-[8px]
+                  font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] text-white whitespace-nowrap"
                 style={{ backgroundColor: '#B30000', boxShadow: '0 0 20px rgba(179,0,0,0.45), 0 0 40px rgba(179,0,0,0.2)' }}
-                whileHover={{ backgroundColor: '#CC0000', boxShadow: '0 6px 30px rgba(255,42,42,0.65), 0 2px 60px rgba(179,0,0,0.3)' }}
+                whileHover={{ scale: 1.04, backgroundColor: '#CC0000', boxShadow: '0 6px 30px rgba(255,42,42,0.65), 0 2px 60px rgba(179,0,0,0.3)' }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
               >
@@ -344,10 +344,10 @@ export default function Hero() {
               <motion.a
                 href="/resume.pdf"
                 download
-                className="flex items-center justify-center px-[22px] sm:px-[28px] h-[44px] sm:h-[48px] rounded-[8px]
-                  font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[16px] text-[#eaeaea] whitespace-nowrap border"
+                className="flex items-center justify-center px-7 py-4 rounded-[8px]
+                  font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] text-[#eaeaea] whitespace-nowrap border"
                 style={{ backgroundColor: 'rgba(20,23,28,0.85)', borderColor: 'rgba(138,143,152,0.2)' }}
-                whileHover={{ backgroundColor: 'rgba(179,0,0,0.11)', borderColor: 'rgba(179,0,0,0.4)' }}
+                whileHover={{ scale: 1.04, backgroundColor: 'rgba(179,0,0,0.11)', borderColor: 'rgba(179,0,0,0.4)' }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}
               >

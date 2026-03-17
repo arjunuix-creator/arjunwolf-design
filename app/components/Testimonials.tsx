@@ -73,7 +73,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
   return (
     <motion.div
       variants={cardVariants}
-      className="group relative flex flex-col justify-between rounded-2xl p-6 md:p-10 cursor-default
+      className="group relative flex flex-col justify-between rounded-2xl p-8 cursor-default
         border border-white/[0.055]
         transition-all duration-300 ease-out
         hover:-translate-y-[6px]"
@@ -133,25 +133,26 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
         <div className="w-[60%] h-px mb-4" style={{ background: 'rgba(255,255,255,0.05)' }} />
 
         {/* Avatar + name + role */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-[12px]">
           <Avatar
             initials={t.initials}
             accentColor={t.accentColor}
             avatarColor={t.avatarColor}
           />
-          <div className="flex flex-col gap-[2px]">
+          <div className="flex flex-col gap-[3px]">
             {t.linkedin ? (
               <a
                 href={t.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-['Blast_Dragon',sans-serif] font-semibold text-[14px] text-[#eaeaea] tracking-[0.3px]
+                className="font-['Blast_Dragon',sans-serif] text-[14px] text-[#eaeaea] tracking-[0.3px]
                   hover:text-white transition-colors duration-200 underline-offset-2 hover:underline"
+                style={{ fontWeight: 600 }}
               >
                 {t.name}
               </a>
             ) : (
-              <span className="font-['Blast_Dragon',sans-serif] font-semibold text-[14px] text-[#eaeaea] tracking-[0.3px] group-hover:text-white transition-colors duration-300">
+              <span className="font-['Blast_Dragon',sans-serif] text-[14px] text-[#eaeaea] tracking-[0.3px] group-hover:text-white transition-colors duration-300" style={{ fontWeight: 600 }}>
                 {t.name}
               </span>
             )}
@@ -174,12 +175,12 @@ export default function Testimonials() {
   return (
     <section
       ref={ref}
-      className="flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-[120px] w-full"
+      className="flex flex-col items-center px-6 md:px-6 w-full"
     >
 
       {/* ── Header ─────────────────────────────────────────────────────────── */}
       <motion.div
-        className="section-header"
+        className="section-header w-full max-w-[1200px]"
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: EASE }}

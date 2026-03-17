@@ -11,8 +11,8 @@ export default function SectionDivider() {
 
   return (
     <div
-      className="flex items-center justify-center px-4 sm:px-8 md:px-12 lg:px-[120px] w-full
-        mt-8 mb-8 sm:mt-12 sm:mb-12 lg:mt-[56px] lg:mb-[56px]"
+      className="flex items-center justify-center px-6 w-full
+        mt-0 mb-0"
     >
       <div ref={ref} style={{ position: 'relative', width: '100%', maxWidth: '1280px' }}>
         <motion.div

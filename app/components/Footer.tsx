@@ -233,20 +233,24 @@ export default function Footer() {
           <MagneticButton maxShift={7}>
             <a
               href="mailto:arjunuix@gmail.com"
-              className="flex items-center justify-center gap-3 px-[44px] h-[54px] rounded-[10px]
-                font-['Blast_Dragon',sans-serif] text-[15px] text-white tracking-[1.5px] uppercase
+              className="flex items-center justify-center gap-3 px-7 py-4 rounded-[10px]
+                font-['Blast_Dragon',sans-serif] text-[14px] text-white tracking-[1.5px] uppercase
                 transition-all duration-300"
               style={{
                 background: '#B30000',
                 boxShadow:  '0 0 24px rgba(179,0,0,0.4), 0 0 48px rgba(179,0,0,0.15)',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLAnchorElement).style.background = '#CC0000';
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow  = '0 6px 32px rgba(255,42,42,0.55), 0 0 60px rgba(179,0,0,0.25)';
+                const el = e.currentTarget as HTMLAnchorElement;
+                el.style.background  = '#CC0000';
+                el.style.boxShadow   = '0 6px 32px rgba(255,42,42,0.55), 0 0 60px rgba(179,0,0,0.25)';
+                el.style.transform   = 'scale(1.04)';
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLAnchorElement).style.background = '#B30000';
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow  = '0 0 24px rgba(179,0,0,0.4), 0 0 48px rgba(179,0,0,0.15)';
+                const el = e.currentTarget as HTMLAnchorElement;
+                el.style.background  = '#B30000';
+                el.style.boxShadow   = '0 0 24px rgba(179,0,0,0.4), 0 0 48px rgba(179,0,0,0.15)';
+                el.style.transform   = 'scale(1)';
               }}
             >
               {/* Envelope icon */}

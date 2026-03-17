@@ -120,12 +120,12 @@ export default function TuCibilCaseStudy() {
               <Reveal>
                 <Label>Context</Label>
                 <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3.5rem] md:text-[5rem] lg:text-[6rem] text-[#eaeaea] leading-[1.05] mb-4">
-                  TU CIBIL
+                  TI Credit Report
                 </h1>
                 <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6 max-w-[500px]">
-                  Modernizing India&apos;s national credit intelligence platform — redesigning
+                  Modernizing an enterprise credit intelligence platform — redesigning
                   complex financial workflows, dense data reports, and multi-step forms into
-                  an intuitive, scalable product experience trusted by millions.
+                  an intuitive, scalable product experience trusted by banking professionals.
                 </p>
 
                 {/* Metadata grid */}
@@ -150,13 +150,13 @@ export default function TuCibilCaseStudy() {
 
               {/* Right — hero image */}
               <Reveal delay={0.15} className="w-full">
-                <div className="relative w-full rounded-2xl overflow-hidden border border-[#1e2028]">
+                <div className="img-case-study-wrap">
                   <Image
-                    src="/designs/tu-cibil/hero-image.png"
-                    alt="TU CIBIL Hero"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto object-contain"
+                    src="/designs/tu-cibil/hero-image.png?v=2"
+                    alt="TI Credit Report Hero"
+                    width={1000}
+                    height={700}
+                    className="w-full h-auto object-contain rounded-xl"
                     priority
                   />
                 </div>
@@ -191,6 +191,42 @@ export default function TuCibilCaseStudy() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════
+              PROJECT OVERVIEW
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal className="mb-8">
+              <Label>Project Overview</Label>
+              <SectionHeading>At a Glance</SectionHeading>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mb-5">
+                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-3">Problem</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#eaeaea]">
+                    A compliance-heavy enterprise platform used by banking analysts needed a modern, scalable UX system — one that could simplify complex credit workflows, dense data reporting, and multi-step forms without compromising regulatory requirements or data integrity.
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Role</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Lead UI/UX Designer responsible for UX strategy and end-to-end design execution.</p>
+                </div>
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Platform</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Desktop-first enterprise platform with tablet and mobile extensions.</p>
+                </div>
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Duration</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">36 months</p>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
               MY ROLE
           ══════════════════════════════════════════════════════════════ */}
           <section className="pb-14 md:pb-20">
@@ -211,7 +247,7 @@ export default function TuCibilCaseStudy() {
                     'Redesigned core workflows used daily by banking professionals and compliance officers',
                     'Established scalable design patterns and a unified component system across 150+ screens',
                     'Collaborated directly with product managers and engineering teams through weekly reviews',
-                    'Ensured every design decision respected RBI regulatory constraints and audit-trail requirements',
+                    'Ensured every design decision respected enterprise regulatory constraints and audit-trail requirements',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-4">
                       <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-[#e10600] shrink-0" />
@@ -238,9 +274,10 @@ export default function TuCibilCaseStudy() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6">
-                  TU CIBIL is India&apos;s leading credit information company, providing
-                  banks, NBFCs, and financial institutions with the data they need to
-                  evaluate borrower creditworthiness and make high-stakes lending decisions.
+                  TI Credit Report is an enterprise credit intelligence platform serving
+                  banks, financial institutions, and lending teams with the structured data
+                  they need to evaluate borrower creditworthiness and make high-stakes
+                  lending decisions.
                 </p>
                 <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6">
                   The platform is used by bank managers and financial analysts who process
@@ -268,7 +305,7 @@ export default function TuCibilCaseStudy() {
               <Label>Challenge</Label>
               <SectionHeading>The Problem</SectionHeading>
               <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
-                The legacy TU CIBIL platform suffered from three core usability failures
+                The legacy platform suffered from three core usability failures
                 that caused friction at every touchpoint across the credit lifecycle.
               </p>
             </Reveal>
@@ -313,7 +350,7 @@ export default function TuCibilCaseStudy() {
                   {
                     num:   '01',
                     title: 'Regulatory Compliance Constraints',
-                    body:  'Every workflow had to satisfy RBI guidelines, CIBIL data mandates, and legal audit-trail requirements. Simplification could never come at the cost of compliance.',
+                    body:  'Every workflow had to satisfy enterprise compliance frameworks, financial regulatory requirements, and legal audit-trail standards. Simplification could never come at the cost of compliance.',
                     color: 'border-[#e10600]/20 hover:border-[#e10600]/50',
                     dot:   'bg-[#e10600]',
                   },
@@ -383,7 +420,7 @@ export default function TuCibilCaseStudy() {
                     index: '01',
                     title: 'Regulatory Compliance',
                     description:
-                      'All workflows had to meet RBI guidelines and CIBIL data-handling mandates. UI patterns that simplified inputs could not compromise legal audit trails or data integrity requirements.',
+                      'All workflows had to meet enterprise compliance frameworks and financial regulatory standards. UI patterns that simplified inputs could not compromise legal audit trails or data integrity requirements.',
                   },
                   {
                     index: '02',
@@ -439,10 +476,10 @@ export default function TuCibilCaseStudy() {
             </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Reveal delay={0} className="flex flex-col gap-4">
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <div className="w-full overflow-hidden rounded-xl">
                   <Image
-                    src="/designs/tu-cibil/before-image.png"
-                    alt="Before — Legacy TU CIBIL"
+                    src="/designs/tu-cibil/before-image.png?v=2"
+                    alt="Before — Legacy platform"
                     width={800}
                     height={540}
                     className="w-full h-auto object-contain"
@@ -456,10 +493,10 @@ export default function TuCibilCaseStudy() {
                 </div>
               </Reveal>
               <Reveal delay={0.12} className="flex flex-col gap-4">
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <div className="w-full overflow-hidden rounded-xl">
                   <Image
-                    src="/designs/tu-cibil/after-image.png"
-                    alt="After — Redesigned TU CIBIL"
+                    src="/designs/tu-cibil/after-image.png?v=2"
+                    alt="After — Redesigned TI Credit Report"
                     width={800}
                     height={540}
                     className="w-full h-auto object-contain"
@@ -501,9 +538,9 @@ export default function TuCibilCaseStudy() {
                 </p>
               </Reveal>
               <Reveal delay={0.1} className="order-1 lg:order-2">
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <div className="w-full overflow-hidden rounded-xl">
                   <Image
-                    src="/designs/tu-cibil/progressive-stepper-image.png"
+                    src="/designs/tu-cibil/progressive-stepper-image.png?v=2"
                     alt="Progressive Stepper Forms"
                     width={800}
                     height={540}
@@ -516,9 +553,9 @@ export default function TuCibilCaseStudy() {
             {/* B — Dashboard Reports (image left) */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-10">
               <Reveal delay={0.1}>
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <div className="w-full overflow-hidden rounded-xl">
                   <Image
-                    src="/designs/tu-cibil/dashboard-image.png"
+                    src="/designs/tu-cibil/dashboard-image.png?v=2"
                     alt="Dashboard Based Reports"
                     width={800}
                     height={540}
@@ -555,9 +592,9 @@ export default function TuCibilCaseStudy() {
                 </p>
               </Reveal>
               <Reveal delay={0.1} className="order-1 lg:order-2">
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <div className="w-full overflow-hidden rounded-xl">
                   <Image
-                    src="/designs/tu-cibil/data-hierarchy-imagepng.png"
+                    src="/designs/tu-cibil/data-hierarchy-imagepng.png?v=2"
                     alt="Data Hierarchy Optimization"
                     width={800}
                     height={540}
@@ -571,11 +608,67 @@ export default function TuCibilCaseStudy() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════
-              6. SYSTEM THINKING
+              SYSTEM THINKING
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="pb-14 md:pb-20">
+            <Reveal className="mb-8">
+              <Label>System Thinking</Label>
+              <SectionHeading>How the Design Addressed Platform Complexity</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
+                Solving complexity at scale required more than good screens — it demanded a systemic approach to information architecture, user roles, component reuse, and workflow orchestration.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {[
+                  {
+                    num: '01',
+                    title: 'Role-Based User Journeys',
+                    body: 'Four distinct user journeys — analysts, compliance managers, bank partners, and consumers — each designed with tailored information hierarchy and task flows appropriate to their domain expertise and responsibilities.',
+                  },
+                  {
+                    num: '02',
+                    title: 'Scalable Component Architecture',
+                    body: 'A unified design system built to scale from 25 to 150+ screens across all user journeys — ensuring visual and functional consistency without design drift as the platform grew.',
+                  },
+                  {
+                    num: '03',
+                    title: 'Data Hierarchy Simplification',
+                    body: 'Primary metrics surfaced first, secondary context in the middle, granular detail accessible on demand — reducing cognitive load by guiding analyst attention through intentional structure rather than overwhelming data density.',
+                  },
+                  {
+                    num: '04',
+                    title: 'Workflow Orchestration',
+                    body: 'Multi-step credit workflows restructured into guided stepper flows with contextual validation and clear progress indicators — matching how banking professionals actually process applications rather than how legacy systems presented them.',
+                  },
+                ].map(({ num, title, body }) => (
+                  <div
+                    key={num}
+                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300"
+                  >
+                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+                      {num}
+                    </p>
+                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                      {title}
+                    </h3>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                      {body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              6. DESIGN SYSTEM
           ══════════════════════════════════════════════════════════════ */}
           <section className="pb-14 md:pb-20">
             <Reveal>
-              <Label>Scalability</Label>
+              <Label>Scalable Design System</Label>
               <SectionHeading>Design System</SectionHeading>
               <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-4">
                 The platform started at 25 screens. By the end of the engagement it had
@@ -715,17 +808,17 @@ export default function TuCibilCaseStudy() {
               <SectionHeading>Every Screen, Every Device</SectionHeading>
               <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[600px] mb-6">
                 From enterprise desktops to field tablets and consumer mobile — the
-                TU CIBIL experience adapts fluidly across breakpoints, preserving
+                TI Credit Report experience adapts fluidly across breakpoints, preserving
                 information hierarchy and interaction quality on every device.
               </p>
             </Reveal>
 
             {/* Responsive overview — single full-width image */}
             <Reveal delay={0.1}>
-              <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+              <div className="w-full overflow-hidden rounded-xl">
                 <Image
-                  src="/designs/tu-cibil/responsive-image.png"
-                  alt="TU CIBIL — responsive design across devices"
+                  src="/designs/tu-cibil/responsive-image.png?v=2"
+                  alt="TI Credit Report — responsive design across devices"
                   width={1400}
                   height={800}
                   className="w-full h-auto object-contain"
@@ -755,9 +848,9 @@ export default function TuCibilCaseStudy() {
               </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+              <div className="w-full overflow-hidden rounded-xl">
                 <Image
-                  src="/designs/tu-cibil/wireframe-image.png"
+                  src="/designs/tu-cibil/wireframe-image.png?v=2"
                   alt="Wireframes — Information Architecture"
                   width={1400}
                   height={800}
@@ -880,7 +973,7 @@ export default function TuCibilCaseStudy() {
                   },
                   {
                     title: 'Platform Used by Banking Analysts Nationwide',
-                    description: 'The redesigned platform is trusted by bank managers and financial analysts across India to evaluate creditworthiness and make high-stakes lending decisions.',
+                    description: 'The redesigned platform is trusted by bank managers and financial analysts to evaluate creditworthiness and make high-stakes lending decisions at scale.',
                   },
                   {
                     title: 'Simplified Complex Credit Reporting Workflows',
@@ -921,7 +1014,7 @@ export default function TuCibilCaseStudy() {
               <SectionHeading>Final Screens</SectionHeading>
               <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px] mb-6">
                 High-fidelity screens from the shipped product — desktop and mobile —
-                representing the full breadth of the TU CIBIL design system in production.
+                representing the full breadth of the TI Credit Report design system in production.
               </p>
             </Reveal>
 
@@ -931,10 +1024,10 @@ export default function TuCibilCaseStudy() {
                 <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-3">
                   Desktop Screens
                 </p>
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <div className="w-full overflow-hidden rounded-xl">
                   <Image
-                    src="/designs/tu-cibil/desktop-images.png"
-                    alt="TU CIBIL — Desktop screens"
+                    src="/designs/tu-cibil/desktop-images.png?v=2"
+                    alt="TI Credit Report — Desktop screens"
                     width={1400}
                     height={900}
                     className="w-full h-auto object-contain"
@@ -947,10 +1040,10 @@ export default function TuCibilCaseStudy() {
                 <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-3">
                   Mobile Screens
                 </p>
-                <div className="rounded-2xl overflow-hidden border border-[#1e2028] bg-[#0c0d10]">
+                <div className="w-full overflow-hidden rounded-xl">
                   <Image
-                    src="/designs/tu-cibil/mobile-images.png"
-                    alt="TU CIBIL — Mobile screens"
+                    src="/designs/tu-cibil/mobile-images.png?v=2"
+                    alt="TI Credit Report — Mobile screens"
                     width={1400}
                     height={900}
                     className="w-full h-auto object-contain"

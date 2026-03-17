@@ -56,7 +56,7 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const onEnter = () => {
     const card = cardRef.current
     if (!card) return
-    gsap.to(card, { scale: 1.02, duration: 0.45, ease: "power2.out" })
+    gsap.to(card, { scale: 1.015, y: -6, duration: 0.45, ease: "power2.out" })
     card.style.boxShadow = `0 0 0 1px rgba(255,255,255,0.06), 0 0 60px rgba(255,255,255,0.08), 0 0 120px rgba(212,175,55,0.12), 0 48px 100px rgba(0,0,0,0.7)`
   }
 
@@ -64,8 +64,8 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
     const card = cardRef.current
     const img  = imgRef.current
     if (!card) return
-    gsap.to(card, { scale: 1, duration: 0.45, ease: "power2.out" })
-    card.style.boxShadow = "0 32px 80px rgba(0,0,0,0.5)"
+    gsap.to(card, { scale: 1, y: 0, duration: 0.45, ease: "power2.out" })
+    card.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)"
     if (img) gsap.to(img, { x: 0, y: 0, duration: 0.6, ease: "power2.out" })
   }
 
@@ -112,7 +112,7 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
   )
 
   const contentPanel = (
-    <div className="w-full md:w-[45%] flex flex-col justify-center px-5 py-6 md:px-16 gap-3 md:gap-5 flex-shrink-0 overflow-y-auto">
+    <div className="w-full md:w-[45%] flex flex-col justify-center p-8 md:p-10 gap-4 md:gap-5 flex-shrink-0 overflow-y-auto">
       <span
         className="px-4 py-[6px] rounded-full text-[11px] font-semibold tracking-[1.6px] uppercase text-white w-fit"
         style={{ background: study.categoryColor }}
@@ -167,8 +167,8 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
   return (
     <div
       ref={cardRef}
-      className="case-card w-full max-w-[1200px] mx-auto bg-[#14171c] rounded-[20px] md:rounded-[24px] flex flex-col md:flex-row overflow-hidden md:h-[720px]"
-      style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.5)" }}
+      className="case-card w-full max-w-[1200px] mx-auto bg-[#14171c] rounded-[16px] flex flex-col md:flex-row overflow-hidden md:h-[680px]"
+      style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.5)" }}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
       onMouseMove={onMove}

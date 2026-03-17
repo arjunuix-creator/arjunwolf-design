@@ -364,12 +364,12 @@ export default function Skills() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           Expertise
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[56px] text-white text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[36px] md:text-[56px] text-white text-center leading-[1.1] px-5 md:px-0">
           Design Capabilities
         </h2>
         <div className="flex items-center justify-center gap-4 mt-1 mx-auto max-w-[600px] px-5 md:px-0">
           <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30 flex-shrink-0" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase text-center">
+          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[2px] md:tracking-[3px] uppercase text-center">
             UX Design Expertise
           </p>
           <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30 flex-shrink-0" />
@@ -498,11 +498,11 @@ export default function Skills() {
       </div>
 
       {/* ── Tools header ───────────────────────────────────────────────────── */}
-      <div ref={toolsHeaderRef} className="flex flex-col items-center gap-3 mb-5 opacity-0">
+      <div ref={toolsHeaderRef} className="flex flex-col items-center gap-3 mb-5 opacity-0 px-5 md:px-0">
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           Arsenal
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[56px] text-white text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] text-white text-center leading-none">
           Tools
         </h2>
       </div>

@@ -97,6 +97,23 @@ function StrategyCard({ title, description, index }: {
   );
 }
 
+/* ── Metric card ─────────────────────────────────────────────────────────── */
+function MetricCard({ value, label, explanation }: { value: string; label: string; explanation: string }) {
+  return (
+    <div className="border border-[#1e2028] rounded-2xl p-8 text-center bg-[#0c0d10] hover:border-[#D4AF37]/40 transition-colors duration-300 flex flex-col items-center">
+      <p className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.5rem] text-[#D4AF37] leading-none mb-3">
+        {value}
+      </p>
+      <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#eaeaea] uppercase mb-4">
+        {label}
+      </p>
+      <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] max-w-[200px]">
+        {explanation}
+      </p>
+    </div>
+  );
+}
+
 /* ── Impact card ─────────────────────────────────────────────────────────── */
 function ImpactCard({ title, description }: { title: string; description: string }) {
   return (
@@ -210,13 +227,50 @@ export default function PhAwareCaseStudy() {
                 <Image
                   src="/designs/ph-aware/hero-image.png"
                   alt="PH Aware — Hero"
-                  width={800}
+                  width={1000}
                   height={900}
-                  className="w-full h-auto object-contain rounded-2xl block mx-auto"
+                  className="w-full h-auto object-contain rounded-[12px] block mx-auto max-w-[1000px]"
+                  style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}
                   priority
                 />
               </Reveal>
             </div>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              PROJECT OVERVIEW
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-8">
+              <Label>Project Overview</Label>
+              <SectionHeading>At a Glance</SectionHeading>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mb-5">
+                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-3">Problem</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#eaeaea]">
+                    Patients with Pulmonary Arterial Hypertension lacked accessible digital tools to understand their diagnosis, navigate treatment pathways, and access reliable health information — leaving them without support during one of the most difficult periods of their lives.
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Role</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Product Designer responsible for UX strategy and end-to-end design execution.</p>
+                </div>
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Platform</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Mobile-first health awareness app (iOS & Android).</p>
+                </div>
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Duration</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">6 months</p>
+                </div>
+              </div>
+            </Reveal>
           </section>
 
           <Divider />
@@ -399,6 +453,62 @@ export default function PhAwareCaseStudy() {
                     title={card.title}
                     description={card.description}
                   />
+                ))}
+              </div>
+            </Reveal>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
+              SYSTEM THINKING
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-8">
+              <Label>System Thinking</Label>
+              <SectionHeading>How the Design Addressed Platform Complexity</SectionHeading>
+              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
+                Designing for patients navigating a rare chronic illness required more than good visuals — it demanded a structured, scalable approach to information architecture, content delivery, and emotional experience.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {[
+                  {
+                    num: '01',
+                    title: 'Patient-Centered Information Architecture',
+                    body: 'Medical content was mapped around patient needs and awareness stages — ensuring information is encountered in the right sequence, at the right depth, without overwhelming first-time users.',
+                  },
+                  {
+                    num: '02',
+                    title: 'Progressive Content Disclosure',
+                    body: 'Complex medical information is broken into layered steps — foundational concepts first, detailed clinical data accessible on demand — reducing cognitive load while maintaining clinical accuracy.',
+                  },
+                  {
+                    num: '03',
+                    title: 'Scalable Component Architecture',
+                    body: 'A reusable set of health content cards, navigation modules, and awareness flow components — built for consistency across all screens and extensible as new content areas are added.',
+                  },
+                  {
+                    num: '04',
+                    title: 'Guided Awareness Flows',
+                    body: 'Core patient journeys — symptom awareness, treatment understanding, and support access — designed as structured, step-by-step flows that guide patients from confusion to confidence.',
+                  },
+                ].map(({ num, title, body }) => (
+                  <div
+                    key={num}
+                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300"
+                  >
+                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+                      {num}
+                    </p>
+                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                      {title}
+                    </h3>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                      {body}
+                    </p>
+                  </div>
                 ))}
               </div>
             </Reveal>
@@ -610,7 +720,8 @@ export default function PhAwareCaseStudy() {
                 alt="PH Aware — Key Screens"
                 width={1400}
                 height={900}
-                className="w-full h-auto object-contain rounded-2xl block mx-auto max-w-[1200px]"
+                className="w-full h-auto object-contain rounded-[12px] block mx-auto max-w-[1000px]"
+                style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}
               />
             </Reveal>
           </section>
@@ -630,6 +741,25 @@ export default function PhAwareCaseStudy() {
               </p>
             </Reveal>
             <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <MetricCard
+                  value="50+"
+                  label="Screens Designed"
+                  explanation="A complete mobile experience covering symptom awareness, treatment journeys, and patient support — all within a single unified design system."
+                />
+                <MetricCard
+                  value="3"
+                  label="Core Patient Flows"
+                  explanation="Symptom awareness, treatment pathway guidance, and emotional support — structured as guided, step-by-step experiences for patients."
+                />
+                <MetricCard
+                  value="100%"
+                  label="Mobile-First Design"
+                  explanation="Every screen designed for thumb-friendly, on-the-go use — ensuring patients can access critical health information wherever they are."
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <ImpactCard
                   title="Improved Accessibility to Healthcare Information"

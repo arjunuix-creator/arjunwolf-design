@@ -11,7 +11,7 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 ───────────────────────────────────────────────────────────────────────────── */
 
 const clients = [
-  { name: 'TransUnion CIBIL',        src: '/designs/tu-logo.png',     float: { dur: 6.0, delay: 0.0 } },
+  { name: 'TI Credit',               src: '/designs/tu-logo.png',     float: { dur: 6.0, delay: 0.0 } },
   { name: 'Acer',                    src: '/designs/acer-logo.png',   float: { dur: 5.5, delay: 0.8 } },
   { name: 'ASUS',                    src: '/designs/asus-logo.png',   float: { dur: 7.0, delay: 1.4 } },
   { name: 'Colt Technology Services',src: '/designs/Colt-logo.png',   float: { dur: 5.8, delay: 0.4 } },

@@ -24,8 +24,8 @@ export default function FloatingContactButton() {
     };
   }, []);
 
-  const bottom = isDesktop ? 32 : 24;
-  const right  = isDesktop ? 32 : 20;
+  const bottom = isDesktop ? 32 : 20;
+  const right  = isDesktop ? 32 : 16;
   const scale  = isDesktop ? 1  : 0.9;
 
   return (

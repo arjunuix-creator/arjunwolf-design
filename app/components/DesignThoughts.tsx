@@ -56,12 +56,12 @@ export default function DesignThoughts() {
   return (
     <section
       ref={ref}
-      className="flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-[120px] w-full"
+      className="flex flex-col items-center px-6 w-full"
     >
 
       {/* ── Header ─────────────────────────────────────────────────────────── */}
       <motion.div
-        className="section-header"
+        className="section-header w-full max-w-[1200px]"
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: easing }}
@@ -99,9 +99,9 @@ export default function DesignThoughts() {
             target="_blank"
             rel="noopener noreferrer"
             className={`
-              group relative flex flex-col gap-5 rounded-2xl p-10 cursor-pointer
+              group relative flex flex-col gap-5 rounded-2xl p-8 cursor-pointer
               border transition-all duration-300 ease-out
-              hover:-translate-y-[5px]
+              hover:-translate-y-[6px]
               ${a.isPlaceholder
                 ? 'border-white/[0.04] bg-[#0f1215] border-dashed'
                 : 'border-white/[0.06] bg-[#111418]'

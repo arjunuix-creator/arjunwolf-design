@@ -144,20 +144,20 @@ export default function Navbar() {
                   key={link.label}
                   href={href}
                   onClick={hardNav(link.hash)}
-                  className="relative flex items-center h-[36px] whitespace-nowrap
+                  className={`relative flex items-center h-[36px] whitespace-nowrap cursor-pointer
                     font-['Blast_Dragon',sans-serif] text-[14px]
-                    tracking-[0.08em] transition-all duration-300 group"
-                  style={{
-                    color  : active ? '#FF2A2A' : '#eaeaea',
-                    opacity: active ? 1 : 0.6,
-                    fontWeight: active ? 600 : 400,
-                  }}
+                    tracking-[0.08em] transition-all duration-300 group
+                    ${active
+                      ? 'text-[#FF2A2A] opacity-100'
+                      : 'text-[#eaeaea] opacity-60 hover:text-[#FF2A2A] hover:opacity-100'
+                    }`}
+                  style={{ fontWeight: active ? 600 : 400 }}
                 >
                   {link.label}
-                  {/* Underline — always full-width when active, expands on hover otherwise */}
+                  {/* Underline — always full-width when active, animates on hover otherwise */}
                   <span
-                    className="absolute bottom-0 left-0 h-[1px] bg-[#FF2A2A] transition-all duration-300 ease-out"
-                    style={{ width: active ? '100%' : '0%' }}
+                    className={`absolute bottom-0 left-0 h-[1px] bg-[#FF2A2A] transition-all duration-300 ease-out
+                      ${active ? 'w-full' : 'w-0 group-hover:w-full'}`}
                   />
                 </a>
               );

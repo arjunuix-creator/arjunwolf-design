@@ -68,7 +68,8 @@ function ImageBlock({ src, alt, width = 1400, height = 900 }: {
       alt={alt}
       width={width}
       height={height}
-      className="w-full h-auto object-contain rounded-2xl block mx-auto max-w-[1200px]"
+      className="w-full h-auto object-contain rounded-[12px] block mx-auto max-w-[1000px]"
+      style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}
     />
   );
 }
@@ -179,6 +180,42 @@ export default function RmtHolotrackCaseStudy() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════
+              PROJECT OVERVIEW
+          ══════════════════════════════════════════════════════════════ */}
+          <section className="py-16 md:py-24">
+            <Reveal className="mb-8">
+              <Label>Project Overview</Label>
+              <SectionHeading>At a Glance</SectionHeading>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mb-5">
+                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-3">Problem</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#eaeaea]">
+                    A large-scale warehouse operations platform lacked real-time asset visibility, unified operational tooling, and role-based control — forcing logistics teams to rely on manual processes and fragmented systems for critical operational decisions.
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Role</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Lead UI/UX Designer responsible for UX strategy and end-to-end design execution.</p>
+                </div>
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Platform</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Desktop-first logistics platform with tablet and mobile extensions.</p>
+                </div>
+                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
+                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Duration</p>
+                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">12 months</p>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════
               2. MY ROLE
           ══════════════════════════════════════════════════════════════ */}
           <section className="py-16 md:py-24">
@@ -253,12 +290,12 @@ export default function RmtHolotrackCaseStudy() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════
-              4. MODULAR PLATFORM DESIGN
+              4. SYSTEM THINKING
           ══════════════════════════════════════════════════════════════ */}
           <section className="py-16 md:py-24">
             <Reveal className="mb-10">
               <Label>System Thinking</Label>
-              <SectionHeading>Modular Platform Design</SectionHeading>
+              <SectionHeading>How the Design Addressed Platform Complexity</SectionHeading>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
                 <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
                   The platform was architected as a set of independent operational modules —
@@ -273,7 +310,48 @@ export default function RmtHolotrackCaseStudy() {
                 </p>
               </div>
             </Reveal>
-            <Reveal delay={0.1}>
+            <Reveal delay={0.1} className="mb-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {[
+                  {
+                    num: '01',
+                    title: 'Role-Based Operational Dashboards',
+                    body: 'Warehouse supervisors, operations directors, and field teams each receive tailored dashboard views — surfacing only the data and controls relevant to their operational responsibilities.',
+                  },
+                  {
+                    num: '02',
+                    title: 'Scalable Component Architecture',
+                    body: 'A modular component library built for reuse across all five operational modules — ensuring visual consistency and reducing design overhead as the platform expanded.',
+                  },
+                  {
+                    num: '03',
+                    title: 'Data Hierarchy Simplification',
+                    body: 'Fleet status, asset location, and exception alerts are layered in clear priority order — critical decisions surfaced at the top, granular operational detail accessible on demand.',
+                  },
+                  {
+                    num: '04',
+                    title: 'Workflow Orchestration',
+                    body: 'Complex warehouse workflows — goods receipt, pick-and-pack, dispatch, and exception handling — redesigned as guided task flows with sequential stages and contextual validation.',
+                  },
+                ].map(({ num, title, body }) => (
+                  <div
+                    key={num}
+                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300"
+                  >
+                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+                      {num}
+                    </p>
+                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                      {title}
+                    </h3>
+                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                      {body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
               <ImageBlock
                 src="/designs/rmt/system-architecture.png"
                 alt="RMT Holotrack — System Architecture"

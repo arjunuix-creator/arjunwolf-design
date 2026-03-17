@@ -182,8 +182,8 @@ export default function About() {
           </h2>
 
           <p
-            className="font-['Blast_Dragon',sans-serif] text-[17px] leading-[1.6] text-[#8a8f98] opacity-80"
-            style={{ maxWidth: '520px' }}
+            className="font-['Blast_Dragon',sans-serif] text-[16px] leading-[1.6] text-[#8a8f98] opacity-80"
+            style={{ maxWidth: '600px' }}
           >
             I specialize in simplifying complex systems and creating meaningful user experiences.
             I currently lead UX initiatives across fintech and enterprise platforms, collaborating
