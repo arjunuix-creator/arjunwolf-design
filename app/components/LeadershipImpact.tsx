@@ -70,15 +70,15 @@ export default function LeadershipImpact() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           12+ Years of Experience
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] sm:text-[44px] md:text-[56px] text-white text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[28px] sm:text-[36px] md:text-[46px] text-white text-center leading-none">
           Design Leadership Impact
         </h2>
         <div className="flex items-center gap-4 mt-1">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30" />
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/18" />
           <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase">
             What I Bring
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/18" />
         </div>
         <p className="font-['Blast_Dragon',sans-serif] text-[14px] text-center text-[#8a8f98] leading-[1.9] max-w-[660px] mt-2">
           Over the past decade I have led UX strategy for complex enterprise systems, translating

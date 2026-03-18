@@ -183,7 +183,7 @@ export default function FinovaPage() {
         <Navbar />
 
         {/* ── HERO ────────────────────────────────────────────────────────── */}
-        <section className="pt-[120px] pb-16 md:pb-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="pt-[120px] pb-12 md:pb-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <Reveal>
             <Label>Vibe Coding · SaaS App · 2026</Label>
             <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3rem] md:text-[5rem] lg:text-[6.5rem] text-[#eaeaea] leading-[1.0] mb-6 max-w-[900px]">
@@ -272,7 +272,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── OVERVIEW ────────────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <Reveal>
               <Label>Overview</Label>
@@ -309,7 +309,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── PROBLEM ─────────────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <Reveal>
             <Label>The Problem</Label>
             <SectionHeading>Designers Stop at Prototypes</SectionHeading>
@@ -343,7 +343,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── OBJECTIVE ───────────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <Reveal>
             <Label>Objective</Label>
             <SectionHeading>Build a Live Dashboard in One Day</SectionHeading>
@@ -385,7 +385,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── WORKFLOW ────────────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <Reveal>
               <Label>Workflow</Label>
@@ -446,7 +446,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── INTERFACE ───────────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <Reveal>
             <Label>Interface</Label>
             <SectionHeading>Dashboard Screens</SectionHeading>
@@ -512,7 +512,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── MICRO INTERACTIONS ──────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <Reveal>
             <Label>Micro Interactions</Label>
             <SectionHeading>Details That Make It Feel Alive</SectionHeading>
@@ -560,7 +560,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── TECH STACK ──────────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <Reveal>
             <Label>Tech Stack</Label>
             <SectionHeading>Built With the Right Tools</SectionHeading>
@@ -590,7 +590,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── DEPLOYMENT ──────────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <Reveal>
               <Label>Deployment</Label>
@@ -613,7 +613,7 @@ export default function FinovaPage() {
         <Divider />
 
         {/* ── OUTCOME ─────────────────────────────────────────────────────── */}
-        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <section className="py-12 md:py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <Reveal>
             <Label>Outcome</Label>
             <SectionHeading>Concept to Production in One Day</SectionHeading>

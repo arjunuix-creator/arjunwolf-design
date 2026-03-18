@@ -110,7 +110,7 @@ function RedLightTrail() {
           r={58}
           fill="url(#rg-trail)"
           filter="url(#f-halo)"
-          opacity={0.18}
+          opacity={0.11}
           initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }}
           animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
           transition={transition}
@@ -121,7 +121,7 @@ function RedLightTrail() {
           r={22}
           fill="url(#rg-trail)"
           filter="url(#f-glow)"
-          opacity={0.52}
+          opacity={0.31}
           initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }}
           animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
           transition={transition}
@@ -132,7 +132,7 @@ function RedLightTrail() {
           r={4.5}
           fill="#FF3A3A"
           filter="url(#f-core)"
-          opacity={0.92}
+          opacity={0.55}
           initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }}
           animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
           transition={transition}
@@ -143,7 +143,7 @@ function RedLightTrail() {
           r={14}
           fill="url(#rg-trail)"
           filter="url(#f-glow)"
-          opacity={0.28}
+          opacity={0.17}
           initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }}
           animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
           transition={{ ...transition, delay: 0.55 }}
@@ -160,7 +160,7 @@ function AnimatedEnso() {
         aria-hidden="true"
         className="absolute inset-0 rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(179,0,0,0.14) 0%, transparent 68%)',
+          background: 'radial-gradient(circle, rgba(179,0,0,0.08) 0%, transparent 68%)',
           filter: 'blur(28px)',
         }}
       />
@@ -274,7 +274,7 @@ export default function Hero() {
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 35% 50%, rgba(179,0,0,0.35) 0%, transparent 60%)',
+          background: 'radial-gradient(circle at 35% 50%, rgba(179,0,0,0.26) 0%, transparent 60%)',
           zIndex: 0,
         }}
       />
@@ -292,7 +292,7 @@ export default function Hero() {
           variants={stagger}
           initial="hidden"
           animate="visible"
-          className="flex flex-col gap-[32px] lg:gap-[44px] items-start text-left translate-y-[40px]"
+          className="flex flex-col gap-[44px] lg:gap-[60px] items-start text-left translate-y-[40px]"
           data-cursor-safe
         >
           {/* Name + role */}
@@ -345,8 +345,8 @@ export default function Hero() {
                 href="/resume/arjun_cr_resume_2026.pdf"
                 download
                 className="flex items-center justify-center px-7 py-4 rounded-[8px]
-                  font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] text-[#eaeaea] whitespace-nowrap border"
-                style={{ backgroundColor: 'rgba(20,23,28,0.85)', borderColor: 'rgba(138,143,152,0.2)', boxShadow: 'none' }}
+                  font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] whitespace-nowrap border"
+                style={{ color: 'rgba(138,143,152,0.75)', backgroundColor: 'rgba(20,23,28,0.85)', borderColor: 'rgba(138,143,152,0.15)', boxShadow: 'none' }}
                 whileHover={{ scale: 1.04, backgroundColor: 'rgba(179,0,0,0.11)', borderColor: 'rgba(179,0,0,0.4)', boxShadow: '0 0 20px rgba(179,0,0,0.2), 0 0 40px rgba(179,0,0,0.08)' }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}

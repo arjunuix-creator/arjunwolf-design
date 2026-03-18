@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 // ── tunables ─────────────────────────────────────────────────────────────────
-const BASE_OPACITY      = 0.50;   // max particle opacity
+const BASE_OPACITY      = 0.40;   // max particle opacity
 const TEXT_ZONE_MULT    = 0.30;   // opacity multiplier when over hero text (70% reduction)
 const BLUR_PX           = 6;      // canvas shadowBlur for each particle
 const SPEED_THRESHOLD   = 1.8;    // px/frame below which no particles are emitted
@@ -106,7 +106,7 @@ export default function SamuraiCursor() {
       if (speed > SPEED_THRESHOLD) {
         const t = Math.min(speed / 22, 1);                        // 0–1 speed normalised
         const lifetime = LIFETIME_SLOW + t * (LIFETIME_FAST - LIFETIME_SLOW);
-        const radius   = 1.5 + t * 0.5;                           // 1.5–2 px → 3–4 px diameter
+        const radius   = 2.5 + t * 1.0;                           // 2.5–3.5 px → 5–7 px diameter
         particles.push({ x: mouseX, y: mouseY, t: now, lifetime, radius });
       }
 
@@ -142,20 +142,20 @@ export default function SamuraiCursor() {
         ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fillStyle    = `rgba(255,42,42,${opacity})`;
         ctx.shadowColor  = "#FF2A2A";
-        ctx.shadowBlur   = BLUR_PX * fade;
+        ctx.shadowBlur   = BLUR_PX * fade * 0.8;
         ctx.fill();
         ctx.restore();
       }
 
       // Cursor tip dot
       if (inside) {
-        const tipOpacity = 0.88 * opMult;
+        const tipOpacity = 0.72 * opMult;
         ctx.save();
         ctx.beginPath();
-        ctx.arc(mouseX, mouseY, 2, 0, Math.PI * 2);
+        ctx.arc(mouseX, mouseY, 3.5, 0, Math.PI * 2);
         ctx.fillStyle   = `rgba(255,210,200,${tipOpacity})`;
         ctx.shadowColor = "#FF2A2A";
-        ctx.shadowBlur  = 10;
+        ctx.shadowBlur  = 14;
         ctx.fill();
         ctx.restore();
       }

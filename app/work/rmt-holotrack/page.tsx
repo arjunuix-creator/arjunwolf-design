@@ -132,7 +132,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               1. HERO
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pt-10 pb-16 md:pb-24">
+          <section className="pt-10 pb-12 md:pb-20">
 
             {/* Title + meta */}
             <Reveal className="mb-10">
@@ -182,7 +182,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               PROJECT OVERVIEW
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Project Overview</Label>
               <SectionHeading>At a Glance</SectionHeading>
@@ -218,7 +218,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               2. MY ROLE
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
               <Reveal>
                 <Label>Leadership</Label>
@@ -256,7 +256,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               3. PROBLEM
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Challenge</Label>
               <SectionHeading>Operations ran on gut instinct, not real-time data.</SectionHeading>
@@ -292,7 +292,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               4. SYSTEM THINKING
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-10">
               <Label>System Thinking</Label>
               <SectionHeading>How the Design Addressed Platform Complexity</SectionHeading>
@@ -366,7 +366,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               5. DESIGN PROCESS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-10">
               <Label>Methodology</Label>
               <SectionHeading>Design Process</SectionHeading>
@@ -443,7 +443,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               6. CORE DESIGN PILLARS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-12">
               <Label>Design Approach</Label>
               <SectionHeading>Core Design Pillars</SectionHeading>
@@ -531,7 +531,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               7. OPERATIONAL MONITORING
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Remote Asset Monitoring</Label>
               <SectionHeading>Operational Awareness at a Glance</SectionHeading>
@@ -558,7 +558,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               8. COMPONENT LIBRARY
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Scalability</Label>
               <SectionHeading>Component Library</SectionHeading>
@@ -632,7 +632,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               9. FINAL SCREENS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-10">
               <Label>Final Product</Label>
               <SectionHeading>Desktop &amp; Mobile System</SectionHeading>
@@ -677,7 +677,7 @@ export default function RmtHolotrackCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               10. IMPACT
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Results</Label>
               <SectionHeading>Impact</SectionHeading>
@@ -749,7 +749,7 @@ export default function RmtHolotrackCaseStudy() {
 
           {/* ── Next Project CTA ───────────────────────────────────────────── */}
           <Reveal>
-            <div className="border-t border-[#1e2028] pt-10 pb-16 md:pb-24">
+            <div className="border-t border-[#1e2028] pt-10 pb-12 md:pb-20">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                 <div>
                   <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[4px] text-[#8a8f98] uppercase mb-3">

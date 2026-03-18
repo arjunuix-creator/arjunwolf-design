@@ -188,7 +188,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               1. HERO
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pt-10 pb-16 md:pb-24">
+          <section className="pt-10 pb-12 md:pb-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
               {/* Left — text */}
@@ -242,7 +242,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               PROJECT OVERVIEW
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Project Overview</Label>
               <SectionHeading>At a Glance</SectionHeading>
@@ -278,7 +278,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               2. MY ROLE
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
               <Reveal>
                 <Label>Leadership</Label>
@@ -316,7 +316,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               3. REAL-WORLD CHALLENGES
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>The Problem</Label>
               <SectionHeading>Real-World Challenges Faced by PAH Patients</SectionHeading>
@@ -352,7 +352,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               3. SEEING THROUGH USERS' EYES
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-10">
               <Label>User Research</Label>
               <SectionHeading>Seeing the World Through Their Eyes</SectionHeading>
@@ -418,7 +418,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               4. STRATEGY ROOTED IN EMPATHY
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Design Strategy</Label>
               <SectionHeading>Strategy Rooted in Empathy</SectionHeading>
@@ -463,7 +463,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               SYSTEM THINKING
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>System Thinking</Label>
               <SectionHeading>How the Design Addressed Platform Complexity</SectionHeading>
@@ -519,7 +519,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               5. FROM RESEARCH TO REALITY
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-10">
               <Label>Methodology</Label>
               <SectionHeading>From Research to Reality</SectionHeading>
@@ -593,7 +593,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               6. VISUAL IDENTITY
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Design System</Label>
               <SectionHeading>A Visual Identity That Builds Trust</SectionHeading>
@@ -705,7 +705,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               7. KEY SCREENS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-10">
               <Label>Final Product</Label>
               <SectionHeading>Key Screens That Tell the Story</SectionHeading>
@@ -731,7 +731,7 @@ export default function PhAwareCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               8. DESIGNING FOR IMPACT
           ══════════════════════════════════════════════════════════════ */}
-          <section className="py-16 md:py-24">
+          <section className="py-12 md:py-20">
             <Reveal className="mb-8">
               <Label>Outcomes</Label>
               <SectionHeading>Designing for Real Impact</SectionHeading>
@@ -779,7 +779,7 @@ export default function PhAwareCaseStudy() {
 
           {/* ── Next Project CTA ───────────────────────────────────────────── */}
           <Reveal>
-            <div className="border-t border-[#1e2028] pt-10 pb-16 md:pb-24">
+            <div className="border-t border-[#1e2028] pt-10 pb-12 md:pb-20">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                 <div>
                   <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[4px] text-[#8a8f98] uppercase mb-3">

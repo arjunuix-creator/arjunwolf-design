@@ -113,7 +113,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               1. HERO SECTION
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pt-10 pb-14 md:pb-20">
+          <section className="pt-10 pb-11 md:pb-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
               {/* Left — text */}
@@ -166,7 +166,7 @@ export default function TuCibilCaseStudy() {
 
           {/* ── Quick Summary Strip ────────────────────────────────────────── */}
           <Reveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14 md:mb-20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-11 md:mb-16">
               {[
                 { label: 'Platform', value: 'FinTech Credit Intelligence' },
                 { label: 'Users',    value: 'Bank Managers, Financial Analysts' },
@@ -193,7 +193,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               PROJECT OVERVIEW
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal className="mb-8">
               <Label>Project Overview</Label>
               <SectionHeading>At a Glance</SectionHeading>
@@ -229,7 +229,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               MY ROLE
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
               <Reveal>
                 <Label>Leadership</Label>
@@ -266,7 +266,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               PRODUCT CONTEXT
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
               <Reveal>
                 <Label>Background</Label>
@@ -300,7 +300,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               2. PROBLEM SECTION
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Challenge</Label>
               <SectionHeading>The Problem</SectionHeading>
@@ -335,7 +335,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               KEY CHALLENGES
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>What Made This Hard</Label>
               <SectionHeading>Key Challenges</SectionHeading>
@@ -403,7 +403,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               3. CONSTRAINTS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Design Context</Label>
               <SectionHeading>Constraints</SectionHeading>
@@ -465,7 +465,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               4. TRANSFORMATION SECTION
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Before vs After</Label>
               <SectionHeading>Legacy vs Modern</SectionHeading>
@@ -517,7 +517,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               5. UX STRATEGY
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Design Approach</Label>
               <SectionHeading>Strategic Design Decisions</SectionHeading>
@@ -610,7 +610,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               SYSTEM THINKING
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal className="mb-8">
               <Label>System Thinking</Label>
               <SectionHeading>How the Design Addressed Platform Complexity</SectionHeading>
@@ -666,7 +666,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               6. DESIGN SYSTEM
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Scalable Design System</Label>
               <SectionHeading>Design System</SectionHeading>
@@ -802,7 +802,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               7. RESPONSIVE DESIGN
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Multi-Device</Label>
               <SectionHeading>Every Screen, Every Device</SectionHeading>
@@ -832,7 +832,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               8. PLANNING / WIREFRAMES
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Information Architecture</Label>
               <SectionHeading>Planning</SectionHeading>
@@ -865,7 +865,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               9. DESIGN PROCESS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Methodology</Label>
               <SectionHeading>Design Process</SectionHeading>
@@ -933,7 +933,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               10. OUTCOMES
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Results</Label>
               <SectionHeading>Measurable Impact</SectionHeading>
@@ -1008,7 +1008,7 @@ export default function TuCibilCaseStudy() {
           {/* ══════════════════════════════════════════════════════════════
               11. FINAL SCREENS
           ══════════════════════════════════════════════════════════════ */}
-          <section className="pb-14 md:pb-20">
+          <section className="pb-11 md:pb-16">
             <Reveal>
               <Label>Final Product</Label>
               <SectionHeading>Final Screens</SectionHeading>
@@ -1055,7 +1055,7 @@ export default function TuCibilCaseStudy() {
 
           {/* ── Next Project CTA ───────────────────────────────────────────── */}
           <Reveal>
-            <div className="border-t border-[#1e2028] pt-10 pb-14 md:pb-20">
+            <div className="border-t border-[#1e2028] pt-10 pb-11 md:pb-16">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                 <div>
                   <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[4px] text-[#8a8f98] uppercase mb-3">

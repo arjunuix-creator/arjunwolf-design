@@ -214,7 +214,7 @@ export default function Journey() {
           Experience
         </p>
         <h2
-          className="text-white text-[34px] sm:text-[44px] md:text-[52px] leading-none mb-4"
+          className="text-white text-[26px] sm:text-[32px] md:text-[38px] leading-none mb-4"
           style={{ fontFamily: "'The Last Shuriken', sans-serif" }}
         >
           The Journey
@@ -246,7 +246,7 @@ export default function Journey() {
         />
 
         {/* Milestone rows */}
-        <div className="flex flex-col gap-16 md:gap-24">
+        <div className="flex flex-col gap-20 md:gap-32">
           {milestones.map((item, i) => {
             const isLeft = i % 2 === 0
             return (
@@ -274,7 +274,7 @@ export default function Journey() {
                     <div
                       className="milestone-dot relative w-3 h-3 rounded-full bg-[#D4AF37] z-10"
                       style={{
-                        boxShadow: '0 0 12px rgba(212,175,55,0.8), 0 0 24px rgba(212,175,55,0.3)',
+                        boxShadow: '0 0 8px rgba(212,175,55,0.45), 0 0 14px rgba(212,175,55,0.15)',
                         transform : 'scale(0)',
                         opacity   : 0,
                       }}
@@ -299,7 +299,7 @@ export default function Journey() {
                   <div className="relative flex items-center justify-center">
                     <div className="absolute w-8 h-8 rounded-full bg-[#D4AF37]/[0.06]" />
                     <div className="relative w-3 h-3 rounded-full bg-[#D4AF37] z-10"
-                      style={{ boxShadow: '0 0 12px rgba(212,175,55,0.8), 0 0 24px rgba(212,175,55,0.3)' }}
+                      style={{ boxShadow: '0 0 8px rgba(212,175,55,0.45), 0 0 14px rgba(212,175,55,0.15)' }}
                     />
                   </div>
                 </div>

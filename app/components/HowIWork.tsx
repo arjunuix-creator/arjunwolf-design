@@ -39,12 +39,12 @@ function WorkCard({ card, index, inView }: { card: typeof cards[number]; index: 
       style={{
         background:    'rgba(255,255,255,0.02)',
         border:        hovered
-          ? '1px solid rgba(225,6,0,0.35)'
+          ? '1px solid rgba(225,6,0,0.25)'
           : '1px solid rgba(255,255,255,0.06)',
         borderRadius:  16,
         padding:       28,
         boxShadow:     hovered
-          ? '0 0 28px rgba(225,6,0,0.08), 0 16px 48px rgba(0,0,0,0.4)'
+          ? '0 0 28px rgba(225,6,0,0.05), 0 16px 48px rgba(0,0,0,0.4)'
           : '0 4px 20px rgba(0,0,0,0.15)',
         transform:     hovered ? 'translateY(-6px)' : 'translateY(0px)',
         transition:    'border 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease',
@@ -110,15 +110,15 @@ export default function HowIWork() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           Process
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] sm:text-[44px] md:text-[56px] text-[#eaeaea] text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[28px] sm:text-[36px] md:text-[46px] text-[#eaeaea] text-center leading-none">
           How I Work
         </h2>
         <div className="flex items-center justify-center gap-4 mt-1 mx-auto max-w-[600px] px-5 md:px-0">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30 flex-shrink-0" />
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/18 flex-shrink-0" />
           <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase text-center">
             Design leadership in practice
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30 flex-shrink-0" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/18 flex-shrink-0" />
         </div>
         <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/65 tracking-[0.4px] mt-3 text-center max-w-[560px] leading-relaxed">
           Great products emerge from collaboration, clarity, and disciplined execution.

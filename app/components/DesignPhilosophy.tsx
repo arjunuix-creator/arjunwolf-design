@@ -62,7 +62,7 @@ export default function DesignPhilosophy() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           Design Philosophy
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] text-[#eaeaea] text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[28px] text-[#eaeaea] text-center leading-none">
           Three Principles
         </h2>
         <p className="font-['Kanzuri',serif] text-[18px] text-[#8a8f98] text-center tracking-[1px] mt-2 max-w-[500px] leading-[32px]">

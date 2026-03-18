@@ -69,15 +69,15 @@ export default function DesignThoughts() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           Writing
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] sm:text-[44px] md:text-[56px] text-[#eaeaea] text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[26px] sm:text-[32px] md:text-[38px] text-[#eaeaea] text-center leading-none">
           Design Essays
         </h2>
         <div className="flex items-center gap-4 mt-1">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30" />
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/12" />
           <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase">
             Medium
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/12" />
         </div>
         <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/60 tracking-[0.5px] mt-3 text-center max-w-[480px] leading-relaxed">
           Occasionally writing about design systems, AI workflows, and product thinking.
@@ -108,7 +108,7 @@ export default function DesignThoughts() {
               }
             `}
             whileHover={{
-              boxShadow: '0 0 0 1px rgba(225,6,0,0.12), 0 16px 40px rgba(0,0,0,0.45)',
+              boxShadow: '0 0 0 1px rgba(225,6,0,0.06), 0 16px 40px rgba(0,0,0,0.45)',
             }}
             transition={{ duration: 0.3, ease: easing }}
           >

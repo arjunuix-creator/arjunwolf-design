@@ -101,11 +101,11 @@ function StatCard({
       style={{
         background:   'rgba(255,255,255,0.02)',
         border:       hovered
-          ? '1px solid rgba(225,6,0,0.28)'
+          ? '1px solid rgba(225,6,0,0.18)'
           : '1px solid rgba(255,255,255,0.06)',
         borderRadius: 16,
         boxShadow:    hovered
-          ? '0 0 28px rgba(225,6,0,0.08), 0 14px 44px rgba(0,0,0,0.45)'
+          ? '0 0 28px rgba(225,6,0,0.05), 0 14px 44px rgba(0,0,0,0.45)'
           : '0 4px 24px rgba(0,0,0,0.2)',
         transform:    hovered ? 'translateY(-6px)' : 'translateY(0)',
         transition:   'border 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease',
@@ -198,15 +198,15 @@ export default function Impact() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           Impact
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] sm:text-[44px] md:text-[56px] text-white text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[28px] sm:text-[36px] md:text-[46px] text-white text-center leading-none">
           Design That Drives Results
         </h2>
         <div className="flex items-center justify-center gap-4 mt-1 mx-auto max-w-[600px] px-5 md:px-0">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30 flex-shrink-0" />
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/18 flex-shrink-0" />
           <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase text-center">
             Outcomes
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30 flex-shrink-0" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/18 flex-shrink-0" />
         </div>
         <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/60 tracking-[0.5px] mt-3 text-center max-w-[500px] leading-relaxed">
           Enterprise UX designed to simplify complexity, accelerate decisions, and scale digital platforms.

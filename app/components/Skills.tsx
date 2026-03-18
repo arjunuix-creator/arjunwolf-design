@@ -191,19 +191,20 @@ interface Tool {
   subtitle: string
   category: ToolCategory
   Icon: React.FC<{ color: string }>
+  primary?: boolean
 }
 
 const tools: Tool[] = [
-  { name: 'Figma',     subtitle: 'Interface Design & Prototyping',   category: 'design',        Icon: IconFigma    },
-  { name: 'FigJam',   subtitle: 'Workshops & Ideation',              category: 'design',        Icon: IconFigJam   },
-  { name: 'Framer',   subtitle: 'Interactive Web Prototyping',       category: 'design',        Icon: IconFramer   },
-  { name: 'Spline',   subtitle: '3D Interaction Design',             category: 'design',        Icon: IconSpline   },
-  { name: 'Claude AI',subtitle: 'AI Assisted Design Workflow',       category: 'ai',            Icon: IconClaudeAI },
-  { name: 'ChatGPT',  subtitle: 'AI Research & Ideation',            category: 'ai',            Icon: IconChatGPT  },
-  { name: 'Notion',   subtitle: 'Product Documentation',             category: 'collaboration', Icon: IconNotion   },
-  { name: 'Jira',     subtitle: 'Product Development Tracking',      category: 'collaboration', Icon: IconJira     },
-  { name: 'Miro',     subtitle: 'Collaborative Whiteboarding',       category: 'collaboration', Icon: IconMiro     },
-  { name: 'Adobe CC', subtitle: 'Creative & Visual Assets',          category: 'creative',      Icon: IconAdobeCC  },
+  { name: 'Figma',     subtitle: 'Interface Design & Prototyping',   category: 'design',        Icon: IconFigma,    primary: true  },
+  { name: 'Adobe CC',  subtitle: 'Creative & Visual Assets',          category: 'creative',      Icon: IconAdobeCC,  primary: true  },
+  { name: 'Miro',      subtitle: 'Collaborative Whiteboarding',       category: 'collaboration', Icon: IconMiro,     primary: true  },
+  { name: 'FigJam',   subtitle: 'Workshops & Ideation',              category: 'design',        Icon: IconFigJam                   },
+  { name: 'Framer',   subtitle: 'Interactive Web Prototyping',       category: 'design',        Icon: IconFramer                   },
+  { name: 'Spline',   subtitle: '3D Interaction Design',             category: 'design',        Icon: IconSpline                   },
+  { name: 'Claude AI',subtitle: 'AI Assisted Design Workflow',       category: 'ai',            Icon: IconClaudeAI                 },
+  { name: 'ChatGPT',  subtitle: 'AI Research & Ideation',            category: 'ai',            Icon: IconChatGPT                  },
+  { name: 'Notion',   subtitle: 'Product Documentation',             category: 'collaboration', Icon: IconNotion                   },
+  { name: 'Jira',     subtitle: 'Product Development Tracking',      category: 'collaboration', Icon: IconJira                     },
 ]
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -211,40 +212,62 @@ const tools: Tool[] = [
 ───────────────────────────────────────────────────────────────────────────── */
 
 function ToolCard({ tool }: { tool: Tool }) {
-  const meta = CATEGORY_META[tool.category]
-  const { Icon } = tool
+  const meta      = CATEGORY_META[tool.category]
+  const { Icon }  = tool
+  const isPrimary = !!tool.primary
 
   return (
     <div
       className="tool-chip group relative flex flex-col gap-4 p-5 rounded-2xl cursor-default opacity-0
-        border border-white/[0.06] transition-all duration-300 ease-out
+        border transition-all duration-300 ease-out
         hover:-translate-y-[5px] hover:scale-[1.03]"
       style={{
-        background: `linear-gradient(135deg, #111418 0%, #0d1014 100%)`,
+        background:   isPrimary
+          ? `linear-gradient(135deg, #14181e 0%, #0f1318 100%)`
+          : `linear-gradient(135deg, #111418 0%, #0d1014 100%)`,
+        borderColor:  isPrimary ? `${meta.color}28` : 'rgba(255,255,255,0.06)',
+        boxShadow:    isPrimary
+          ? `0 0 28px 0 ${meta.glow}, 0 4px 20px rgba(0,0,0,0.35)`
+          : 'none',
+        opacity:      isPrimary ? 1 : 0.62,
+        transform:    isPrimary ? 'scale(1.04)' : 'scale(1)',
       }}
       onMouseEnter={e => {
         const el = e.currentTarget as HTMLDivElement
-        el.style.boxShadow = `0 0 24px 0 ${meta.glow}, 0 8px 32px rgba(0,0,0,0.4)`
-        el.style.borderColor = `${meta.color}30`
-        el.style.background = `linear-gradient(135deg, #13171c 0%, #0d1014 100%)`
+        el.style.boxShadow   = `0 0 ${isPrimary ? 40 : 24}px 0 ${meta.glow}, 0 8px 32px rgba(0,0,0,0.4)`
+        el.style.borderColor = `${meta.color}45`
+        el.style.background  = `linear-gradient(135deg, #13171c 0%, #0d1014 100%)`
+        el.style.opacity     = '1'
+        el.style.transform   = 'scale(1.04) translateY(-5px)'
       }}
       onMouseLeave={e => {
         const el = e.currentTarget as HTMLDivElement
-        el.style.boxShadow = ''
-        el.style.borderColor = ''
-        el.style.background = `linear-gradient(135deg, #111418 0%, #0d1014 100%)`
+        el.style.boxShadow   = isPrimary ? `0 0 28px 0 ${meta.glow}, 0 4px 20px rgba(0,0,0,0.35)` : ''
+        el.style.borderColor = isPrimary ? `${meta.color}28` : ''
+        el.style.background  = isPrimary
+          ? `linear-gradient(135deg, #14181e 0%, #0f1318 100%)`
+          : `linear-gradient(135deg, #111418 0%, #0d1014 100%)`
+        el.style.opacity     = isPrimary ? '1' : '0.62'
+        el.style.transform   = isPrimary ? 'scale(1.04)' : 'scale(1)'
       }}
     >
-      {/* Top accent line */}
+      {/* Top accent line — always visible for primary, hover-only for secondary */}
       <span
-        className="absolute top-0 left-4 right-4 h-[1.5px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{ background: `linear-gradient(90deg, transparent, ${meta.color}, transparent)` }}
+        className="absolute top-0 left-4 right-4 h-[1.5px] rounded-full transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${meta.color}, transparent)`,
+          opacity:    isPrimary ? 0.7 : 0,
+        }}
       />
 
-      {/* Icon container */}
+      {/* Icon container — slightly larger for primary */}
       <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300"
-        style={{ background: meta.bg }}
+        className="rounded-xl flex items-center justify-center transition-all duration-300"
+        style={{
+          width:      isPrimary ? '48px' : '44px',
+          height:     isPrimary ? '48px' : '44px',
+          background: meta.bg,
+        }}
       >
         <Icon color={meta.color} />
       </div>
@@ -252,21 +275,32 @@ function ToolCard({ tool }: { tool: Tool }) {
       {/* Text */}
       <div className="flex flex-col gap-[5px]">
         <span
-          className="font-['Blast_Dragon',sans-serif] text-[14px] tracking-[0.5px] text-[#c8ccd4] group-hover:text-white transition-colors duration-300"
+          className="font-['Blast_Dragon',sans-serif] tracking-[0.5px] transition-colors duration-300 group-hover:text-white"
+          style={{
+            fontSize: isPrimary ? '15px' : '14px',
+            color:    isPrimary ? '#eaeaea' : '#9ca3af',
+          }}
         >
           {tool.name}
         </span>
         <span
-          className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[0.3px] leading-relaxed text-[#8a8f98]/60 group-hover:text-[#8a8f98] transition-colors duration-300"
+          className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[0.3px] leading-relaxed transition-colors duration-300 group-hover:text-[#8a8f98]"
+          style={{ color: isPrimary ? 'rgba(138,143,152,0.75)' : 'rgba(138,143,152,0.4)' }}
         >
           {tool.subtitle}
         </span>
       </div>
 
-      {/* Category dot */}
+      {/* Category dot — larger + brighter for primary */}
       <span
-        className="absolute top-4 right-4 w-[6px] h-[6px] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-300"
-        style={{ background: meta.color, boxShadow: `0 0 6px ${meta.color}` }}
+        className="absolute top-4 right-4 rounded-full transition-all duration-300"
+        style={{
+          width:     isPrimary ? '8px'  : '6px',
+          height:    isPrimary ? '8px'  : '6px',
+          background: meta.color,
+          boxShadow: isPrimary ? `0 0 10px ${meta.color}` : `0 0 6px ${meta.color}`,
+          opacity:   isPrimary ? 0.9 : 0.4,
+        }}
       />
     </div>
   )
@@ -364,7 +398,7 @@ export default function Skills() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           Expertise
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[36px] md:text-[56px] text-white text-center leading-[1.1] px-5 md:px-0">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[30px] md:text-[46px] text-white text-center leading-[1.1] px-5 md:px-0">
           Design Capabilities
         </h2>
         <div className="flex items-center justify-center gap-4 mt-1 mx-auto max-w-[600px] px-5 md:px-0">
@@ -425,7 +459,7 @@ export default function Skills() {
             <span className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[3px]">
               {activePillar.index}
             </span>
-            <h3 className="font-['The_Last_Shuriken',sans-serif] text-[36px] lg:text-[44px] text-white leading-none">
+            <h3 className="font-['The_Last_Shuriken',sans-serif] text-[28px] lg:text-[38px] text-white leading-none">
               {activePillar.category}
             </h3>
           </div>
@@ -502,7 +536,7 @@ export default function Skills() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           Arsenal
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] text-white text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[26px] text-white text-center leading-none">
           Tools
         </h2>
       </div>

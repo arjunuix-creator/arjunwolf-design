@@ -79,7 +79,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
         hover:-translate-y-[6px]"
       style={{ background: 'linear-gradient(145deg, #111418 0%, #0d1014 100%)' }}
       whileHover={{
-        boxShadow: '0 0 0 1px rgba(255,255,255,0.07), 0 20px 50px rgba(0,0,0,0.55)',
+        boxShadow: '0 0 0 1px rgba(255,255,255,0.05), 0 12px 32px rgba(0,0,0,0.45)',
       }}
       transition={{ duration: 0.3, ease: EASE }}
     >
@@ -188,15 +188,15 @@ export default function Testimonials() {
         <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
           People I've Worked With
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] sm:text-[44px] md:text-[56px] text-white text-center leading-none">
+        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[26px] sm:text-[32px] md:text-[38px] text-white text-center leading-none">
           What Colleagues Say
         </h2>
         <div className="flex items-center gap-4 mt-1">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30" />
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/12" />
           <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase">
             Testimonials
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/12" />
         </div>
       </motion.div>
 
