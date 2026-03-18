@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { supabase } from '@/lib/supabase';
+import { getSupabaseClient } from '@/lib/supabase';
 
 // "none" → normal chat, "ask_name" → waiting for name,
 // "ask_email" → waiting for email, "done" → captured, back to normal chat
@@ -91,6 +91,11 @@ export default function AgentWolf() {
 
   const saveLead = async (name: string, email: string): Promise<string | null> => {
     try {
+      const supabase = getSupabaseClient();
+      if (!supabase) {
+        console.log("Supabase not available");
+        return null;
+      }
       const { data, error } = await supabase
         .from('leads')
         .insert({ name, email })
