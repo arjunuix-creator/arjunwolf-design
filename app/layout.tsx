@@ -4,7 +4,7 @@ import './globals.css';
 import SamuraiCursor from './components/SamuraiCursor';
 import CursorGlow from './components/CursorGlow';
 import LoadingIntro from './components/LoadingIntro';
-import FloatingContactButton from './components/FloatingContactButton';
+import AgentWolfLoader from './components/AgentWolfLoader';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -49,7 +49,7 @@ export default function RootLayout({
             backgroundSize:   '300px 300px',
           }}
         />
-        <FloatingContactButton />
+        <AgentWolfLoader />
         <CursorGlow />
         <SamuraiCursor />
         {children}

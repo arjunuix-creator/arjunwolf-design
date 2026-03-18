@@ -342,12 +342,12 @@ export default function Hero() {
             </MagneticButton>
             <MagneticButton>
               <motion.a
-                href="/resume.pdf"
+                href="/resume/arjun_cr_resume_2026.pdf"
                 download
                 className="flex items-center justify-center px-7 py-4 rounded-[8px]
                   font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] text-[#eaeaea] whitespace-nowrap border"
-                style={{ backgroundColor: 'rgba(20,23,28,0.85)', borderColor: 'rgba(138,143,152,0.2)' }}
-                whileHover={{ scale: 1.04, backgroundColor: 'rgba(179,0,0,0.11)', borderColor: 'rgba(179,0,0,0.4)' }}
+                style={{ backgroundColor: 'rgba(20,23,28,0.85)', borderColor: 'rgba(138,143,152,0.2)', boxShadow: 'none' }}
+                whileHover={{ scale: 1.04, backgroundColor: 'rgba(179,0,0,0.11)', borderColor: 'rgba(179,0,0,0.4)', boxShadow: '0 0 20px rgba(179,0,0,0.2), 0 0 40px rgba(179,0,0,0.08)' }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}
               >
