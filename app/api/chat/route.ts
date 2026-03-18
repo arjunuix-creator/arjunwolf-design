@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
-import { supabase } from '@/lib/supabase';
+import { getSupabaseClient } from '@/lib/supabase';
 
 const SYSTEM_PROMPT = `You are Agent Wolf, the AI assistant for Arjun, a Lead UI/UX Designer with 12+ years of experience designing enterprise platforms, fintech systems, and complex operational products.
 
@@ -56,8 +56,13 @@ export async function POST(req: NextRequest) {
     history.push({ role: 'user', content: message });
 
     // Save user message to Supabase (non-blocking)
-    supabase.from('messages').insert({ lead_id: leadId, role: 'user', message })
-      .then(({ error }) => { if (error) console.warn('[Agent Wolf] user save failed:', error.message); });
+    const supabase = getSupabaseClient();
+    if (supabase) {
+      supabase.from('messages').insert({ lead_id: leadId, role: 'user', message })
+        .then(({ error }) => { if (error) console.warn('[Agent Wolf] user save failed:', error.message); });
+    } else {
+      console.log('Supabase not available — skipping DB save');
+    }
 
     const models = ['gpt-3.5-turbo', 'gpt-3.5-turbo-0125'];
     let completion = null;
@@ -85,8 +90,10 @@ export async function POST(req: NextRequest) {
     console.log('OpenAI response:', reply);
 
     // Save assistant response to Supabase (non-blocking)
-    supabase.from('messages').insert({ lead_id: leadId, role: 'assistant', message: reply })
-      .then(({ error }) => { if (error) console.warn('[Agent Wolf] assistant save failed:', error.message); });
+    if (supabase) {
+      supabase.from('messages').insert({ lead_id: leadId, role: 'assistant', message: reply })
+        .then(({ error }) => { if (error) console.warn('[Agent Wolf] assistant save failed:', error.message); });
+    }
 
     return NextResponse.json({ reply });
   } catch (err: unknown) {
