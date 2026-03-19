@@ -2,10 +2,9 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 
-const okamiFrontSrc  = 'https://www.figma.com/api/mcp/asset/44920a4a-12b2-48b7-bea8-9263ae4ee30d';
-const okamiDetailSrc = 'https://www.figma.com/api/mcp/asset/33e434c4-32cd-40f0-88a9-f967019feb18';
-const dividerSrc     = 'https://www.figma.com/api/mcp/asset/d650b40d-c639-47a2-acc6-53b441b12346';
+const dividerSrc = 'https://www.figma.com/api/mcp/asset/d650b40d-c639-47a2-acc6-53b441b12346';
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -98,16 +97,13 @@ export default function About() {
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
             >
-              {/* Wolf images — untouched */}
-              <img
-                alt="Okami wolf"
-                className="absolute inset-0 w-full h-full object-contain transition-opacity"
-                src={okamiFrontSrc}
-              />
-              <img
-                alt="Okami wolf detail"
-                className="absolute inset-[0_5%_0_5%] w-[90%] h-full object-contain transition-opacity"
-                src={okamiDetailSrc}
+              {/* Wolf illustration */}
+              <Image
+                src="/wolf.svg"
+                alt="Wolf visual"
+                fill
+                priority
+                className="object-contain"
               />
 
               {/* Pupil overlays — one per eye */}

@@ -3,9 +3,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const logoSrc =
-  'https://www.figma.com/api/mcp/asset/96a4012b-a656-414b-81fc-f50208b3f7bb';
+import Image from 'next/image';
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -123,14 +121,17 @@ export default function Navbar() {
           {/* Logo */}
           <motion.a
             href={isHome ? '#' : '/'}
-            className="shrink-0 block h-[56px] w-[44px]"
+            className="shrink-0 block h-[30px] w-[30px]"
             whileHover={{ scale: 1.06 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
-            <img
-              alt="Arjun CR logo"
-              className="h-full w-full object-contain mix-blend-screen"
-              src={logoSrc}
+            <Image
+              src="/logo.svg"
+              alt="Arjun CR Logo"
+              width={30}
+              height={30}
+              priority
+              className="object-contain mix-blend-screen"
             />
           </motion.a>
 

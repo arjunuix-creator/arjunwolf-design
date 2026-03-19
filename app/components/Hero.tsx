@@ -1,10 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import MagneticButton from './MagneticButton';
-
-const ensoSrc =
-  'https://www.figma.com/api/mcp/asset/8a556390-e4e9-4d7f-adfa-c7b0fa7ca72c';
 
 // Static ink particle data — no Math.random() to prevent hydration mismatch
 const INK_PARTICLES = [
@@ -173,7 +171,7 @@ function AnimatedEnso() {
         }}
         style={{ willChange: 'transform' }}
       >
-        <img alt="Enso ink circle" className="w-full h-full object-contain" style={{ opacity: 0.45 }} src={ensoSrc} />
+        <Image src="/enzo.svg" alt="Enso ink circle" fill priority className="object-contain" style={{ opacity: 0.45 }} />
       </motion.div>
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
@@ -198,7 +196,7 @@ function AnimatedEnso() {
         transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
         style={{ willChange: 'transform' }}
       >
-        <img alt="" className="w-full h-full object-contain" style={{ opacity: 0.09 }} src={ensoSrc} />
+        <Image src="/enzo.svg" alt="" fill className="object-contain" style={{ opacity: 0.09 }} />
       </motion.div>
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
@@ -310,14 +308,11 @@ export default function Hero() {
 
           {/* Main statement */}
           <motion.div variants={fadeUp} className="flex flex-col gap-[12px]">
-            <p className="font-['The_Last_Shuriken',sans-serif] text-[22px] sm:text-[26px] lg:text-[32px] leading-[1.45] text-[#eaeaea]">
-              12+ years designing enterprise and fintech systems.
-            </p>
             <p
               className="font-['Blast_Dragon',sans-serif] text-[15px] sm:text-[17px] lg:text-[18px] leading-[34px] tracking-[1.5px]"
               style={{ color: '#8a8f98' }}
             >
-              Combining{' '}
+              12+ years designing enterprise platforms, fintech products, and complex operational systems. I combine{' '}
               <span style={{ color: '#FF2A2A', textShadow: '0 0 24px rgba(255,42,42,0.45)' }}>
                 human empathy
               </span>{' '}
