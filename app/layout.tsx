@@ -47,9 +47,12 @@ export const metadata: Metadata = {
     canonical: 'https://arjuncr.design',
   },
   icons: {
-    icon:        '/icon.png',
-    shortcut:    '/icon.png',
-    apple:       '/icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '48x48' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/icon.png',
   },
 };
 
@@ -60,6 +63,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="48x48" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icon.png" />
+      </head>
       <body className="antialiased overflow-x-hidden">
         <LoadingIntro />
 
