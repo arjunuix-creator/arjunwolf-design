@@ -307,17 +307,40 @@ export default function Hero() {
           </motion.div>
 
           {/* Main statement */}
-          <motion.div variants={fadeUp} className="flex flex-col gap-[12px]">
+          <motion.div variants={fadeUp} className="flex flex-col gap-[18px]">
             <p
               className="font-['Blast_Dragon',sans-serif] text-[15px] sm:text-[17px] lg:text-[18px] leading-[34px] tracking-[1.5px]"
               style={{ color: '#8a8f98' }}
             >
-              12+ years designing enterprise platforms, fintech products, and complex operational systems. I combine{' '}
+              I turn complex ideas into simple,{' '}
               <span style={{ color: '#FF2A2A', textShadow: '0 0 24px rgba(255,42,42,0.45)' }}>
-                human empathy
+                human-centered
               </span>{' '}
-              with AI-driven design to simplify complexity.
+              product experiences.
             </p>
+            <p
+              className="font-['Blast_Dragon',sans-serif] text-[13px] sm:text-[14px] lg:text-[15px] leading-[28px] tracking-[1px]"
+              style={{ color: 'rgba(138,143,152,0.6)' }}
+            >
+              Lead Product Designer with 12+ years of experience across fintech, enterprise, SaaS, and more — specializing in systems thinking and AI-augmented design.
+            </p>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-1">
+              {[
+                'Simplifying complex workflows',
+                'Building scalable design systems',
+                'Driving UX strategy across teams',
+              ].map((item) => (
+                <span key={item} className="flex items-center gap-2">
+                  <span style={{ color: '#B30000', fontSize: '10px' }}>▸</span>
+                  <span
+                    className="font-['Blast_Dragon',sans-serif] text-[12px] sm:text-[13px] tracking-[1px]"
+                    style={{ color: 'rgba(138,143,152,0.55)' }}
+                  >
+                    {item}
+                  </span>
+                </span>
+              ))}
+            </div>
           </motion.div>
 
           {/* CTA buttons */}
