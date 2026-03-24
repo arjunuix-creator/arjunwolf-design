@@ -360,7 +360,7 @@ export default function Hero() {
             </MagneticButton>
             <MagneticButton>
               <motion.a
-                href="/resume/arjun_cr_resume_2026.pdf"
+                href="/resume/arjun_cr_Lead_productdesigner_2026.pdf"
                 download="arjun_cr_Lead_productdesigner_2026"
                 className="flex items-center justify-center px-7 py-4 rounded-[8px]
                   font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] whitespace-nowrap border"
