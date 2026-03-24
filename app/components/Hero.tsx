@@ -361,7 +361,7 @@ export default function Hero() {
             <MagneticButton>
               <motion.a
                 href="/resume/arjun_cr_resume_2026.pdf"
-                download
+                download="arjun_cr_Lead_productdesigner_2026"
                 className="flex items-center justify-center px-7 py-4 rounded-[8px]
                   font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] whitespace-nowrap border"
                 style={{ color: 'rgba(138,143,152,0.75)', backgroundColor: 'rgba(20,23,28,0.85)', borderColor: 'rgba(138,143,152,0.15)', boxShadow: 'none' }}
