@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -12,8 +13,8 @@ const testimonials = [
     name: "Charudatt Sawant",
     role: "AVP, Product Development",
     initials: "CS",
-    avatarColor: "#1a0a0a",
-    accentColor: "#e10600",
+    avatarColor: "#FEF2F2",
+    accentColor: "#B91C1C",
     linkedin: "https://www.linkedin.com/in/charudatt-sawant-8a76254/",
   },
   {
@@ -22,8 +23,8 @@ const testimonials = [
     name: "Arun Roy",
     role: "Entrepreneur",
     initials: "AR",
-    avatarColor: "#0e1208",
-    accentColor: "#D4AF37",
+    avatarColor: "#F0FDF4",
+    accentColor: "#B91C1C",
     linkedin: "https://www.linkedin.com/in/arunroypeter/",
   },
   {
@@ -32,8 +33,8 @@ const testimonials = [
     name: "Lalith Prasad GJ",
     role: "Sr. Delivery Director",
     initials: "LP",
-    avatarColor: "#0a0e1a",
-    accentColor: "#e10600",
+    avatarColor: "#EFF6FF",
+    accentColor: "#B91C1C",
     linkedin: "https://www.linkedin.com/in/lalithgj/",
   },
 ];
@@ -49,17 +50,17 @@ const cardVariants = {
 };
 
 /* ── Avatar ─────────────────────────────────────────────────────────────── */
-function Avatar({ initials, accentColor, avatarColor }: { initials: string; accentColor: string; avatarColor: string }) {
+function Avatar({ initials, accentColor, avatarColor, isDark }: { initials: string; accentColor: string; avatarColor: string; isDark: boolean }) {
   return (
     <div
       className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 border"
       style={{
-        background:  `linear-gradient(135deg, ${avatarColor} 0%, #111418 100%)`,
+        background:  isDark ? '#140606' : avatarColor,
         borderColor: `${accentColor}30`,
       }}
     >
       <span
-        className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[1px]"
+        className="text-[11px] font-semibold tracking-[1px]"
         style={{ color: accentColor }}
       >
         {initials}
@@ -70,16 +71,21 @@ function Avatar({ initials, accentColor, avatarColor }: { initials: string; acce
 
 /* ── Card ───────────────────────────────────────────────────────────────── */
 function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <motion.div
       variants={cardVariants}
       className="group relative flex flex-col justify-between rounded-2xl p-8 cursor-default
-        border border-white/[0.055]
         transition-all duration-300 ease-out
         hover:-translate-y-[6px]"
-      style={{ background: 'linear-gradient(145deg, #111418 0%, #0d1014 100%)' }}
+      style={{
+        background:   isDark ? '#0E0F16' : '#FFFFFF',
+        border:       `1px solid ${isDark ? '#1C1D2A' : '#E5E7EB'}`,
+      }}
       whileHover={{
-        boxShadow: '0 0 0 1px rgba(255,255,255,0.05), 0 12px 32px rgba(0,0,0,0.45)',
+        boxShadow: '0 0 0 1px rgba(185,28,28,0.08), 0 12px 32px rgba(0,0,0,0.08)',
       }}
       transition={{ duration: 0.3, ease: EASE }}
     >
@@ -87,8 +93,8 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
       {/* Top accent line on hover */}
       <span
         className="absolute top-0 left-6 right-6 h-px rounded-full pointer-events-none
-          bg-gradient-to-r from-transparent via-[#e10600]/0 to-transparent
-          group-hover:via-[#e10600]/35
+          bg-gradient-to-r from-transparent via-[#B91C1C]/0 to-transparent
+          group-hover:via-[#B91C1C]/35
           transition-all duration-500"
         style={{ borderRadius: '999px' }}
       />
@@ -97,7 +103,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
       <div className="flex flex-col gap-5 flex-1 pb-6">
         {/* Open quote mark */}
         <span
-          className="font-['Kanzuri',serif] text-[64px] leading-none select-none"
+          className="italic text-[64px] leading-none select-none"
           style={{ color: t.accentColor, opacity: 0.18, marginBottom: '-24px' }}
           aria-hidden
         >
@@ -106,8 +112,8 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
 
         {/* Highlighted key quote */}
         <p
-          className="font-['The_Last_Shuriken',sans-serif] text-[19px] text-[#eaeaea] leading-[1.35]
-            group-hover:text-white transition-colors duration-300"
+          className="font-bold text-[19px] leading-[1.35] transition-colors duration-300"
+          style={{ color: isDark ? '#EDEDF5' : '#111827' }}
         >
           {t.highlight}
         </p>
@@ -120,8 +126,8 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
 
         {/* Supporting body */}
         <p
-          className="font-['Kanzuri',serif] text-[13.5px] text-[#8a8f98]/75 leading-[26px] tracking-[0.3px]
-            group-hover:text-[#8a8f98] transition-colors duration-300"
+          className="italic text-[13.5px] leading-[26px] tracking-[0.3px] transition-colors duration-300"
+          style={{ color: isDark ? '#7A7A92' : '#6B7280' }}
         >
           {t.body}
         </p>
@@ -130,7 +136,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
       {/* Footer — always at bottom */}
       <div>
         {/* 60% width divider */}
-        <div className="w-[60%] h-px mb-4" style={{ background: 'rgba(255,255,255,0.05)' }} />
+        <div className="w-[60%] h-px mb-4" style={{ background: isDark ? '#1C1D2A' : '#E5E7EB' }} />
 
         {/* Avatar + name + role */}
         <div className="flex items-center gap-[12px]">
@@ -138,6 +144,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
             initials={t.initials}
             accentColor={t.accentColor}
             avatarColor={t.avatarColor}
+            isDark={isDark}
           />
           <div className="flex flex-col gap-[3px]">
             {t.linkedin ? (
@@ -145,18 +152,21 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
                 href={t.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-['Blast_Dragon',sans-serif] text-[14px] text-[#eaeaea] tracking-[0.3px]
-                  hover:text-white transition-colors duration-200 underline-offset-2 hover:underline"
-                style={{ fontWeight: 600 }}
+                className="text-[14px] font-semibold tracking-[0.3px]
+                  hover:text-[#B91C1C] transition-colors duration-200 underline-offset-2 hover:underline"
+                style={{ color: isDark ? '#EDEDF5' : '#111827' }}
               >
                 {t.name}
               </a>
             ) : (
-              <span className="font-['Blast_Dragon',sans-serif] text-[14px] text-[#eaeaea] tracking-[0.3px] group-hover:text-white transition-colors duration-300" style={{ fontWeight: 600 }}>
+              <span
+                className="text-[14px] font-semibold tracking-[0.3px] transition-colors duration-300"
+                style={{ color: isDark ? '#EDEDF5' : '#111827' }}
+              >
                 {t.name}
               </span>
             )}
-            <span className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[1.5px] uppercase" style={{ color: 'rgba(138,143,152,0.6)' }}>
+            <span className="text-[10px] tracking-[1.5px] uppercase text-[#9CA3AF]">
               {t.role}
             </span>
           </div>
@@ -185,18 +195,18 @@ export default function Testimonials() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: EASE }}
       >
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[13px] font-semibold text-[#B91C1C] tracking-[4px] uppercase">
           People I've Worked With
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[26px] sm:text-[32px] md:text-[38px] text-white text-center leading-none">
+        <h2 className="font-bold text-[26px] sm:text-[32px] md:text-[38px] text-[#111827] text-center leading-none">
           What Colleagues Say
         </h2>
         <div className="flex items-center gap-4 mt-1">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/12" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase">
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#B91C1C]/12" />
+          <p className="text-[12px] text-[#6B7280] tracking-[3px] uppercase">
             Testimonials
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/12" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#B91C1C]/12" />
         </div>
       </motion.div>
 

@@ -58,37 +58,36 @@ function MilestoneCard({
     /* Always left-aligned on mobile; right-aligned on desktop when isRight */
     <div className={`flex flex-col gap-3 items-start text-left ${isRight ? 'md:items-end md:text-right' : ''}`}>
       {/* Tag */}
-      <span className="text-[10px] font-semibold tracking-[2.5px] uppercase text-[#D4AF37]/60">
+      <span className="text-[10px] font-semibold tracking-[2.5px] uppercase text-[#B91C1C]/60">
         {item.tag}
       </span>
 
       {/* Role */}
       <h3
-        className="text-white text-[22px] md:text-[28px] leading-[1.1]"
-        style={{ fontFamily: "'The Last Shuriken', sans-serif" }}
+        className="text-[#111827] font-bold text-[22px] md:text-[28px] leading-[1.1]"
       >
         {item.role}
       </h3>
 
       {/* Company · Period */}
       <div className={`flex items-center gap-2 ${isRight ? 'md:flex-row-reverse' : ''}`}>
-        <span className="text-[12px] font-medium text-white/40 tracking-wide">
+        <span className="text-[12px] font-medium text-[#6B7280] tracking-wide">
           {item.company}
         </span>
-        <span className="w-[3px] h-[3px] rounded-full bg-white/20 flex-shrink-0" />
-        <span className="text-[11px] font-bold text-[#D4AF37] tracking-[1.5px]">
+        <span className="w-[3px] h-[3px] rounded-full bg-[#E5E7EB] flex-shrink-0" />
+        <span className="text-[11px] font-bold text-[#B91C1C] tracking-[1.5px]">
           {item.period}
         </span>
       </div>
 
       {/* Description */}
-      <p className={`text-[13px] leading-[1.75] text-white/35 md:max-w-[320px] ${isRight ? 'md:ml-auto' : ''}`}>
+      <p className={`text-[13px] leading-[1.75] text-[#6B7280] md:max-w-[320px] ${isRight ? 'md:ml-auto' : ''}`}>
         {item.description}
       </p>
 
       {/* Connector hairline */}
       <div
-        className={`h-px w-10 bg-gradient-to-r from-[#D4AF37]/30 to-transparent ${isRight ? 'md:from-transparent md:to-[#D4AF37]/30' : ''} mt-1`}
+        className={`h-px w-10 bg-gradient-to-r from-[#B91C1C]/30 to-transparent ${isRight ? 'md:from-transparent md:to-[#B91C1C]/30' : ''} mt-1`}
       />
     </div>
   )
@@ -206,25 +205,24 @@ export default function Journey() {
     <section
       ref={sectionRef}
       id="journey"
-      className="bg-[#070707] w-full"
+      className="bg-[#F9FAFB] w-full"
     >
       {/* ── Section header ────────────────────────────────────────────────── */}
       <div className="section-header text-center px-4">
-        <p className="text-[#D4AF37] text-[10px] tracking-[5px] uppercase mb-3">
+        <p className="text-[#B91C1C] text-[10px] tracking-[5px] uppercase mb-3">
           Experience
         </p>
         <h2
-          className="text-white text-[26px] sm:text-[32px] md:text-[38px] leading-none mb-4"
-          style={{ fontFamily: "'The Last Shuriken', sans-serif" }}
+          className="text-[#111827] font-bold text-[26px] sm:text-[32px] md:text-[38px] leading-none mb-4"
         >
           The Journey
         </h2>
         <div className="flex items-center justify-center gap-4">
-          <span className="w-12 h-px bg-gradient-to-r from-transparent to-[#D4AF37]/40" />
-          <p className="text-[#8a8f98] text-[12px] tracking-[4px] uppercase">
+          <span className="w-12 h-px bg-gradient-to-r from-transparent to-[#B91C1C]/40" />
+          <p className="text-[#6B7280] text-[12px] tracking-[4px] uppercase">
             The Sword Path
           </p>
-          <span className="w-12 h-px bg-gradient-to-l from-transparent to-[#D4AF37]/40" />
+          <span className="w-12 h-px bg-gradient-to-l from-transparent to-[#B91C1C]/40" />
         </div>
       </div>
 
@@ -232,16 +230,16 @@ export default function Journey() {
       <div ref={timelineRef} className="relative max-w-[1000px] mx-auto px-4 sm:px-6">
 
         {/* Background line — left-6 on mobile, centered on desktop */}
-        <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/8 to-transparent" />
+        <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#E5E7EB] to-transparent" />
 
-        {/* Scroll-driven gold fill */}
+        {/* Scroll-driven red fill */}
         <div
           ref={lineFillRef}
           className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 w-px origin-top"
           style={{
             height    : '100%',
             transform : 'scaleY(0)',
-            background: 'linear-gradient(to bottom, #D4AF37ee, #D4AF3766, transparent)',
+            background: 'linear-gradient(to bottom, #B91C1Cee, #B91C1C66, transparent)',
           }}
         />
 
@@ -269,12 +267,12 @@ export default function Journey() {
                 {/* Center dot — desktop only (GSAP targets these) */}
                 <div className="hidden md:flex w-16 flex-shrink-0 justify-center pt-4">
                   <div className="relative flex items-center justify-center">
-                    <div className="absolute w-8 h-8 rounded-full bg-[#D4AF37]/[0.06]" />
-                    <div className="milestone-ring absolute w-3 h-3 rounded-full bg-[#D4AF37]/50" />
+                    <div className="absolute w-8 h-8 rounded-full bg-[#B91C1C]/[0.06]" />
+                    <div className="milestone-ring absolute w-3 h-3 rounded-full bg-[#B91C1C]/50" />
                     <div
-                      className="milestone-dot relative w-3 h-3 rounded-full bg-[#D4AF37] z-10"
+                      className="milestone-dot relative w-3 h-3 rounded-full bg-[#B91C1C] z-10"
                       style={{
-                        boxShadow: '0 0 8px rgba(212,175,55,0.45), 0 0 14px rgba(212,175,55,0.15)',
+                        boxShadow: '0 0 8px rgba(185,28,28,0.45), 0 0 14px rgba(185,28,28,0.15)',
                         transform : 'scale(0)',
                         opacity   : 0,
                       }}
@@ -297,9 +295,9 @@ export default function Journey() {
                 {/* Mobile-only dot — absolutely positioned on the left, no GSAP */}
                 <div className="md:hidden absolute left-6 top-4 -translate-x-1/2 flex items-center justify-center">
                   <div className="relative flex items-center justify-center">
-                    <div className="absolute w-8 h-8 rounded-full bg-[#D4AF37]/[0.06]" />
-                    <div className="relative w-3 h-3 rounded-full bg-[#D4AF37] z-10"
-                      style={{ boxShadow: '0 0 8px rgba(212,175,55,0.45), 0 0 14px rgba(212,175,55,0.15)' }}
+                    <div className="absolute w-8 h-8 rounded-full bg-[#B91C1C]/[0.06]" />
+                    <div className="relative w-3 h-3 rounded-full bg-[#B91C1C] z-10"
+                      style={{ boxShadow: '0 0 8px rgba(185,28,28,0.45), 0 0 14px rgba(185,28,28,0.15)' }}
                     />
                   </div>
                 </div>
@@ -311,7 +309,7 @@ export default function Journey() {
 
         {/* End cap */}
         <div className="flex justify-center mt-16">
-          <div className="w-px h-16 bg-gradient-to-b from-[#D4AF37]/30 to-transparent" />
+          <div className="w-px h-16 bg-gradient-to-b from-[#B91C1C]/30 to-transparent" />
         </div>
       </div>
     </section>

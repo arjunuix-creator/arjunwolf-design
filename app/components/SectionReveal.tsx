@@ -21,7 +21,7 @@ export default function SectionReveal({ children, className }: Props) {
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={
         isMobile ? { opacity: 1, y: 0 }
         : inView  ? { opacity: 1, y: 0 }
@@ -30,7 +30,7 @@ export default function SectionReveal({ children, className }: Props) {
       transition={
         isMobile
           ? { duration: 0 }
-          : { duration: 0.8, ease: 'easeOut' }
+          : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
       }
     >
       {children}

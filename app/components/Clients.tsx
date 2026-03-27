@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -32,6 +33,8 @@ const cardReveal = {
 
 function LogoCard({ client }: { client: typeof clients[number] }) {
   const [hovered, setHovered] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <motion.div
@@ -53,24 +56,36 @@ function LogoCard({ client }: { client: typeof clients[number] }) {
       style={{
         height:       90,
         borderRadius: 16,
-        background:   'rgba(255,255,255,0.02)',
+        background:   hovered
+          ? (isDark ? '#141520' : '#FFFFFF')
+          : (isDark ? '#0E0F16' : '#F9FAFB'),
         border:       hovered
-          ? '1px solid rgba(225,6,0,0.35)'
-          : '1px solid rgba(255,255,255,0.06)',
+          ? '1px solid rgba(185,28,28,0.30)'
+          : `1px solid ${isDark ? '#1C1D2A' : '#E5E7EB'}`,
         boxShadow:    hovered
-          ? '0 0 24px rgba(225,6,0,0.1), 0 12px 40px rgba(0,0,0,0.5)'
-          : '0 4px 20px rgba(0,0,0,0.2)',
+          ? '0 0 24px rgba(185,28,28,0.10), 0 12px 40px rgba(0,0,0,0.14)'
+          : isDark ? '0 4px 20px rgba(0,0,0,0.18)' : '0 4px 20px rgba(0,0,0,0.04)',
         transform:    hovered ? 'scale(1.06)' : 'scale(1)',
-        transition:   'border 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease',
+        transition:   'border 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease, background 0.35s ease',
         padding:      '0 20px',
       }}
     >
+      {/* Top accent line on hover */}
+      <span
+        className="absolute top-0 left-4 right-4 h-px rounded-full pointer-events-none"
+        style={{
+          background: `linear-gradient(90deg, transparent, rgba(185,28,28,${hovered ? 0.45 : 0}), transparent)`,
+          transition: 'background 0.4s ease',
+        }}
+      />
       <motion.div
         className="relative w-full"
         style={{ height: 46 }}
         animate={{
-          filter:  hovered ? 'grayscale(0%) brightness(1)' : 'grayscale(100%) brightness(6)',
-          opacity: hovered ? 1 : 0.55,
+          filter:  hovered
+            ? (isDark ? 'grayscale(0%) brightness(1.2)' : 'grayscale(0%) brightness(1)')
+            : (isDark ? 'grayscale(100%) brightness(0.7)' : 'grayscale(100%) brightness(0.4)'),
+          opacity: hovered ? 1 : (isDark ? 0.45 : 0.55),
         }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
@@ -117,20 +132,20 @@ export default function Clients() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.85, ease: EASE }}
       >
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[13px] font-semibold text-[#B91C1C] tracking-[4px] uppercase">
           Trusted By Global Brands
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[56px] text-white text-center leading-none">
+        <h2 className="font-bold text-[56px] text-[#111827] text-center leading-none">
           Clients
         </h2>
         <div className="flex items-center gap-4 mt-1">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase">
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#B91C1C]/30" />
+          <p className="text-[12px] text-[#6B7280] tracking-[3px] uppercase">
             Global Enterprises
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#B91C1C]/30" />
         </div>
-        <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/55 tracking-[0.5px] mt-3 text-center max-w-[480px] leading-relaxed">
+        <p className="text-[12px] text-[#9CA3AF] tracking-[0.5px] mt-3 text-center max-w-[480px] leading-relaxed">
           Trusted by teams at
         </p>
       </motion.div>
@@ -154,7 +169,7 @@ export default function Clients() {
 
       {/* ── Trust line ─────────────────────────────────────────────────────── */}
       <motion.p
-        className="relative z-10 font-['Blast_Dragon',sans-serif] text-[11px] text-[#8a8f98]/50
+        className="relative z-10 text-[11px] text-[#9CA3AF]
           tracking-[0.8px] text-center mt-12 max-w-[560px] leading-relaxed"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}

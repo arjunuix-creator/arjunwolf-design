@@ -64,7 +64,7 @@ export default function ScrollIndicator() {
           className="fixed right-16 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-end gap-[22px]"
         >
           {/* Vertical rail */}
-          <div className="absolute right-[3.5px] top-0 bottom-0 w-px bg-white/[0.07] rounded-full" />
+          <div className="absolute right-[3.5px] top-0 bottom-0 w-px bg-[#E5E7EB] rounded-full" />
 
           {SECTIONS.map(({ id, label }) => {
             const isActive = activeId === id
@@ -82,8 +82,8 @@ export default function ScrollIndicator() {
                   whileHover={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.25, ease: 'easeOut' }}
                   className={`
-                    font-['Blast_Dragon',sans-serif] text-[9px] tracking-[2.5px] uppercase select-none
-                    ${isActive ? 'text-[#e10600]' : 'text-[#8a8f98]'}
+                    text-[9px] font-semibold tracking-[2.5px] uppercase select-none
+                    ${isActive ? 'text-[#B91C1C]' : 'text-[#6B7280]'}
                   `}
                 >
                   {label}
@@ -93,15 +93,15 @@ export default function ScrollIndicator() {
                 <motion.span
                   animate={
                     isActive
-                      ? { width: 8, height: 8, backgroundColor: '#e10600' }
-                      : { width: 5, height: 5, backgroundColor: 'rgba(255,255,255,0.2)' }
+                      ? { width: 8, height: 8, backgroundColor: '#B91C1C' }
+                      : { width: 5, height: 5, backgroundColor: '#D1D5DB' }
                   }
-                  whileHover={{ backgroundColor: 'rgba(255,255,255,0.5)', scale: 1.3 }}
+                  whileHover={{ backgroundColor: '#9CA3AF', scale: 1.3 }}
                   transition={{ duration: 0.3, ease: easing }}
                   className="rounded-full flex-shrink-0"
                   style={
                     isActive
-                      ? { boxShadow: '0 0 0 3px rgba(225,6,0,0.15), 0 0 14px rgba(225,6,0,0.45)' }
+                      ? { boxShadow: '0 0 0 3px rgba(185,28,28,0.12), 0 0 14px rgba(185,28,28,0.25)' }
                       : undefined
                   }
                 />

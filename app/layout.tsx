@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import SamuraiCursor from './components/SamuraiCursor';
+import ThemeProvider from './components/ThemeProvider';
 import CursorGlow from './components/CursorGlow';
-import LoadingIntro from './components/LoadingIntro';
-import AgentWolfLoader from './components/AgentWolfLoader';
+import SamuraiCursor from './components/SamuraiCursor';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -70,23 +69,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon.png" />
       </head>
       <body className="antialiased overflow-x-hidden">
-        <LoadingIntro />
-
-        {/* Grain texture overlay — fixed, full-screen, non-interactive */}
-        <div
-          aria-hidden="true"
-          style={{
-            position:        'fixed',
-            inset:           0,
-            zIndex:          9998,
-            pointerEvents:   'none',
-            opacity:         0.04,
-            mixBlendMode:    'overlay',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundRepeat: 'repeat',
-            backgroundSize:   '300px 300px',
-          }}
-        />
+        {/* Prevent flash of wrong theme before React hydrates */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme')||'light';document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}})();` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -106,10 +90,11 @@ export default function RootLayout({
             }),
           }}
         />
-        <AgentWolfLoader />
-        <CursorGlow />
-        <SamuraiCursor />
-        {children}
+        <ThemeProvider>
+          <CursorGlow />
+          <SamuraiCursor />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

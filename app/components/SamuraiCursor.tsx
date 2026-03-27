@@ -129,32 +129,36 @@ export default function SamuraiCursor() {
       const opMult = dimmed ? TEXT_ZONE_MULT : 1;
 
       // Draw particles
+      const isDarkMode = document.documentElement.classList.contains("dark");
+      const baseOp     = isDarkMode ? BASE_OPACITY : BASE_OPACITY * 2.2; // more visible on white
       for (const p of particles) {
         const age   = now - p.t;
         if (age >= p.lifetime) continue;
 
-        const fade   = 1 - age / p.lifetime;               // 1 (fresh) → 0 (gone)
-        const opacity = BASE_OPACITY * fade * opMult;
-        const r       = p.radius * (0.45 + fade * 0.55);  // shrinks as it fades
+        const fade    = 1 - age / p.lifetime;
+        const opacity = baseOp * fade * opMult;
+        const r       = p.radius * (0.45 + fade * 0.55);
 
         ctx.save();
         ctx.beginPath();
         ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        ctx.fillStyle    = `rgba(255,42,42,${opacity})`;
-        ctx.shadowColor  = "#FF2A2A";
+        ctx.fillStyle    = `rgba(185,28,28,${opacity})`;
+        ctx.shadowColor  = "#B91C1C";
         ctx.shadowBlur   = BLUR_PX * fade * 0.8;
         ctx.fill();
         ctx.restore();
       }
 
-      // Cursor tip dot
+      // Cursor tip dot — dark red in light mode, light pinkish in dark mode
       if (inside) {
-        const tipOpacity = 0.72 * opMult;
+        const isDark     = document.documentElement.classList.contains("dark");
+        const tipOpacity = (isDark ? 0.72 : 0.9) * opMult;
+        const tipColor   = isDark ? `rgba(255,210,200,${tipOpacity})` : `rgba(185,28,28,${tipOpacity})`;
         ctx.save();
         ctx.beginPath();
         ctx.arc(mouseX, mouseY, 3.5, 0, Math.PI * 2);
-        ctx.fillStyle   = `rgba(255,210,200,${tipOpacity})`;
-        ctx.shadowColor = "#FF2A2A";
+        ctx.fillStyle   = tipColor;
+        ctx.shadowColor = "#B91C1C";
         ctx.shadowBlur  = 14;
         ctx.fill();
         ctx.restore();

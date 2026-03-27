@@ -66,20 +66,20 @@ export default function DesignThoughts() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: easing }}
       >
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[13px] font-semibold text-[#B91C1C] tracking-[4px] uppercase">
           Writing
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[26px] sm:text-[32px] md:text-[38px] text-[#eaeaea] text-center leading-none">
+        <h2 className="font-bold text-[26px] sm:text-[32px] md:text-[38px] text-[#111827] text-center leading-none">
           Design Essays
         </h2>
         <div className="flex items-center gap-4 mt-1">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/12" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase">
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#B91C1C]/12" />
+          <p className="text-[12px] text-[#6B7280] tracking-[3px] uppercase">
             Medium
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/12" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#B91C1C]/12" />
         </div>
-        <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/60 tracking-[0.5px] mt-3 text-center max-w-[480px] leading-relaxed">
+        <p className="text-[12px] text-[#9CA3AF] tracking-[0.5px] mt-3 text-center max-w-[480px] leading-relaxed">
           Occasionally writing about design systems, AI workflows, and product thinking.
         </p>
       </motion.div>
@@ -103,30 +103,30 @@ export default function DesignThoughts() {
               border transition-all duration-300 ease-out
               hover:-translate-y-[6px]
               ${a.isPlaceholder
-                ? 'border-white/[0.04] bg-[#0f1215] border-dashed'
-                : 'border-white/[0.06] bg-[#111418]'
+                ? 'border-dashed border-[#E5E7EB] bg-[#F9FAFB]'
+                : 'border-[#E5E7EB] bg-white'
               }
             `}
             whileHover={{
-              boxShadow: '0 0 0 1px rgba(225,6,0,0.06), 0 16px 40px rgba(0,0,0,0.45)',
+              boxShadow: '0 0 0 1px rgba(185,28,28,0.06), 0 16px 40px rgba(0,0,0,0.08)',
             }}
             transition={{ duration: 0.3, ease: easing }}
           >
             {/* Top accent line on hover */}
             <span
               className="absolute top-0 left-6 right-6 h-px rounded-full
-                bg-gradient-to-r from-transparent via-[#e10600]/0 to-transparent
-                group-hover:via-[#e10600]/40
+                bg-gradient-to-r from-transparent via-[#B91C1C]/0 to-transparent
+                group-hover:via-[#B91C1C]/40
                 transition-all duration-500 ease-out"
             />
 
             {/* Tag row */}
             <div className="flex items-center justify-between">
-              <span className="font-['Blast_Dragon',sans-serif] text-[10px] text-[#e10600] tracking-[3px] uppercase">
+              <span className="text-[10px] font-semibold text-[#B91C1C] tracking-[3px] uppercase">
                 {a.tag}
               </span>
               {a.readTime && (
-                <span className="font-['Blast_Dragon',sans-serif] text-[10px] text-[#8a8f98]/40 tracking-[1px]">
+                <span className="text-[10px] text-[#9CA3AF] tracking-[1px]">
                   {a.readTime}
                 </span>
               )}
@@ -135,11 +135,11 @@ export default function DesignThoughts() {
             {/* Title */}
             <h3
               className={`
-                font-['The_Last_Shuriken',sans-serif] text-[22px] leading-[1.25]
+                font-bold text-[22px] leading-[1.25]
                 transition-colors duration-300
                 ${a.isPlaceholder
-                  ? 'text-[#8a8f98]  group-hover:text-[#c0c4cc]'
-                  : 'text-[#eaeaea] group-hover:text-white'
+                  ? 'text-[#6B7280] group-hover:text-[#374151]'
+                  : 'text-[#111827] group-hover:text-[#111827]'
                 }
               `}
             >
@@ -147,10 +147,10 @@ export default function DesignThoughts() {
             </h3>
 
             {/* Divider */}
-            <div className="w-8 h-px bg-[#8a8f98]/15 group-hover:w-14 group-hover:bg-[#e10600]/30 transition-all duration-500 ease-out" />
+            <div className="w-8 h-px bg-[#E5E7EB] group-hover:w-14 group-hover:bg-[#B91C1C]/30 transition-all duration-500 ease-out" />
 
             {/* Excerpt */}
-            <p className="font-['Kanzuri',serif] text-[14px] text-[#8a8f98] leading-[26px] flex-1">
+            <p className="italic text-[14px] text-[#6B7280] leading-[26px] flex-1">
               {a.excerpt}
             </p>
 
@@ -158,11 +158,12 @@ export default function DesignThoughts() {
             <div className="flex items-center mt-2">
               <MagneticButton maxShift={4}>
                 <span
-                  className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[1.5px]
-                    text-[#8a8f98] group-hover:text-[#eaeaea]
-                    transition-all duration-300 ease-out inline-flex items-center gap-1"
+                  className="text-[11px] font-semibold tracking-[1.5px] uppercase
+                    text-[#9CA3AF] group-hover:text-[#B91C1C]
+                    transition-all duration-300 ease-out inline-flex items-center gap-[6px]"
                 >
                   {a.cta}
+                  <span className="inline-block transition-transform duration-250 group-hover:translate-x-[4px]">→</span>
                 </span>
               </MagneticButton>
             </div>

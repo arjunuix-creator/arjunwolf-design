@@ -33,7 +33,7 @@ function Reveal({ children, className = '', delay = 0 }: {
 /* ── Section label ───────────────────────────────────────────────────────── */
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[4px] uppercase mb-3">
+    <p className="text-[11px] text-[#B91C1C] tracking-[4px] uppercase mb-3">
       {children}
     </p>
   );
@@ -42,7 +42,7 @@ function Label({ children }: { children: React.ReactNode }) {
 /* ── Section heading ─────────────────────────────────────────────────────── */
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-['The_Last_Shuriken',sans-serif] text-[2.2rem] md:text-[3rem] text-[#eaeaea] leading-[1.1] mb-6">
+    <h2 className="text-[2.2rem] md:text-[3rem] text-[#111827] leading-[1.1] mb-6">
       {children}
     </h2>
   );
@@ -51,21 +51,21 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 /* ── Gradient divider ────────────────────────────────────────────────────── */
 function Divider() {
   return (
-    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#333] to-transparent my-10 md:my-14" />
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent my-10 md:my-14" />
   );
 }
 
 /* ── Metric card ─────────────────────────────────────────────────────────── */
 function MetricCard({ value, label, explanation }: { value: string; label: string; explanation: string }) {
   return (
-    <div className="flex-1 min-w-[200px] border border-[#1e2028] rounded-2xl p-8 text-center bg-[#0c0d10] hover:border-[#D4AF37]/40 transition-colors duration-300 flex flex-col items-center">
-      <p className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.5rem] text-[#D4AF37] leading-none mb-3">
+    <div className="flex-1 min-w-[200px] border border-[#E5E7EB] rounded-2xl p-8 text-center bg-white hover:border-[#B91C1C]/40 transition-colors duration-300 flex flex-col items-center">
+      <p className="text-[2.8rem] md:text-[3.5rem] text-[#B91C1C] leading-none mb-3">
         {value}
       </p>
-      <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#eaeaea] uppercase mb-4">
+      <p className="text-[11px] tracking-[3px] text-[#111827] uppercase mb-4">
         {label}
       </p>
-      <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] max-w-[200px]">
+      <p className="text-[12px] leading-[1.8] text-[#6B7280] max-w-[200px]">
         {explanation}
       </p>
     </div>
@@ -78,14 +78,14 @@ function MetricCard({ value, label, explanation }: { value: string; label: strin
 export default function TuCibilCaseStudy() {
   return (
     <SmoothScroll>
-      <div className="min-h-screen bg-[#070707] text-[#eaeaea]">
+      <div className="min-h-screen bg-[#FAFAFA] text-[#111827]">
         <Navbar />
 
         {/* ── Back link ──────────────────────────────────────────────────── */}
         <div className="pt-24 pb-0 px-6 max-w-[1100px] mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#8a8f98] uppercase hover:text-[#e10600] transition-colors"
+            className="inline-flex items-center gap-2 text-[11px] tracking-[3px] text-[#6B7280] uppercase hover:text-[#B91C1C] transition-colors"
           >
             ← Back to Work
           </Link>
@@ -102,7 +102,7 @@ export default function TuCibilCaseStudy() {
               {/* Left — text */}
               <Reveal>
                 <Label>Case Study</Label>
-                <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3.5rem] md:text-[5rem] lg:text-[6rem] text-[#eaeaea] leading-[1.05] mb-5">
+                <h1 className="text-[3.5rem] md:text-[5rem] lg:text-[6rem] text-[#111827] leading-[1.05] mb-5">
                   TI Credit Report
                 </h1>
 
@@ -116,10 +116,10 @@ export default function TuCibilCaseStudy() {
                     { label: 'Team',     value: 'Solo Designer' },
                   ].map(({ label, value }) => (
                     <div key={label}>
-                      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-1">
+                      <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-1">
                         {label}
                       </p>
-                      <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#eaeaea]">
+                      <p className="text-[13px] text-[#111827]">
                         {value}
                       </p>
                     </div>
@@ -155,19 +155,19 @@ export default function TuCibilCaseStudy() {
                 <SectionHeading>The Platform</SectionHeading>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-5">
+                <p className="text-[14px] leading-[2] text-[#6B7280] mb-5">
                   TI Credit Report is an enterprise credit intelligence platform serving
                   banks, financial institutions, and lending teams. Its primary users are
                   bank managers and financial analysts who process hundreds of credit
                   applications per week.
                 </p>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-5">
+                <p className="text-[14px] leading-[2] text-[#6B7280] mb-5">
                   Every workflow, every data point, and every UI state has a direct
                   impact on whether a loan is approved or declined. Clarity isn&apos;t a
                   preference here — it&apos;s a professional requirement. Errors carry
                   financial and reputational consequences.
                 </p>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                <p className="text-[14px] leading-[2] text-[#6B7280]">
                   The redesign had to earn trust through precision, not novelty. Every
                   decision was made against the backdrop of regulatory obligations and
                   the expertise of domain professionals who would notice any misstep.
@@ -184,11 +184,11 @@ export default function TuCibilCaseStudy() {
                   { label: 'Scope',     value: '150+ Screens, 4 User Journeys' },
                   { label: 'Stakes',    value: 'High — Lending Decisions' },
                 ].map(({ label, value }) => (
-                  <div key={label} className="border border-[#1e2028] rounded-2xl p-5 bg-[#0c0d10]">
-                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">
+                  <div key={label} className="border border-[#E5E7EB] rounded-2xl p-5 bg-white">
+                    <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-2">
                       {label}
                     </p>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.7] text-[#eaeaea]">
+                    <p className="text-[12px] leading-[1.7] text-[#111827]">
                       {value}
                     </p>
                   </div>
@@ -206,7 +206,7 @@ export default function TuCibilCaseStudy() {
             <Reveal>
               <Label>Problem</Label>
               <SectionHeading>What Was Broken</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px] mb-6">
                 The legacy platform wasn&apos;t just outdated visually — it was actively
                 slowing down banking professionals. Three compounding failures caused
                 friction at every step of the credit lifecycle.
@@ -233,15 +233,15 @@ export default function TuCibilCaseStudy() {
                 ].map(({ index, title, description }) => (
                   <div
                     key={index}
-                    className="flex-1 min-w-[220px] border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300"
+                    className="flex-1 min-w-[220px] border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300"
                   >
-                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+                    <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-4">
                       0{index + 1}
                     </p>
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.3rem] text-[#eaeaea] mb-3">
+                    <h3 className="text-[1.3rem] text-[#111827] mb-3">
                       {title}
                     </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+                    <p className="text-[13px] leading-[1.8] text-[#6B7280]">
                       {description}
                     </p>
                   </div>
@@ -259,7 +259,7 @@ export default function TuCibilCaseStudy() {
             <Reveal>
               <Label>The Real Challenge</Label>
               <SectionHeading>Why This Was Hard</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-6">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px] mb-6">
                 The problem wasn&apos;t bad UI — it was that simplification was genuinely
                 constrained. Four factors made every design decision load-bearing.
                 Getting any one of them wrong would have broken the product.
@@ -291,18 +291,18 @@ export default function TuCibilCaseStudy() {
                 ].map(({ num, title, body }) => (
                   <div
                     key={num}
-                    className="border border-[#e10600]/20 hover:border-[#e10600]/50 rounded-2xl p-7 bg-[#0c0d10] transition-colors duration-300"
+                    className="border border-[#B91C1C]/20 hover:border-[#B91C1C]/50 rounded-2xl p-7 bg-white transition-colors duration-300"
                   >
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="w-2 h-2 rounded-full bg-[#e10600] shrink-0" />
-                      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase">
+                      <span className="w-2 h-2 rounded-full bg-[#B91C1C] shrink-0" />
+                      <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase">
                         Challenge {num}
                       </p>
                     </div>
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                    <h3 className="text-[1.2rem] text-[#111827] mb-3">
                       {title}
                     </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                    <p className="text-[13px] leading-[1.9] text-[#6B7280]">
                       {body}
                     </p>
                   </div>
@@ -320,7 +320,7 @@ export default function TuCibilCaseStudy() {
             <Reveal>
               <Label>My Approach</Label>
               <SectionHeading>How I Solved It</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px] mb-10">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px] mb-10">
                 Each decision below was a deliberate trade-off — not a preference. I had to
                 choose what to simplify, what to preserve, and what to restructure entirely.
               </p>
@@ -330,15 +330,15 @@ export default function TuCibilCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
               <Reveal className="order-2 lg:order-1">
                 <Label>Decision 01</Label>
-                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.2rem] text-[#eaeaea] mb-4">
+                <h3 className="text-[1.8rem] md:text-[2.2rem] text-[#111827] mb-4">
                   Progressive Stepper Forms
                 </h3>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98] mb-4">
+                <p className="text-[13px] leading-[2] text-[#6B7280] mb-4">
                   I replaced monolithic form layouts with a contextual stepper. The decision
                   was to chunk the workflow by task intent — not by data category — so
                   each step only exposed fields relevant to that stage.
                 </p>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                <p className="text-[13px] leading-[2] text-[#6B7280]">
                   This reduced perceived complexity and maintained compliance because
                   every field was still captured — just sequenced around how analysts
                   actually think, not how the legacy system stored data.
@@ -372,16 +372,16 @@ export default function TuCibilCaseStudy() {
               </Reveal>
               <Reveal>
                 <Label>Decision 02</Label>
-                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.2rem] text-[#eaeaea] mb-4">
+                <h3 className="text-[1.8rem] md:text-[2.2rem] text-[#111827] mb-4">
                   Dashboard-Based Reports
                 </h3>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98] mb-4">
+                <p className="text-[13px] leading-[2] text-[#6B7280] mb-4">
                   I restructured raw tabular credit data into structured, scannable
                   dashboards. The key decision was to elevate insight over completeness —
                   score indicators, trend charts, and segmented panels surfaced what
                   analysts needed to act, not everything the database returned.
                 </p>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                <p className="text-[13px] leading-[2] text-[#6B7280]">
                   This worked within the fixed API contracts: I reorganised existing
                   data fields visually rather than requesting new data structures.
                 </p>
@@ -392,16 +392,16 @@ export default function TuCibilCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
               <Reveal className="order-2 lg:order-1">
                 <Label>Decision 03</Label>
-                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.2rem] text-[#eaeaea] mb-4">
+                <h3 className="text-[1.8rem] md:text-[2.2rem] text-[#111827] mb-4">
                   Data Hierarchy Optimization
                 </h3>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98] mb-4">
+                <p className="text-[13px] leading-[2] text-[#6B7280] mb-4">
                   I established a strict visual hierarchy across all data-heavy screens:
                   primary metrics at the top, secondary context in the middle, granular
                   detail accessible on demand. This wasn&apos;t a style choice — it was
                   an information architecture decision.
                 </p>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                <p className="text-[13px] leading-[2] text-[#6B7280]">
                   The challenge was that expert users still needed access to all the
                   underlying data. Progressive disclosure preserved completeness while
                   reducing the default cognitive load.
@@ -422,12 +422,12 @@ export default function TuCibilCaseStudy() {
 
             {/* Decision 04 — Systems Thinking */}
             <Reveal delay={0.1}>
-              <div className="border border-[#1e2028] rounded-2xl p-8 bg-[#0c0d10]">
+              <div className="border border-[#E5E7EB] rounded-2xl p-8 bg-white">
                 <Label>Decision 04</Label>
-                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.2rem] text-[#eaeaea] mb-5">
+                <h3 className="text-[1.8rem] md:text-[2.2rem] text-[#111827] mb-5">
                   Building for Scale, Not Just the MVP
                 </h3>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6 max-w-[700px]">
+                <p className="text-[14px] leading-[2] text-[#6B7280] mb-6 max-w-[700px]">
                   From the start, I chose to invest in a design system rather than
                   screen-by-screen execution. This was a strategic bet: the platform
                   was scoped at 25 screens but I could see it would grow. A unified
@@ -453,12 +453,12 @@ export default function TuCibilCaseStudy() {
                     },
                   ].map(({ title, body }) => (
                     <div key={title} className="flex items-start gap-4">
-                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#e10600] shrink-0" />
+                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#B91C1C] shrink-0" />
                       <div>
-                        <p className="font-['The_Last_Shuriken',sans-serif] text-[1rem] text-[#eaeaea] mb-1">
+                        <p className="text-[1rem] text-[#111827] mb-1">
                           {title}
                         </p>
-                        <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.9] text-[#8a8f98]">
+                        <p className="text-[12px] leading-[1.9] text-[#6B7280]">
                           {body}
                         </p>
                       </div>
@@ -478,7 +478,7 @@ export default function TuCibilCaseStudy() {
             <Reveal>
               <Label>Before vs After</Label>
               <SectionHeading>Legacy vs Modern</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[600px] mb-6">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[600px] mb-6">
                 The same task — submitting a credit application — went from an overwhelming
                 wall of simultaneous inputs to a structured, guided multi-step flow.
               </p>
@@ -495,8 +495,8 @@ export default function TuCibilCaseStudy() {
                   />
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-[#e10600] shrink-0" />
-                  <p className="font-['Blast_Dragon',sans-serif] text-[12px] tracking-[2px] text-[#8a8f98] uppercase">
+                  <span className="w-2 h-2 rounded-full bg-[#B91C1C] shrink-0" />
+                  <p className="text-[12px] tracking-[2px] text-[#6B7280] uppercase">
                     Before — 40+ simultaneous fields, no hierarchy
                   </p>
                 </div>
@@ -512,8 +512,8 @@ export default function TuCibilCaseStudy() {
                   />
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-[#D4AF37] shrink-0" />
-                  <p className="font-['Blast_Dragon',sans-serif] text-[12px] tracking-[2px] text-[#8a8f98] uppercase">
+                  <span className="w-2 h-2 rounded-full bg-[#B91C1C] shrink-0" />
+                  <p className="text-[12px] tracking-[2px] text-[#6B7280] uppercase">
                     After — Progressive stepper with structured hierarchy
                   </p>
                 </div>
@@ -530,7 +530,7 @@ export default function TuCibilCaseStudy() {
             <Reveal>
               <Label>Impact</Label>
               <SectionHeading>Measurable Outcomes</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px] mb-6">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[560px] mb-6">
                 Outcomes validated through post-launch usability studies and
                 stakeholder feedback across the banking teams using the platform daily.
               </p>
@@ -580,15 +580,15 @@ export default function TuCibilCaseStudy() {
                 ].map(({ title, description }) => (
                   <div
                     key={title}
-                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors duration-300"
+                    className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300"
                   >
-                    <div className="w-6 h-6 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-4">
-                      <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                    <div className="w-6 h-6 rounded-full border border-[#B91C1C]/40 flex items-center justify-center mb-4">
+                      <span className="w-2 h-2 rounded-full bg-[#B91C1C]" />
                     </div>
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                    <h3 className="text-[1.2rem] text-[#111827] mb-3">
                       {title}
                     </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+                    <p className="text-[13px] leading-[1.8] text-[#6B7280]">
                       {description}
                     </p>
                   </div>
@@ -599,7 +599,7 @@ export default function TuCibilCaseStudy() {
             {/* Final screens */}
             <div className="flex flex-col gap-8">
               <Reveal>
-                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-3">
+                <p className="text-[10px] tracking-[3px] text-[#6B7280] uppercase mb-3">
                   Shipped — Desktop Screens
                 </p>
                 <div className="w-full overflow-hidden rounded-xl">
@@ -613,7 +613,7 @@ export default function TuCibilCaseStudy() {
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-3">
+                <p className="text-[10px] tracking-[3px] text-[#6B7280] uppercase mb-3">
                   Shipped — Mobile Screens
                 </p>
                 <div className="w-full overflow-hidden rounded-xl">
@@ -639,7 +639,7 @@ export default function TuCibilCaseStudy() {
               <Reveal>
                 <Label>My Role as Lead</Label>
                 <SectionHeading>What I Actually Did</SectionHeading>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                <p className="text-[14px] leading-[2] text-[#6B7280]">
                   As the sole designer on this engagement for 36 months, I wasn&apos;t
                   executing a spec — I was making the decisions. Every choice about
                   structure, hierarchy, workflow, and scope came from me. That
@@ -658,8 +658,8 @@ export default function TuCibilCaseStudy() {
                     'Designed 150+ screens across desktop, tablet, and mobile — all within a single coherent system I built and maintained solo',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-4">
-                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#e10600] shrink-0" />
-                      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#B91C1C] shrink-0" />
+                      <p className="text-[13px] leading-[1.9] text-[#6B7280]">
                         {item}
                       </p>
                     </li>
@@ -671,22 +671,22 @@ export default function TuCibilCaseStudy() {
 
           {/* ── Next Project CTA ───────────────────────────────────────────── */}
           <Reveal>
-            <div className="border-t border-[#1e2028] pt-10 pb-11 md:pb-16">
+            <div className="border-t border-[#E5E7EB] pt-10 pb-11 md:pb-16">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                 <div>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[4px] text-[#8a8f98] uppercase mb-3">
+                  <p className="text-[10px] tracking-[4px] text-[#6B7280] uppercase mb-3">
                     Next Case Study
                   </p>
-                  <h2 className="font-['The_Last_Shuriken',sans-serif] text-[2rem] md:text-[2.8rem] text-[#eaeaea] leading-[1.1] mb-2">
+                  <h2 className="text-[2rem] md:text-[2.8rem] text-[#111827] leading-[1.1] mb-2">
                     RMT Holotrack
                   </h2>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98]">
+                  <p className="text-[13px] text-[#6B7280]">
                     Industrial IoT · Spatial Data Visualization
                   </p>
                 </div>
                 <Link
                   href="/work/rmt-holotrack"
-                  className="group inline-flex items-center gap-3 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] uppercase px-8 py-4 border border-[#e10600] text-[#e10600] rounded-full hover:bg-[#e10600] hover:text-white transition-all duration-300"
+                  className="group inline-flex items-center gap-3 text-[11px] tracking-[3px] uppercase px-8 py-4 border border-[#B91C1C] text-[#B91C1C] rounded-full hover:bg-[#B91C1C] hover:text-white transition-all duration-300"
                 >
                   View Next Project
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">

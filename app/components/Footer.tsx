@@ -1,14 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import MagneticButton from './MagneticButton';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const CONTACTS = [
   {
-    label: 'EMAIL',
+    label: 'Email',
     value: 'arjunuix@gmail.com',
     href:  'mailto:arjunuix@gmail.com',
     icon:  (
@@ -19,7 +18,7 @@ const CONTACTS = [
     ),
   },
   {
-    label: 'PHONE',
+    label: 'Phone',
     value: '+91 96119 87730',
     href:  'tel:+919611987730',
     icon:  (
@@ -29,7 +28,7 @@ const CONTACTS = [
     ),
   },
   {
-    label: 'LOCATION',
+    label: 'Location',
     value: 'Bangalore, India',
     href:  null,
     icon:  (
@@ -42,92 +41,12 @@ const CONTACTS = [
 ];
 
 const SOCIAL = [
-  { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/arjuncr/'              },
-  { label: 'Medium',    href: 'https://medium.com/@arjunuix'                    },
-  { label: 'Behance',   href: 'https://www.behance.net/arjunwolfdesigns'        },
-  { label: 'Instagram', href: 'https://www.instagram.com/arjunwolf.design/'     },
+  { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/arjuncr/'           },
+  { label: 'Medium',    href: 'https://medium.com/@arjunuix'                   },
+  { label: 'Behance',   href: 'https://www.behance.net/arjunwolfdesigns'       },
+  { label: 'Instagram', href: 'https://www.instagram.com/arjunwolf.design/'    },
 ];
 
-/* ── Contact item ────────────────────────────────────────────────────────── */
-function ContactItem({ item, delay }: { item: typeof CONTACTS[number]; delay: number }) {
-  const [hovered, setHovered] = useState(false);
-  const inner = (
-    <motion.div
-      className="flex flex-col items-center gap-[10px]"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay, ease: EASE }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      style={{ cursor: item.href ? 'pointer' : 'default' }}
-    >
-      {/* Icon */}
-      <span
-        className="transition-all duration-300"
-        style={{
-          color:      hovered ? '#e10600' : 'rgba(138,143,152,0.5)',
-          filter:     hovered ? 'drop-shadow(0 0 6px rgba(225,6,0,0.5))' : 'none',
-        }}
-      >
-        {item.icon}
-      </span>
-
-      {/* Label */}
-      <span
-        className="font-['Blast_Dragon',sans-serif] text-[9px] tracking-[2.5px] uppercase transition-colors duration-300"
-        style={{ color: hovered ? '#e10600' : 'rgba(138,143,152,0.45)' }}
-      >
-        {item.label}
-      </span>
-
-      {/* Value */}
-      <div className="relative flex flex-col items-center">
-        <span
-          className="font-['Inter',sans-serif] text-[13px] font-light tracking-[0.3px] transition-colors duration-300"
-          style={{ color: hovered ? '#ffffff' : '#8a8f98' }}
-        >
-          {item.value}
-        </span>
-        {/* Underline animation */}
-        <motion.span
-          className="absolute -bottom-[3px] left-0 right-0 h-px rounded-full"
-          style={{ background: '#e10600' }}
-          animate={{ scaleX: hovered ? 1 : 0, originX: 0 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
-        />
-      </div>
-    </motion.div>
-  );
-
-  return item.href ? (
-    <a href={item.href}>{inner}</a>
-  ) : (
-    <div>{inner}</div>
-  );
-}
-
-/* ── Social link ─────────────────────────────────────────────────────────── */
-function SocialLink({ link }: { link: typeof SOCIAL[number] }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <motion.a
-      href={link.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="font-['Blast_Dragon',sans-serif] text-[12px] tracking-[1.5px] uppercase transition-all duration-300"
-      style={{ color: hovered ? '#e10600' : '#8a8f98' }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      animate={{ x: hovered ? 4 : 0 }}
-      transition={{ duration: 0.25, ease: 'easeOut' }}
-    >
-      {link.label}
-    </motion.a>
-  );
-}
-
-/* ── Footer ──────────────────────────────────────────────────────────────── */
 export default function Footer() {
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-5% 0px' });
@@ -136,181 +55,159 @@ export default function Footer() {
     <footer
       ref={ref}
       id="contact"
-      className="relative flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-[120px] pt-[80px] pb-[60px] w-full overflow-hidden"
+      className="relative flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-[120px] pt-20 pb-14 w-full border-t border-[#E5E7EB]"
     >
-      {/* Subtle red ambient behind CTA */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-0 left-0 right-0 h-[480px]"
-        style={{
-          background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(225,6,0,0.05) 0%, transparent 70%)',
-        }}
-      />
 
-      {/* ── Main CTA block ─────────────────────────────────────────────────── */}
-      <div className="relative z-10 flex flex-col items-center gap-8 mb-[100px] text-center max-w-[720px]">
+      {/* Main CTA block */}
+      <div className="flex flex-col items-center gap-7 mb-20 text-center max-w-[640px]">
 
-        {/* Section label */}
         <motion.p
-          className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-[12px] font-semibold tracking-[3px] uppercase text-[#B91C1C]"
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: EASE }}
+          transition={{ duration: 0.5, ease: EASE }}
         >
           Let&apos;s Connect
         </motion.p>
 
-        {/* Heading */}
         <motion.h2
-          className="font-['The_Last_Shuriken',sans-serif] text-[40px] sm:text-[60px] md:text-[80px] text-white leading-[1.05]"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-[40px] sm:text-[52px] md:text-[64px] font-bold text-[#111827] leading-[1.05] tracking-tight"
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+          transition={{ duration: 0.6, delay: 0.08, ease: EASE }}
         >
-          Let&apos;s Build Something<br />
-          <span className="text-[#e10600]">Meaningful.</span>
+          Let&apos;s Build Something{' '}
+          <span className="text-[#B91C1C]">Meaningful.</span>
         </motion.h2>
 
-        {/* Location line */}
         <motion.p
-          className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/50 tracking-[2px] uppercase"
-          initial={{ opacity: 0, y: 16 }}
+          className="text-[14px] text-[#9CA3AF] tracking-[1.5px] uppercase font-medium"
+          initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.18, ease: EASE }}
+          transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
         >
           Based in Bangalore. Working globally.
         </motion.p>
 
-        {/* Subtext */}
         <motion.p
-          className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] leading-[26px] tracking-[0.5px] max-w-[500px]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-        >
-          Open to collaborating on thoughtful digital products, fintech platforms, and complex enterprise systems.
-          <br /><br />
-          Available for select projects and strategic UX leadership roles.
-        </motion.p>
-
-        {/* Availability line */}
-        <motion.p
-          className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/70 leading-[24px] tracking-[0.5px] max-w-[500px] text-center"
+          className="text-[16px] text-[#6B7280] leading-[1.7] max-w-[480px]"
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.28, ease: EASE }}
+          transition={{ duration: 0.5, delay: 0.18, ease: EASE }}
         >
-          Currently open to design leadership roles and impactful product collaborations.
+          Open to collaborating on thoughtful digital products, fintech platforms, and complex enterprise systems.
+          Available for select projects and strategic UX leadership roles.
         </motion.p>
 
         {/* Availability badge */}
         <motion.div
-          className="flex items-center gap-2 px-4 py-[7px] rounded-full"
-          style={{
-            background:   'rgba(34,197,94,0.07)',
-            border:       '1px solid rgba(34,197,94,0.2)',
-          }}
-          initial={{ opacity: 0, scale: 0.9 }}
+          className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#BBF7D0] bg-[#F0FDF4]"
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.3, ease: EASE }}
+          transition={{ duration: 0.45, delay: 0.24, ease: EASE }}
         >
-          {/* Pulsing green dot */}
           <span className="relative flex h-[7px] w-[7px]">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-60" />
             <span className="relative inline-flex rounded-full h-[7px] w-[7px] bg-[#22c55e]" />
           </span>
-          <span className="font-['Blast_Dragon',sans-serif] text-[10px] text-[#22c55e] tracking-[2px] uppercase">
+          <span className="text-[12px] font-medium text-[#16a34a] tracking-[1px]">
             Available for Select Projects
           </span>
         </motion.div>
 
         {/* Primary CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.35, ease: EASE }}
+          transition={{ duration: 0.5, delay: 0.28, ease: EASE }}
         >
-          <MagneticButton maxShift={7}>
-            <a
-              href="mailto:arjunuix@gmail.com"
-              className="flex items-center justify-center gap-3 px-7 py-4 rounded-[10px]
-                font-['Blast_Dragon',sans-serif] text-[14px] text-white tracking-[1.5px] uppercase
-                transition-all duration-300"
-              style={{
-                background: '#B30000',
-                boxShadow:  '0 0 24px rgba(179,0,0,0.4), 0 0 48px rgba(179,0,0,0.15)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background  = '#CC0000';
-                el.style.boxShadow   = '0 6px 32px rgba(255,42,42,0.55), 0 0 60px rgba(179,0,0,0.25)';
-                el.style.transform   = 'scale(1.04)';
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background  = '#B30000';
-                el.style.boxShadow   = '0 0 24px rgba(179,0,0,0.4), 0 0 48px rgba(179,0,0,0.15)';
-                el.style.transform   = 'scale(1)';
-              }}
-            >
-              {/* Envelope icon */}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <rect x="1" y="3.5" width="14" height="9" rx="1.5" stroke="white" strokeWidth="1.3"/>
-                <path d="M1 5.5L8 10L15 5.5" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
-              </svg>
-              Email Me
-            </a>
-          </MagneticButton>
+          <a
+            href="mailto:arjunuix@gmail.com"
+            className="inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-[10px]
+              bg-[#B91C1C] text-white font-semibold text-[15px]
+              shadow-[0_2px_10px_rgba(185,28,28,0.28)]
+              hover:bg-[#991B1B] hover:-translate-y-[4px]
+              hover:shadow-[0_12px_32px_rgba(185,28,28,0.50)]
+              active:translate-y-0 active:shadow-[0_2px_10px_rgba(185,28,28,0.28)]
+              transition-all duration-200 ease-out group"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-200 group-hover:-translate-y-[1px]">
+              <rect x="1" y="3.5" width="14" height="9" rx="1.5" stroke="white" strokeWidth="1.3"/>
+              <path d="M1 5.5L8 10L15 5.5" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
+            </svg>
+            Email Me
+          </a>
         </motion.div>
 
-        {/* Secondary contact items */}
+        {/* Contact details */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-10 mt-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-8 mt-4"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.5, ease: EASE }}
+          transition={{ duration: 0.5, delay: 0.38, ease: EASE }}
         >
-          {CONTACTS.map((item, i) => (
-            <ContactItem key={item.label} item={item} delay={0.55 + i * 0.1} />
-          ))}
+          {CONTACTS.map((item) => {
+            const inner = (
+              <div className="flex flex-col items-center gap-2 group">
+                <span className="text-[#9CA3AF] group-hover:text-[#B91C1C] transition-colors duration-200">
+                  {item.icon}
+                </span>
+                <span className="text-[10px] font-semibold tracking-[2px] uppercase text-[#9CA3AF] group-hover:text-[#B91C1C] transition-colors">
+                  {item.label}
+                </span>
+                <span className="text-[13px] text-[#6B7280] group-hover:text-[#B91C1C] transition-colors duration-200">
+                  {item.value}
+                </span>
+              </div>
+            );
+            return item.href ? (
+              <a key={item.label} href={item.href}>{inner}</a>
+            ) : (
+              <div key={item.label}>{inner}</div>
+            );
+          })}
         </motion.div>
       </div>
 
-      {/* ── Bottom bar ─────────────────────────────────────────────────────── */}
+      {/* Bottom bar */}
       <motion.div
-        className="relative z-10 w-full max-w-[1200px]"
+        className="w-full max-w-[1200px]"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+        transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
       >
-        {/* Row 1 — identity + social */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between border-t border-white/[0.06] pt-[48px]">
-
-          {/* Identity */}
-          <div className="flex flex-col gap-[12px]">
-            <span className="font-['The_Last_Shuriken',sans-serif] text-[26px] text-[#eaeaea] leading-none">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between border-t border-[#E5E7EB] pt-10">
+          <div className="flex flex-col gap-2">
+            <span className="text-[22px] font-bold text-[#111827] leading-none">
               Arjun CR
             </span>
-            <span className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[2px] uppercase">
+            <span className="text-[11px] font-semibold text-[#B91C1C] tracking-[2px] uppercase">
               Lead UI / UX Designer
             </span>
-            <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/60 leading-[22px] tracking-[0.3px] max-w-[280px]">
+            <p className="text-[13px] text-[#9CA3AF] leading-[1.6] max-w-[260px] mt-1">
               Designing enterprise UX systems with clarity, empathy, and discipline.
             </p>
           </div>
 
-          {/* Social links */}
           <div className="flex items-center gap-6">
             {SOCIAL.map(link => (
-              <SocialLink key={link.label} link={link} />
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] font-medium text-[#6B7280]
+                  hover:text-[#B91C1C] hover:-translate-y-[2px]
+                  transition-all duration-200 ease-out inline-block"
+              >
+                {link.label}
+              </a>
             ))}
           </div>
         </div>
 
-        {/* Row 2 — copyright */}
-        <div className="mt-[40px] pt-[20px] border-t border-white/[0.06] flex justify-end">
-          <p className="font-['Inter',sans-serif] font-light text-[12px] tracking-[0.3px]"
-            style={{ color: 'rgba(138,143,152,0.5)' }}>
+        <div className="mt-8 pt-5 border-t border-[#E5E7EB] flex justify-end">
+          <p className="text-[12px] text-[#9CA3AF]">
             © 2026 Arjun CR — Designed with discipline.
           </p>
         </div>

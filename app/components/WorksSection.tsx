@@ -18,6 +18,7 @@ export type CaseStudy = {
 
 import { useState } from "react"
 import Link from "next/link"
+import { useTheme } from "./ThemeProvider"
 
 type Props = { studies: CaseStudy[] }
 
@@ -26,10 +27,12 @@ function CollapsedStrip({
   study,
   index,
   visible,
+  isDark,
 }: {
   study: CaseStudy
   index: number
   visible: boolean
+  isDark: boolean
 }) {
   return (
     <div
@@ -43,24 +46,24 @@ function CollapsedStrip({
     >
       {/* Index */}
       <span
-        className="text-[11px] font-bold tracking-[2.5px] tabular-nums flex-shrink-0"
-        style={{ color: "rgba(255,255,255,0.22)" }}
+        className="text-[11px] font-semibold tracking-[2.5px] tabular-nums flex-shrink-0"
+        style={{ color: isDark ? "rgba(237,237,245,0.3)" : "rgba(17,24,39,0.3)" }}
       >
         {String(index + 1).padStart(2, "0")}
       </span>
 
-      {/* Preview image — 20–30% larger than before */}
+      {/* Preview image */}
       <div
-        className="mt-5 rounded-xl overflow-hidden flex-shrink-0"
+        className="mt-5 rounded-lg overflow-hidden flex-shrink-0"
         style={{
-          width:               "92px",
-          height:              "66px",
+          width:               "88px",
+          height:              "62px",
           backgroundColor:     study.imageBg,
           backgroundImage:     `url(${study.imageSrc})`,
           backgroundSize:      "cover",
           backgroundPosition:  "center",
-          opacity:             0.88,
-          border:              "1px solid rgba(255,255,255,0.1)",
+          opacity:             0.9,
+          border:              `1px solid ${isDark ? "#1C1D2A" : "#E5E7EB"}`,
         }}
       />
 
@@ -70,11 +73,7 @@ function CollapsedStrip({
         style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
       >
         <span
-          className="text-[13px] font-semibold tracking-[0.8px] whitespace-nowrap leading-none"
-          style={{
-            fontFamily: "'The Last Shuriken', sans-serif",
-            color:      "rgba(234,234,234,0.78)",
-          }}
+          className="text-[13px] font-semibold tracking-[0.5px] whitespace-nowrap leading-none text-[#374151]"
         >
           {study.title}
         </span>
@@ -82,14 +81,9 @@ function CollapsedStrip({
 
       {/* Category pill */}
       <span
-        className="flex-shrink-0 mt-4 rounded-full text-[8.5px] font-bold tracking-[1.8px] uppercase px-2 py-[4px]"
-        style={{
-          background:   `${study.categoryColor}44`,
-          color:        "rgba(255,255,255,0.65)",
-          border:       `1px solid ${study.categoryColor}66`,
-          writingMode:  "horizontal-tb",
-          transform:    "none",
-        }}
+        className="flex-shrink-0 mt-4 rounded-full text-[8px] font-semibold tracking-[1.5px] uppercase px-2 py-[4px]
+          bg-[#F3F4F6] text-[#6B7280] border border-[#E5E7EB]"
+        style={{ writingMode: "horizontal-tb" }}
       >
         {study.category.split(" ")[0]}
       </span>
@@ -102,10 +96,12 @@ function ExpandedPanel({
   study,
   index,
   visible,
+  isDark,
 }: {
   study: CaseStudy
   index: number
   visible: boolean
+  isDark: boolean
 }) {
   return (
     <div
@@ -116,22 +112,21 @@ function ExpandedPanel({
         pointerEvents: visible ? "auto" : "none",
       }}
     >
-      {/* ── Left: text content ── */}
+      {/* Left: text content */}
       <div
-        className="flex flex-col justify-center gap-[18px] px-10 py-10 flex-shrink-0"
+        className="flex flex-col justify-center gap-5 px-9 py-9 flex-shrink-0"
         style={{ width: "42%" }}
       >
         {/* Index + category */}
         <div className="flex items-center gap-3">
           <span
-            className="text-[11px] font-bold tracking-[2.5px] tabular-nums"
-            style={{ color: "rgba(255,255,255,0.2)" }}
+            className="text-[11px] font-semibold tracking-[2.5px] tabular-nums text-[#9CA3AF]"
           >
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className="px-3 py-[4px] rounded-full text-[9px] font-bold tracking-[1.6px] uppercase text-white"
-            style={{ background: study.categoryColor }}
+            className="px-2.5 py-[3px] rounded-full text-[9px] font-semibold tracking-[1.4px] uppercase text-white"
+            style={{ backgroundColor: study.categoryColor }}
           >
             {study.category}
           </span>
@@ -139,33 +134,24 @@ function ExpandedPanel({
 
         {/* Title */}
         <h3
-          className="text-[#eaeaea] leading-[1.05] tracking-wide"
-          style={{
-            fontFamily: "'The Last Shuriken', sans-serif",
-            fontSize:   "clamp(22px, 2.4vw, 32px)",
-          }}
+          className="font-bold text-[#111827] leading-tight tracking-tight"
+          style={{ fontSize: "clamp(20px, 2.2vw, 28px)" }}
         >
           {study.title}
         </h3>
 
         {/* Meta row */}
-        <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-white/[0.06]">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-[#E5E7EB]">
           {[
             { label: "Role",     value: study.meta.role },
             { label: "Year",     value: study.meta.year ?? "" },
             { label: "Duration", value: study.meta.duration },
           ].map(({ label, value }) => (
-            <div key={label} className="flex flex-col gap-[2px]">
-              <span
-                className="text-[9px] font-semibold tracking-[1.4px] uppercase"
-                style={{ color: "rgba(255,255,255,0.25)" }}
-              >
+            <div key={label} className="flex flex-col gap-[3px]">
+              <span className="text-[9px] font-semibold tracking-[1.4px] uppercase text-[#9CA3AF]">
                 {label}
               </span>
-              <span
-                className="text-[12px] font-medium whitespace-nowrap"
-                style={{ color: "rgba(255,255,255,0.8)" }}
-              >
+              <span className="text-[12px] font-medium text-[#374151] whitespace-nowrap">
                 {value}
               </span>
             </div>
@@ -174,9 +160,8 @@ function ExpandedPanel({
 
         {/* Description */}
         <p
-          className="text-[13px] leading-[1.75]"
+          className="text-[13px] leading-[1.7] text-[#6B7280]"
           style={{
-            color:              "rgba(138,143,152,0.85)",
             display:            "-webkit-box",
             WebkitLineClamp:    3,
             WebkitBoxOrient:    "vertical",
@@ -191,27 +176,29 @@ function ExpandedPanel({
           <div onClick={e => e.stopPropagation()}>
             <Link
               href={study.href}
-              className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[1.8px] uppercase transition-colors duration-200"
-              style={{ color: "#D4AF37" }}
-              onMouseEnter={e => { e.currentTarget.style.color = "#ffffff" }}
-              onMouseLeave={e => { e.currentTarget.style.color = "#D4AF37" }}
+              className="inline-flex items-center gap-2 text-[12px] font-semibold text-[#B91C1C]
+                tracking-[1px] uppercase transition-all duration-200 hover:text-[#991B1B]
+                hover:-translate-y-[1px] group"
             >
               View Case Study
-              <span className="text-sm leading-none">→</span>
+              <span className="text-sm leading-none inline-block transition-transform duration-200 group-hover:translate-x-[4px]">→</span>
             </Link>
           </div>
         )}
       </div>
 
-      {/* ── Right: image ── */}
+      {/* Right: image */}
       <div
         className="flex-1 relative overflow-hidden"
-        style={{ backgroundColor: study.imageBg }}
+        style={{ backgroundColor: isDark ? '#0E0F16' : study.imageBg }}
       >
-        <div className="absolute inset-y-0 left-0 w-px" style={{ background: "rgba(255,255,255,0.05)" }} />
+        <div className="absolute inset-y-0 left-0 w-px" style={{ backgroundColor: isDark ? '#1C1D2A' : '#E5E7EB' }} />
         <div
-          className="absolute inset-0 bg-contain bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${study.imageSrc})` }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out"
+          style={{
+            backgroundImage: `url(${study.imageSrc})`,
+            transform: visible ? 'scale(1.03)' : 'scale(1)',
+          }}
         />
       </div>
     </div>
@@ -219,78 +206,70 @@ function ExpandedPanel({
 }
 
 /* ── Mobile card ─────────────────────────────────────────────────────────── */
-function MobileCard({ study, index }: { study: CaseStudy; index: number }) {
-  const isPrimary = index === 0
+function MobileCard({ study, index, isDark }: { study: CaseStudy; index: number; isDark: boolean }) {
   return (
     <div
-      className="rounded-2xl overflow-hidden flex flex-col"
-      style={{
-        background: "#0f1115",
-        border:     isPrimary
-          ? "1px solid rgba(212,175,55,0.13)"
-          : "1px solid rgba(255,255,255,0.05)",
-        opacity: isPrimary ? 1 : 0.88,
-      }}
+      className="group rounded-xl overflow-hidden flex flex-col border border-[#E5E7EB] bg-white
+        transition-all duration-[250ms] ease-out hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(0,0,0,0.09)] hover:border-[#D1D5DB]"
     >
       <div
-        className="w-full"
-        style={{
-          height:              "210px",
-          backgroundColor:     study.imageBg,
-          backgroundImage:     `url(${study.imageSrc})`,
-          backgroundSize:      "contain",
-          backgroundPosition:  "center",
-          backgroundRepeat:    "no-repeat",
-        }}
-      />
-      <div style={{ height: "1px", background: "rgba(255,255,255,0.05)" }} />
+        className="w-full overflow-hidden"
+        style={{ height: "200px", backgroundColor: isDark ? '#0E0F16' : study.imageBg }}
+      >
+        <div
+          className="w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          style={{
+            backgroundImage:    `url(${study.imageSrc})`,
+            backgroundSize:     "cover",
+            backgroundPosition: "center",
+            backgroundRepeat:   "no-repeat",
+          }}
+        />
+      </div>
+      <div className="h-px bg-[#E5E7EB]" />
       <div className="flex flex-col gap-4 p-6">
         <div className="flex items-center gap-3">
-          <span
-            className="text-[11px] font-bold tracking-[2.5px] tabular-nums"
-            style={{ color: "rgba(255,255,255,0.2)" }}
-          >
+          <span className="text-[11px] font-semibold tracking-[2.5px] tabular-nums text-[#9CA3AF]">
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className="px-3 py-[4px] rounded-full text-[9px] font-bold tracking-[1.6px] uppercase text-white"
-            style={{ background: study.categoryColor }}
+            className="px-2.5 py-[3px] rounded-full text-[9px] font-semibold tracking-[1.4px] uppercase text-white"
+            style={{ backgroundColor: study.categoryColor }}
           >
             {study.category}
           </span>
         </div>
-        <h3
-          className="text-[#eaeaea] text-[22px] leading-[1.1] tracking-wide"
-          style={{ fontFamily: "'The Last Shuriken', sans-serif" }}
-        >
+        <h3 className="text-[20px] font-bold text-[#111827] leading-snug">
           {study.title}
         </h3>
-        <div className="flex flex-wrap gap-x-5 gap-y-2 pt-3 border-t border-white/[0.06]">
+        <div className="flex flex-wrap gap-x-5 gap-y-2 pt-3 border-t border-[#E5E7EB]">
           {[
             { label: "Role",     value: study.meta.role },
             { label: "Duration", value: study.meta.duration },
             { label: "Year",     value: study.meta.year ?? "" },
           ].map(({ label, value }) => (
-            <div key={label} className="flex flex-col gap-[2px]">
-              <span className="text-[9px] font-semibold tracking-[1.4px] uppercase" style={{ color: "rgba(255,255,255,0.25)" }}>
+            <div key={label} className="flex flex-col gap-[3px]">
+              <span className="text-[9px] font-semibold tracking-[1.4px] uppercase text-[#9CA3AF]">
                 {label}
               </span>
-              <span className="text-[12px] font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>
+              <span className="text-[12px] font-medium text-[#374151]">
                 {value}
               </span>
             </div>
           ))}
         </div>
-        <p className="text-[13px] leading-[1.7]" style={{ color: "rgba(138,143,152,0.8)" }}>
+        <p className="text-[13px] leading-[1.7] text-[#6B7280]">
           {study.description}
         </p>
         {study.href && (
           <Link
             href={study.href}
-            className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[1.8px] uppercase mt-1"
-            style={{ color: "#D4AF37" }}
+            className="inline-flex items-center gap-2 text-[12px] font-semibold text-[#B91C1C]
+              tracking-[1px] uppercase mt-1 hover:text-[#991B1B]
+              transition-all duration-200 hover:-translate-y-[1px] group"
           >
-            View Case Study <span>→</span>
+            View Case Study
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-[4px]">→</span>
           </Link>
         )}
       </div>
@@ -301,113 +280,91 @@ function MobileCard({ study, index }: { study: CaseStudy; index: number }) {
 /* ── WorksSection ────────────────────────────────────────────────────────── */
 export default function WorksSection({ studies }: Props) {
   const [active, setActive] = useState(0)
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
 
-  // Shared accordion transition string
-  const TRANSITION = "flex 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.45s ease, border-color 0.45s ease, opacity 0.45s ease"
+  const TRANSITION = "flex 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border-color 0.4s ease, opacity 0.4s ease"
+
+  const panelBg   = isDark ? "#07080D" : "#FFFFFF"
+  const gapColor  = isDark ? "#1C1D2A" : "#E5E7EB"
+  const dotInactive = isDark ? "#3A3A50" : "#D1D5DB"
+  const hintInactive = isDark ? "#52526A" : "#9CA3AF"
 
   return (
-    <section
-      id="works"
-      className="bg-[#070707] overflow-x-hidden"
-    >
+    <section id="works" className="bg-white overflow-x-hidden">
 
       {/* Section header */}
-      <div className="text-center mb-14 px-6">
-        <p
-          className="text-[10px] font-semibold tracking-[4px] uppercase mb-3"
-          style={{ color: "#D4AF37" }}
-        >
+      <div className="text-center mb-12 px-6">
+        <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[#B91C1C] mb-3">
           Selected Work
         </p>
-        <h2
-          className="text-[#eaeaea] text-[44px] leading-none mb-3"
-          style={{ fontFamily: "'The Last Shuriken', sans-serif" }}
-        >
-          Works
-        </h2>
-        <p className="text-[13px] tracking-[3px] uppercase" style={{ color: "#8a8f98" }}>
+        <h2 className="text-[36px] sm:text-[44px] font-bold text-[#111827] leading-tight mb-3">
           Case Studies
+        </h2>
+        <p className="text-[16px] text-[#6B7280] leading-[1.7] max-w-[480px] mx-auto">
+          End-to-end design work across fintech, logistics, healthcare, and SaaS.
         </p>
       </div>
 
-      {/* ── Desktop: horizontal accordion ── */}
-      <div className="hidden md:block px-6 max-w-[1280px] mx-auto">
-        <div className="flex flex-row" style={{ height: "560px", gap: "16px" }}>
+      {/* Desktop: horizontal accordion */}
+      <div className="hidden md:block px-6 max-w-[1300px] mx-auto">
+        <div
+          className="flex flex-row border rounded-xl overflow-hidden"
+          style={{ height: "620px", gap: "2px", backgroundColor: gapColor, borderColor: gapColor }}
+        >
           {studies.map((study, i) => {
-            const isActive  = active === i
-            const isPrimary = i === 0
+            const isActive = active === i
 
             return (
               <div
                 key={study.id}
-                className="relative rounded-2xl overflow-hidden"
+                className="relative overflow-hidden"
                 style={{
-                  // flex: 6 for expanded (~13% more than previous flex:5), flex:1 for collapsed
-                  flex:      isActive ? 6 : 1,
-                  minWidth:  0,
-                  cursor:    isActive ? "default" : "pointer",
-                  background: "#0f1115",
-                  border:    isActive
-                    ? isPrimary
-                      ? "1px solid rgba(212,175,55,0.18)"
-                      : "1px solid rgba(255,255,255,0.1)"
-                    : "1px solid rgba(255,255,255,0.05)",
-                  // scale(1.02) elevates active; z-index keeps it on top of neighbors
-                  transform:  isActive ? "scale(1.02)" : "scale(1)",
+                  flex:       isActive ? 6 : 1,
+                  minWidth:   0,
+                  cursor:     isActive ? "default" : "pointer",
                   zIndex:     isActive ? 10 : 1,
-                  // opacity: full for active, reduced for inactive
-                  opacity:   isActive ? 1 : 0.86,
-                  boxShadow: isActive
-                    ? "0 0 40px rgba(255,0,0,0.15), 0 16px 48px rgba(0,0,0,0.55)"
-                    : "0 2px 12px rgba(0,0,0,0.3)",
+                  opacity:    isActive ? 1 : 0.92,
+                  backgroundColor: panelBg,
                   transition: TRANSITION,
                 }}
-                // Hover on collapsed card → expand it
                 onMouseEnter={() => { if (!isActive) setActive(i) }}
                 onClick={() => setActive(i)}
               >
-                {/* Subtle brand-color wash on collapsed cards */}
-                {!isActive && (
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{ background: `${study.imageBg}15` }}
-                  />
-                )}
-
-                <CollapsedStrip study={study} index={i} visible={!isActive} />
-                <ExpandedPanel  study={study} index={i} visible={isActive}  />
+                <CollapsedStrip study={study} index={i} visible={!isActive} isDark={isDark} />
+                <ExpandedPanel  study={study} index={i} visible={isActive} isDark={isDark} />
               </div>
             )
           })}
         </div>
 
-        {/* Hint row — mirrors accordion flex so labels stay in sync */}
-        <div className="flex mt-4" style={{ gap: "16px" }}>
+        {/* Hint row */}
+        <div className="flex mt-3" style={{ gap: "2px" }}>
           {studies.map((study, i) => (
             <div
               key={study.id}
               onClick={() => setActive(i)}
-              className="flex items-center gap-2 cursor-pointer"
+              className={`flex items-center gap-2 cursor-pointer py-2 ${active === i ? "justify-start" : "justify-center"}`}
               style={{
                 flex:       active === i ? 6 : 1,
                 minWidth:   0,
                 overflow:   "hidden",
-                opacity:    active === i ? 1 : 0.38,
-                transition: "flex 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease",
+                opacity:    active === i ? 1 : 0.4,
+                transition: "flex 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease",
               }}
             >
               <div
-                className="w-[6px] h-[6px] rounded-full flex-shrink-0"
+                className="w-[5px] h-[5px] rounded-full flex-shrink-0"
                 style={{
-                  backgroundColor: active === i ? "#D4AF37" : "rgba(255,255,255,0.3)",
-                  transition: "background-color 0.28s ease",
+                  backgroundColor: active === i ? "#B91C1C" : dotInactive,
+                  transition: "background-color 0.25s ease",
                 }}
               />
               <span
-                className="text-[10px] font-semibold tracking-[1.8px] uppercase whitespace-nowrap overflow-hidden"
+                className="text-[10px] font-semibold tracking-[1.5px] uppercase whitespace-nowrap overflow-hidden"
                 style={{
-                  color:      active === i ? "#D4AF37" : "rgba(255,255,255,0.4)",
-                  transition: "color 0.28s ease",
+                  color:      active === i ? "#B91C1C" : hintInactive,
+                  transition: "color 0.25s ease",
                 }}
               >
                 {study.title}
@@ -417,41 +374,27 @@ export default function WorksSection({ studies }: Props) {
         </div>
       </div>
 
-      {/* ── Mobile: vertical stack ── */}
+      {/* Mobile: vertical stack */}
       <div className="md:hidden flex flex-col gap-6 px-5">
         {studies.map((study, i) => (
-          <MobileCard key={study.id} study={study} index={i} />
+          <MobileCard key={study.id} study={study} index={i} isDark={isDark} />
         ))}
       </div>
 
-      {/* View all — extra top margin for breathing room */}
-      <div className="flex justify-center px-6" style={{ marginTop: "72px" }}>
+      {/* View all */}
+      <div className="flex justify-center px-6 mt-14">
         <a
           href="https://www.behance.net/arjunwolfdesigns"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-3 px-7 py-3 rounded-full text-[12px] font-semibold tracking-[2px] uppercase"
-          style={{
-            border:     "1px solid rgba(212,175,55,0.3)",
-            color:      "#D4AF37",
-            background: "rgba(212,175,55,0.04)",
-            transition: "border 0.3s ease, background 0.3s ease, box-shadow 0.3s ease",
-          }}
-          onMouseEnter={e => {
-            const el = e.currentTarget
-            el.style.border     = "1px solid rgba(212,175,55,0.7)"
-            el.style.background = "rgba(212,175,55,0.08)"
-            el.style.boxShadow  = "0 0 24px rgba(212,175,55,0.15)"
-          }}
-          onMouseLeave={e => {
-            const el = e.currentTarget
-            el.style.border     = "1px solid rgba(212,175,55,0.3)"
-            el.style.background = "rgba(212,175,55,0.04)"
-            el.style.boxShadow  = ""
-          }}
+          className="group inline-flex items-center gap-3 px-6 py-3 rounded-full text-[13px] font-semibold
+            border border-[#E5E7EB] text-[#374151] bg-white
+            hover:border-[#B91C1C] hover:text-[#B91C1C]
+            hover:-translate-y-[3px] hover:shadow-[0_8px_24px_rgba(185,28,28,0.12)]
+            active:translate-y-0 transition-all duration-200 ease-out"
         >
           View All Case Studies
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+          <span className="inline-block transition-transform duration-200 group-hover:translate-x-[5px]">→</span>
         </a>
       </div>
 

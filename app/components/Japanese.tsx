@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 const principles = [
   {
@@ -91,20 +92,20 @@ export default function Japanese() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: easing }}
       >
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[13px] font-semibold text-[#B91C1C] tracking-[4px] uppercase">
           Eastern Wisdom
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[34px] sm:text-[44px] md:text-[56px] text-white text-center leading-none">
+        <h2 className="font-bold text-[34px] sm:text-[44px] md:text-[56px] text-[#111827] text-center leading-none">
           Design Philosophy
         </h2>
         <div className="flex items-center justify-center gap-4 mt-3 mb-6 w-full">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30 flex-shrink-0" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase text-center">
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#B91C1C]/30 flex-shrink-0" />
+          <p className="text-[12px] text-[#6B7280] tracking-[3px] uppercase text-center">
             Inspired by Japanese principles
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30 flex-shrink-0" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#B91C1C]/30 flex-shrink-0" />
         </div>
-        <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/60 tracking-[0.5px] mt-3 text-center max-w-[520px] leading-relaxed">
+        <p className="text-[12px] text-[#9CA3AF] tracking-[0.5px] mt-3 text-center max-w-[520px] leading-relaxed">
           Eight philosophies that shape how I think about design, systems, and product experiences.
         </p>
       </motion.div>
@@ -147,9 +148,9 @@ function ZenBreath() {
           style={{
             width: 320,
             height: 320,
-            border: '1px solid rgba(225, 6, 0, 0.12)',
+            border: '1px solid rgba(185, 28, 28, 0.08)',
             background:
-              'radial-gradient(circle, rgba(225,6,0,0.03) 0%, transparent 70%)',
+              'radial-gradient(circle, rgba(185,28,28,0.02) 0%, transparent 70%)',
           }}
           animate={{
             scale:   [1, 2.8, 1],
@@ -177,18 +178,23 @@ function PhilosophyCard({
 }: {
   principle: (typeof principles)[number];
 }) {
+  const { theme } = useTheme();
+  const isDark    = theme === 'dark';
+
   return (
     <motion.div
       variants={cardVariants}
       className="group relative flex flex-col gap-5 p-5 md:p-8 rounded-2xl overflow-hidden cursor-default
-        border border-white/[0.055]
         transition-all duration-300 ease-out
         hover:-translate-y-[6px]"
       style={{
-        background: 'linear-gradient(145deg, #111418 0%, #0d1014 100%)',
+        background:  isDark ? '#0E0F16' : '#FFFFFF',
+        border:      `1px solid ${isDark ? '#1C1D2A' : '#E5E7EB'}`,
       }}
       whileHover={{
-        boxShadow: '0 0 0 1px rgba(225,6,0,0.18), 0 12px 40px rgba(0,0,0,0.5)',
+        boxShadow: isDark
+          ? '0 0 0 1px rgba(185,28,28,0.2), 0 12px 40px rgba(0,0,0,0.3)'
+          : '0 0 0 1px rgba(185,28,28,0.12), 0 12px 40px rgba(0,0,0,0.08)',
       }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -200,10 +206,11 @@ function PhilosophyCard({
         aria-hidden
       >
         <span
-          className="font-['Gingsul_Demo',serif] text-[160px] leading-none text-white
+          className="italic text-[160px] leading-none
             opacity-[0.032] group-hover:opacity-[0.06]
             transition-opacity duration-500 ease-out
             translate-x-6 translate-y-4"
+          style={{ color: isDark ? '#EDEDF5' : '#111827' }}
         >
           {principle.kanji}
         </span>
@@ -212,8 +219,8 @@ function PhilosophyCard({
       {/* ── Top red accent line ─────────────────────────────────────────────── */}
       <span
         className="absolute top-0 left-6 right-6 h-[1px] rounded-full
-          bg-gradient-to-r from-transparent via-[#e10600]/0 to-transparent
-          group-hover:via-[#e10600]/50
+          bg-gradient-to-r from-transparent via-[#B91C1C]/0 to-transparent
+          group-hover:via-[#B91C1C]/50
           transition-all duration-500 ease-out"
       />
 
@@ -221,22 +228,26 @@ function PhilosophyCard({
       <div className="relative z-10 flex flex-col gap-5">
 
         {/* Romanji label */}
-        <span className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[3.5px] uppercase leading-none">
+        <span className="text-[11px] font-semibold text-[#B91C1C] tracking-[3.5px] uppercase leading-none">
           {principle.romanji}
         </span>
 
-        {/* English concept title — strongest text on the card */}
-        <h3 className="font-['The_Last_Shuriken',sans-serif] text-[26px] text-[#eaeaea] leading-[1.15]
-          group-hover:text-white transition-colors duration-300">
+        {/* English concept title */}
+        <h3
+          className="font-bold text-[26px] leading-[1.15] transition-colors duration-300"
+          style={{ color: isDark ? '#EDEDF5' : '#111827' }}
+        >
           {principle.english}
         </h3>
 
-        {/* Red divider — expands on hover */}
-        <div className="w-6 h-px bg-[#e10600]/35 group-hover:w-14 transition-all duration-500 ease-out" />
+        {/* Red divider */}
+        <div className="w-6 h-px bg-[#B91C1C]/35 group-hover:w-14 transition-all duration-500 ease-out" />
 
-        {/* Description — lightest layer */}
-        <p className="font-['Kanzuri',serif] text-[12.5px] text-[#8a8f98]/80 leading-[22px] tracking-[0.3px]
-          group-hover:text-[#a0a5ae] transition-colors duration-300">
+        {/* Description */}
+        <p
+          className="italic text-[12.5px] leading-[22px] tracking-[0.3px] transition-colors duration-300"
+          style={{ color: isDark ? '#7A7A92' : '#6B7280' }}
+        >
           {principle.description}
         </p>
 

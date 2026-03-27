@@ -33,7 +33,7 @@ function Reveal({ children, className = '', delay = 0 }: {
 /* ── Section label ───────────────────────────────────────────────────────── */
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[4px] uppercase mb-3">
+    <p className="text-[11px] text-[#B91C1C] tracking-[4px] uppercase mb-3">
       {children}
     </p>
   );
@@ -42,7 +42,7 @@ function Label({ children }: { children: React.ReactNode }) {
 /* ── Section heading ─────────────────────────────────────────────────────── */
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-['The_Last_Shuriken',sans-serif] text-[2.2rem] md:text-[3rem] text-[#eaeaea] leading-[1.1] mb-6">
+    <h2 className="text-[2.2rem] md:text-[3rem] text-[#111827] leading-[1.1] mb-6">
       {children}
     </h2>
   );
@@ -51,7 +51,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 /* ── Gradient divider ────────────────────────────────────────────────────── */
 function Divider() {
   return (
-    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#333] to-transparent" />
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" />
   );
 }
 
@@ -69,7 +69,7 @@ function ImageBlock({ src, alt, width = 1400, height = 900 }: {
       width={width}
       height={height}
       className="w-full h-auto object-contain rounded-[12px] block mx-auto max-w-[1000px]"
-      style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}
+      style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.06)' }}
     />
   );
 }
@@ -77,14 +77,14 @@ function ImageBlock({ src, alt, width = 1400, height = 900 }: {
 /* ── Metric card ─────────────────────────────────────────────────────────── */
 function MetricCard({ value, label, explanation }: { value: string; label: string; explanation: string }) {
   return (
-    <div className="border border-[#1e2028] rounded-2xl p-8 text-center bg-[#0c0d10] hover:border-[#D4AF37]/40 transition-colors duration-300 flex flex-col items-center">
-      <p className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.5rem] text-[#D4AF37] leading-none mb-3">
+    <div className="border border-[#E5E7EB] rounded-2xl p-8 text-center bg-white hover:border-[#B91C1C]/40 transition-colors duration-300 flex flex-col items-center">
+      <p className="text-[2.8rem] md:text-[3.5rem] text-[#B91C1C] leading-none mb-3">
         {value}
       </p>
-      <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#eaeaea] uppercase mb-4">
+      <p className="text-[11px] tracking-[3px] text-[#111827] uppercase mb-4">
         {label}
       </p>
-      <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] max-w-[200px]">
+      <p className="text-[12px] leading-[1.8] text-[#6B7280] max-w-[200px]">
         {explanation}
       </p>
     </div>
@@ -94,14 +94,14 @@ function MetricCard({ value, label, explanation }: { value: string; label: strin
 /* ── Problem card ────────────────────────────────────────────────────────── */
 function ProblemCard({ title, description, index }: { title: string; description: string; index: number }) {
   return (
-    <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300">
-      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+    <div className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300">
+      <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-4">
         0{index + 1}
       </p>
-      <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.3rem] text-[#eaeaea] mb-3">
+      <h3 className="text-[1.3rem] text-[#111827] mb-3">
         {title}
       </h3>
-      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+      <p className="text-[13px] leading-[1.8] text-[#6B7280]">
         {description}
       </p>
     </div>
@@ -114,14 +114,14 @@ function ProblemCard({ title, description, index }: { title: string; description
 export default function RmtHolotrackCaseStudy() {
   return (
     <SmoothScroll>
-      <div className="min-h-screen bg-[#070707] text-[#eaeaea]">
+      <div className="min-h-screen bg-[#FAFAFA] text-[#111827]">
         <Navbar />
 
         {/* ── Back link ──────────────────────────────────────────────────── */}
         <div className="pt-24 pb-0 px-6 max-w-[1100px] mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#8a8f98] uppercase hover:text-[#e10600] transition-colors"
+            className="inline-flex items-center gap-2 text-[11px] tracking-[3px] text-[#6B7280] uppercase hover:text-[#B91C1C] transition-colors"
           >
             ← Back to Work
           </Link>
@@ -137,10 +137,10 @@ export default function RmtHolotrackCaseStudy() {
             {/* Title + meta */}
             <Reveal className="mb-10">
               <Label>Logistics Platform Case Study</Label>
-              <h1 className="font-['The_Last_Shuriken',sans-serif] text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] text-[#eaeaea] leading-[1.05] mb-4">
+              <h1 className="text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] text-[#111827] leading-[1.05] mb-4">
                 Re-Engineering Warehouse Operations
               </h1>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6 max-w-[640px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] mb-6 max-w-[640px]">
                 A modular platform designed to simplify warehouse operations, enable remote
                 asset monitoring, and provide real-time operational insights for logistics
                 teams managing large scale distribution environments.
@@ -155,10 +155,10 @@ export default function RmtHolotrackCaseStudy() {
                   { label: 'Team',     value: 'Solo Designer' },
                 ].map(({ label, value }) => (
                   <div key={label}>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-1">
+                    <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-1">
                       {label}
                     </p>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#eaeaea]">
+                    <p className="text-[13px] text-[#111827]">
                       {value}
                     </p>
                   </div>
@@ -189,25 +189,25 @@ export default function RmtHolotrackCaseStudy() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mb-5">
-                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10]">
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-3">Problem</p>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#eaeaea]">
+                <div className="border border-[#E5E7EB] rounded-2xl p-7 bg-white">
+                  <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-3">Problem</p>
+                  <p className="text-[14px] leading-[2] text-[#111827]">
                     A large-scale warehouse operations platform lacked real-time asset visibility, unified operational tooling, and role-based control — forcing logistics teams to rely on manual processes and fragmented systems for critical operational decisions.
                   </p>
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Role</p>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Lead UI/UX Designer responsible for UX strategy and end-to-end design execution.</p>
+                <div className="border border-[#E5E7EB] rounded-2xl p-6 bg-white">
+                  <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-2">Role</p>
+                  <p className="text-[13px] leading-[1.8] text-[#111827]">Lead UI/UX Designer responsible for UX strategy and end-to-end design execution.</p>
                 </div>
-                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Platform</p>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Desktop-first logistics platform with tablet and mobile extensions.</p>
+                <div className="border border-[#E5E7EB] rounded-2xl p-6 bg-white">
+                  <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-2">Platform</p>
+                  <p className="text-[13px] leading-[1.8] text-[#111827]">Desktop-first logistics platform with tablet and mobile extensions.</p>
                 </div>
-                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Duration</p>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">12 months</p>
+                <div className="border border-[#E5E7EB] rounded-2xl p-6 bg-white">
+                  <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-2">Duration</p>
+                  <p className="text-[13px] leading-[1.8] text-[#111827]">12 months</p>
                 </div>
               </div>
             </Reveal>
@@ -223,7 +223,7 @@ export default function RmtHolotrackCaseStudy() {
               <Reveal>
                 <Label>Leadership</Label>
                 <SectionHeading>My Role</SectionHeading>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                <p className="text-[14px] leading-[2] text-[#6B7280]">
                   As the sole designer on this engagement, I owned the end-to-end UX
                   process — from discovery through to engineering handoff — while designing
                   a platform that needed to work reliably across warehouse floors and
@@ -240,8 +240,8 @@ export default function RmtHolotrackCaseStudy() {
                     'Ensured system worked across desktop and tablet environments',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-4">
-                      <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-[#e10600] shrink-0" />
-                      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                      <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-[#B91C1C] shrink-0" />
+                      <p className="text-[13px] leading-[1.9] text-[#6B7280]">
                         {item}
                       </p>
                     </li>
@@ -260,7 +260,7 @@ export default function RmtHolotrackCaseStudy() {
             <Reveal className="mb-8">
               <Label>Challenge</Label>
               <SectionHeading>Operations ran on gut instinct, not real-time data.</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px]">
                 Warehouse teams were making critical operational decisions without the data
                 infrastructure to support them — leading to inefficiency, asset loss, and
                 reactive rather than proactive management.
@@ -297,13 +297,13 @@ export default function RmtHolotrackCaseStudy() {
               <Label>System Thinking</Label>
               <SectionHeading>How the Design Addressed Platform Complexity</SectionHeading>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                <p className="text-[14px] leading-[2] text-[#6B7280]">
                   The platform was architected as a set of independent operational modules —
                   each addressing a distinct function within the warehouse lifecycle. Rather
                   than a monolithic application, every layer was designed to work in
                   isolation and compose cleanly with the others.
                 </p>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                <p className="text-[14px] leading-[2] text-[#6B7280]">
                   This modularity allowed the operations team to deploy and scale specific
                   capabilities without disrupting existing workflows — reducing implementation
                   risk while enabling incremental adoption across the distribution network.
@@ -336,15 +336,15 @@ export default function RmtHolotrackCaseStudy() {
                 ].map(({ num, title, body }) => (
                   <div
                     key={num}
-                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300"
+                    className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300"
                   >
-                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+                    <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-4">
                       {num}
                     </p>
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                    <h3 className="text-[1.2rem] text-[#111827] mb-3">
                       {title}
                     </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                    <p className="text-[13px] leading-[1.9] text-[#6B7280]">
                       {body}
                     </p>
                   </div>
@@ -370,7 +370,7 @@ export default function RmtHolotrackCaseStudy() {
             <Reveal className="mb-10">
               <Label>Methodology</Label>
               <SectionHeading>Design Process</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[560px]">
                 A structured, iterative process — grounded in field research and
                 validated at every milestone through stakeholder reviews and usability testing.
               </p>
@@ -380,7 +380,7 @@ export default function RmtHolotrackCaseStudy() {
             <Reveal delay={0.1} className="mb-10">
               {/* Desktop horizontal */}
               <div className="hidden md:flex items-start gap-0 relative">
-                <div className="absolute top-5 left-[40px] right-[40px] h-px bg-gradient-to-r from-[#e10600]/40 via-[#D4AF37]/40 to-[#e10600]/40" />
+                <div className="absolute top-5 left-[40px] right-[40px] h-px bg-gradient-to-r from-[#B91C1C]/30 via-[#B91C1C]/20 to-[#B91C1C]/30" />
                 {[
                   { step: '01', label: 'Research' },
                   { step: '02', label: 'Task Analysis' },
@@ -390,12 +390,12 @@ export default function RmtHolotrackCaseStudy() {
                   { step: '06', label: 'Testing' },
                 ].map(({ step, label }) => (
                   <div key={step} className="flex-1 flex flex-col items-center text-center relative z-10">
-                    <div className="w-10 h-10 rounded-full border-2 border-[#e10600] bg-[#070707] flex items-center justify-center mb-4">
-                      <span className="font-['Blast_Dragon',sans-serif] text-[9px] tracking-[1px] text-[#e10600]">
+                    <div className="w-10 h-10 rounded-full border-2 border-[#B91C1C] bg-white flex items-center justify-center mb-4">
+                      <span className="text-[9px] tracking-[1px] text-[#B91C1C]">
                         {step}
                       </span>
                     </div>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] text-[#eaeaea] uppercase">
+                    <p className="text-[11px] tracking-[2px] text-[#111827] uppercase">
                       {label}
                     </p>
                   </div>
@@ -404,7 +404,7 @@ export default function RmtHolotrackCaseStudy() {
 
               {/* Mobile vertical */}
               <div className="flex md:hidden flex-col gap-0 relative pl-8">
-                <div className="absolute left-[15px] top-5 bottom-5 w-px bg-gradient-to-b from-[#e10600]/40 via-[#D4AF37]/40 to-[#e10600]/40" />
+                <div className="absolute left-[15px] top-5 bottom-5 w-px bg-gradient-to-b from-[#B91C1C]/30 via-[#B91C1C]/20 to-[#B91C1C]/30" />
                 {[
                   { step: '01', label: 'Research' },
                   { step: '02', label: 'Task Analysis' },
@@ -414,12 +414,12 @@ export default function RmtHolotrackCaseStudy() {
                   { step: '06', label: 'Testing' },
                 ].map(({ step, label }) => (
                   <div key={step} className="flex items-center gap-5 mb-7 relative z-10">
-                    <div className="w-[30px] h-[30px] shrink-0 rounded-full border-2 border-[#e10600] bg-[#070707] flex items-center justify-center">
-                      <span className="font-['Blast_Dragon',sans-serif] text-[9px] text-[#e10600]">
+                    <div className="w-[30px] h-[30px] shrink-0 rounded-full border-2 border-[#B91C1C] bg-white flex items-center justify-center">
+                      <span className="text-[9px] text-[#B91C1C]">
                         {step}
                       </span>
                     </div>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[12px] tracking-[2px] text-[#eaeaea] uppercase">
+                    <p className="text-[12px] tracking-[2px] text-[#111827] uppercase">
                       {label}
                     </p>
                   </div>
@@ -453,10 +453,10 @@ export default function RmtHolotrackCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-12 items-center mb-16 md:mb-24">
               <Reveal>
                 <Label>Pillar 01</Label>
-                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.4rem] text-[#eaeaea] leading-[1.1] mb-5">
+                <h3 className="text-[1.8rem] md:text-[2.4rem] text-[#111827] leading-[1.1] mb-5">
                   Control Tower Dashboard
                 </h3>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                <p className="text-[13px] leading-[2] text-[#6B7280]">
                   The control tower dashboard gives operations managers a unified view of
                   all warehouse activity from a single screen. Key metrics — fleet status,
                   active orders, resource utilisation, and exception alerts — are surfaced
@@ -486,10 +486,10 @@ export default function RmtHolotrackCaseStudy() {
               </Reveal>
               <Reveal delay={0.1} className="order-1 lg:order-2">
                 <Label>Pillar 02</Label>
-                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.4rem] text-[#eaeaea] leading-[1.1] mb-5">
+                <h3 className="text-[1.8rem] md:text-[2.4rem] text-[#111827] leading-[1.1] mb-5">
                   Role Based Access Architecture
                 </h3>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                <p className="text-[13px] leading-[2] text-[#6B7280]">
                   Different operational roles require fundamentally different views of the
                   same data. Warehouse supervisors need granular task-level detail;
                   operations directors need high-level performance trends. The role-based
@@ -504,10 +504,10 @@ export default function RmtHolotrackCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-12 items-center">
               <Reveal>
                 <Label>Pillar 03</Label>
-                <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.8rem] md:text-[2.4rem] text-[#eaeaea] leading-[1.1] mb-5">
+                <h3 className="text-[1.8rem] md:text-[2.4rem] text-[#111827] leading-[1.1] mb-5">
                   Workflow Simplification
                 </h3>
-                <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[2] text-[#8a8f98]">
+                <p className="text-[13px] leading-[2] text-[#6B7280]">
                   Complex warehouse workflows — goods receipt, pick-and-pack, dispatch,
                   and exception handling — were mapped, analysed, and redesigned as
                   guided task flows. Multi-step processes were broken into clear sequential
@@ -535,7 +535,7 @@ export default function RmtHolotrackCaseStudy() {
             <Reveal className="mb-8">
               <Label>Remote Asset Monitoring</Label>
               <SectionHeading>Operational Awareness at a Glance</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px]">
                 The asset monitoring module gives logistics teams continuous visibility
                 into fleet location, equipment status, and movement patterns — all
                 updated in real time. Teams can track assets across multiple warehouse
@@ -563,13 +563,13 @@ export default function RmtHolotrackCaseStudy() {
               <Label>Scalability</Label>
               <SectionHeading>Component Library</SectionHeading>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                <p className="text-[14px] leading-[2] text-[#6B7280]">
                   The platform's growth from core modules to a full operational suite was
                   only possible because of a component library built for scale from the
                   start. Every element was designed to compose cleanly — ensuring visual
                   and functional consistency as the product expanded.
                 </p>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                <p className="text-[14px] leading-[2] text-[#6B7280]">
                   All components were documented for engineering handoff, covering interaction
                   states, data-binding patterns, and responsive behaviour across desktop
                   and tablet breakpoints.
@@ -603,19 +603,19 @@ export default function RmtHolotrackCaseStudy() {
                 ].map(({ category, description, items }) => (
                   <div
                     key={category}
-                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors duration-300"
+                    className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300"
                   >
-                    <h4 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#D4AF37] mb-3">
+                    <h4 className="text-[1.2rem] text-[#B91C1C] mb-3">
                       {category}
                     </h4>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] mb-4">
+                    <p className="text-[12px] leading-[1.8] text-[#6B7280] mb-4">
                       {description}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {items.map((item) => (
                         <span
                           key={item}
-                          className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[1px] text-[#8a8f98] border border-[#2a2d36] rounded-md px-2 py-1"
+                          className="text-[10px] tracking-[1px] text-[#6B7280] border border-[#E5E7EB] rounded-md px-2 py-1"
                         >
                           {item}
                         </span>
@@ -636,7 +636,7 @@ export default function RmtHolotrackCaseStudy() {
             <Reveal className="mb-10">
               <Label>Final Product</Label>
               <SectionHeading>Desktop &amp; Mobile System</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[560px]">
                 High-fidelity screens from the shipped product — representing the full
                 breadth of the RMT Holotrack design system across desktop and mobile
                 form factors.
@@ -646,7 +646,7 @@ export default function RmtHolotrackCaseStudy() {
             <div className="flex flex-col gap-10">
               {/* Desktop screens */}
               <Reveal>
-                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-4">
+                <p className="text-[10px] tracking-[3px] text-[#6B7280] uppercase mb-4">
                   Desktop Screens
                 </p>
                 <ImageBlock
@@ -659,7 +659,7 @@ export default function RmtHolotrackCaseStudy() {
 
               {/* Mobile screens */}
               <Reveal delay={0.1}>
-                <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#8a8f98] uppercase mb-4">
+                <p className="text-[10px] tracking-[3px] text-[#6B7280] uppercase mb-4">
                   Mobile Screens
                 </p>
                 <ImageBlock
@@ -681,7 +681,7 @@ export default function RmtHolotrackCaseStudy() {
             <Reveal className="mb-8">
               <Label>Results</Label>
               <SectionHeading>Impact</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[560px]">
                 The platform delivered measurable improvements across visibility,
                 efficiency, and operational cohesion — replacing fragmented tooling
                 with a unified system built around how teams actually work.
@@ -730,15 +730,15 @@ export default function RmtHolotrackCaseStudy() {
                 ].map(({ title, description }) => (
                   <div
                     key={title}
-                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors duration-300"
+                    className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300"
                   >
-                    <div className="w-6 h-6 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-4">
-                      <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                    <div className="w-6 h-6 rounded-full border border-[#B91C1C]/40 flex items-center justify-center mb-4">
+                      <span className="w-2 h-2 rounded-full bg-[#B91C1C]" />
                     </div>
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                    <h3 className="text-[1.2rem] text-[#111827] mb-3">
                       {title}
                     </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+                    <p className="text-[13px] leading-[1.8] text-[#6B7280]">
                       {description}
                     </p>
                   </div>
@@ -749,22 +749,22 @@ export default function RmtHolotrackCaseStudy() {
 
           {/* ── Next Project CTA ───────────────────────────────────────────── */}
           <Reveal>
-            <div className="border-t border-[#1e2028] pt-10 pb-12 md:pb-20">
+            <div className="border-t border-[#E5E7EB] pt-10 pb-12 md:pb-20">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                 <div>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[4px] text-[#8a8f98] uppercase mb-3">
+                  <p className="text-[10px] tracking-[4px] text-[#6B7280] uppercase mb-3">
                     Next Case Study
                   </p>
-                  <h2 className="font-['The_Last_Shuriken',sans-serif] text-[2rem] md:text-[2.8rem] text-[#eaeaea] leading-[1.1] mb-2">
+                  <h2 className="text-[2rem] md:text-[2.8rem] text-[#111827] leading-[1.1] mb-2">
                     PH Aware
                   </h2>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98]">
+                  <p className="text-[13px] text-[#6B7280]">
                     Health Tech · Mental Wellness Platform
                   </p>
                 </div>
                 <Link
                   href="/work/ph-aware"
-                  className="group inline-flex items-center gap-3 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] uppercase px-8 py-4 border border-[#e10600] text-[#e10600] rounded-full hover:bg-[#e10600] hover:text-white transition-all duration-300"
+                  className="group inline-flex items-center gap-3 text-[11px] tracking-[3px] uppercase px-8 py-4 border border-[#B91C1C] text-[#B91C1C] rounded-full hover:bg-[#B91C1C] hover:text-white transition-all duration-300"
                 >
                   PH Aware →
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" />

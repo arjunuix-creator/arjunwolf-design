@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -11,82 +12,68 @@ const cards = [
     title: 'Strategic UX Leadership',
     description:
       'Led end-to-end UX strategy across fintech, enterprise, and data-driven platforms.',
-    accentColor: '#e10600',
-    borderHover: 'hover:border-[#e10600]/30',
   },
   {
     num: '02',
-    title: 'System Thinking',
+    title: 'Systems Thinking',
     description:
       'Designed scalable design systems and structured information architectures for complex products.',
-    accentColor: '#D4AF37',
-    borderHover: 'hover:border-[#D4AF37]/30',
   },
   {
     num: '03',
     title: 'Cross-Functional Collaboration',
     description:
       'Worked closely with product managers, engineers, and stakeholders to align product vision.',
-    accentColor: '#e10600',
-    borderHover: 'hover:border-[#e10600]/30',
   },
   {
     num: '04',
     title: 'Outcome-Focused Design',
     description:
       'Focused on measurable outcomes instead of just visual deliverables.',
-    accentColor: '#D4AF37',
-    borderHover: 'hover:border-[#D4AF37]/30',
   },
 ];
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants = {
-  hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
+  hidden:  { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 
 export default function LeadershipImpact() {
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-10% 0px' });
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <section
       ref={ref}
       className="flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-[120px] w-full"
     >
-
-      {/* ── Header ──────────────────────────────────────────────────────────── */}
+      {/* Header */}
       <motion.div
         className="section-header"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: EASE }}
+        transition={{ duration: 0.65, ease: EASE }}
       >
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[#B91C1C]">
           12+ Years of Experience
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[28px] sm:text-[36px] md:text-[46px] text-white text-center leading-none">
+        <h2 className="text-[28px] sm:text-[36px] font-bold text-[#111827] text-center leading-tight">
           Design Leadership Impact
         </h2>
-        <div className="flex items-center gap-4 mt-1">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/18" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase">
-            What I Bring
-          </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/18" />
-        </div>
-        <p className="font-['Blast_Dragon',sans-serif] text-[14px] text-center text-[#8a8f98] leading-[1.9] max-w-[660px] mt-2">
+        <p className="text-[16px] text-center text-[#6B7280] leading-[1.7] max-w-[580px] mt-2">
           Over the past decade I have led UX strategy for complex enterprise systems, translating
-          business requirements into scalable design frameworks used by product teams and decision makers.
+          business requirements into scalable design frameworks.
         </p>
       </motion.div>
 
-      {/* ── Cards ───────────────────────────────────────────────────────────── */}
+      {/* Cards */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -97,39 +84,38 @@ export default function LeadershipImpact() {
           <motion.div
             key={card.num}
             variants={cardVariants}
-            className={`group border border-white/[0.055] ${card.borderHover} rounded-2xl p-8 md:p-10
-              bg-[#0c0d10] transition-all duration-300 hover:-translate-y-[4px]
-              flex flex-col gap-4`}
+            className="group rounded-xl p-7 md:p-8 transition-all duration-250 hover:-translate-y-[3px] hover:shadow-sm flex flex-col gap-4"
+            style={{
+              background:   isDark ? '#0E0F16' : '#FFFFFF',
+              border:       `1px solid ${isDark ? '#1C1D2A' : '#E5E7EB'}`,
+            }}
           >
-            {/* Number label */}
-            <p
-              className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] uppercase"
-              style={{ color: card.accentColor }}
-            >
+            {/* Number */}
+            <p className="text-[11px] font-semibold tracking-[3px] uppercase text-[#B91C1C]">
               {card.num}
             </p>
 
             {/* Title */}
-            <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.4rem] md:text-[1.6rem] text-[#eaeaea] leading-[1.2]
-              group-hover:text-white transition-colors duration-300">
+            <h3
+              className="text-[18px] font-semibold leading-snug"
+              style={{ color: isDark ? '#EDEDF5' : '#111827' }}
+            >
               {card.title}
             </h3>
 
-            {/* Accent divider */}
+            {/* Divider */}
             <div
-              className="w-8 h-px"
-              style={{ background: `${card.accentColor}40` }}
+              className="w-8 h-px transition-colors duration-300"
+              style={{ background: isDark ? '#1C1D2A' : '#E5E7EB' }}
             />
 
             {/* Description */}
-            <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]
-              group-hover:text-[#a0a5ae] transition-colors duration-300">
+            <p className="text-[14px] leading-[1.7] text-[#6B7280]">
               {card.description}
             </p>
           </motion.div>
         ))}
       </motion.div>
-
     </section>
   );
 }

@@ -18,7 +18,6 @@ import SmoothScroll from './components/SmoothScroll';
 import SectionDivider from './components/SectionDivider';
 import ScrollIndicator from './components/ScrollIndicator';
 import SectionReveal from './components/SectionReveal';
-import ParallaxGlow from './components/ParallaxGlow';
 
 const studies = [
   {
@@ -26,13 +25,13 @@ const studies = [
     title: 'TI Credit Report',
     category: 'FinTech Case Study',
     categoryColor: '#002563',
-    imageBg: '#002563',
+    imageBg: '#EFF6FF',
     imageSrc: '/designs/tu-cibil.png?v=2',
     imageAlt: 'TI Credit Report preview',
     imagePosition: 'left' as const,
-    description: 'I led the end-to-end UX strategy and execution for a high-security enterprise credit intelligence platform used by banking professionals to evaluate creditworthiness and make loan decisions. The challenge was to modernize a legacy, compliance-heavy system without compromising regulatory integrity.',
+    description: 'Modernized a legacy credit intelligence platform for banking professionals — replacing a compliance-heavy system with a clear, decision-ready interface.',
     users: 'Bank Managers, Financial Analysts, Loan Managers',
-    platform: 'Desktop-first (25–30 screens), expanded to 150+ screens including mobile and tablet',
+    platform: 'Desktop-first (150+ screens including mobile and tablet)',
     meta: { role: 'Lead UI/UX Designer', duration: '36 Months', team: 'Solo Designer', year: '2025' },
     href: '/work/tu-cibil',
   },
@@ -40,12 +39,12 @@ const studies = [
     id: 2,
     title: 'RMT Holotrack',
     category: 'Logistics Case Study',
-    categoryColor: '#2ac19f',
-    imageBg: '#2ac19f',
+    categoryColor: '#065F46',
+    imageBg: '#ECFDF5',
     imageSrc: '/designs/rmt-holotrack.png',
     imageAlt: 'RMT Holotrack preview',
     imagePosition: 'right' as const,
-    description: 'Transformed manual, fragmented warehouse workflows into a real-time operational platform — HoloTrak gives logistics teams centralized visibility, asset tracking, and IoT-powered remote monitoring.',
+    description: 'Transformed fragmented warehouse workflows into a real-time operational platform — giving logistics teams centralized visibility and IoT-powered monitoring.',
     users: 'Warehouse & Fleet Ops',
     platform: 'Desktop & Tablet',
     meta: { role: 'Lead UI/UX Designer', duration: '12 Months', team: 'Solo Designer', year: '2022' },
@@ -55,12 +54,12 @@ const studies = [
     id: 3,
     title: 'PH-Aware',
     category: 'Medi-Tech Case Study',
-    categoryColor: '#fe626c',
-    imageBg: '#fe626c',
+    categoryColor: '#9F1239',
+    imageBg: '#FFF1F2',
     imageSrc: '/designs/ph-aware.png',
     imageAlt: 'PH-Aware preview',
     imagePosition: 'left' as const,
-    description: 'Designed a digital health awareness platform focused on simplifying complex medical information and improving patient engagement through a mobile-first experience.',
+    description: 'Designed a digital health platform that simplifies complex medical information and improves patient engagement through a mobile-first experience.',
     users: 'Patients, Caregivers',
     platform: 'Mobile-first application',
     meta: { role: 'Product Designer', duration: '6 Months', team: 'Solo Designer', year: '2024' },
@@ -69,9 +68,9 @@ const studies = [
   {
     id: 4,
     title: 'Finova Expense Tracker',
-    category: 'Vibe Coding SaaS App',
-    categoryColor: '#02112b',
-    imageBg: '#02112b',
+    category: 'SaaS App',
+    categoryColor: '#1E3A5F',
+    imageBg: '#EFF6FF',
     imageSrc: '/designs/finov-ai.png',
     imageAlt: 'Finova Expense Tracker preview',
     imagePosition: 'right' as const,
@@ -86,10 +85,7 @@ const studies = [
 export default function Home() {
   return (
     <SmoothScroll>
-      <div className="min-h-screen w-full bg-[#070707] overflow-x-hidden">
-
-        {/* ── Parallax red glow — fixed, scroll-driven ────────────────────── */}
-        <ParallaxGlow />
+      <div className="min-h-screen w-full bg-[#FAFAFA] overflow-x-hidden">
 
         <Navbar />
         <ScrollIndicator />
@@ -102,18 +98,18 @@ export default function Home() {
         <SectionDivider />
 
         {/* ── Leadership Impact ────────────────────────────────────────────── */}
-        <SectionReveal>
-          <LeadershipImpact />
-        </SectionReveal>
+        <div id="next-section">
+          <SectionReveal>
+            <LeadershipImpact />
+          </SectionReveal>
+        </div>
 
         <SectionDivider />
 
-        {/* ── About / Design Philosophy — neutral ─────────────────────────── */}
+        {/* ── About ────────────────────────────────────────────────────────── */}
         <div id="about">
           <About />
         </div>
-        <SectionDivider />
-        <DesignPhilosophy />
         <SectionDivider />
 
         {/* ── Works ───────────────────────────────────────────────────────── */}
@@ -134,14 +130,6 @@ export default function Home() {
 
         {/* ── Journey ─────────────────────────────────────────────────────── */}
         <div id="experience" className="relative">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 z-0"
-            style={{
-              background:
-                'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(212,175,55,0.03) 0%, transparent 70%)',
-            }}
-          />
           <SectionReveal>
             <Journey />
           </SectionReveal>
@@ -150,32 +138,14 @@ export default function Home() {
         <SectionDivider />
 
         {/* ── Capabilities ────────────────────────────────────────────────── */}
-        <div className="relative">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 z-0"
-            style={{
-              background:
-                'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(77,158,255,0.022) 0%, transparent 70%)',
-            }}
-          />
-          <SectionReveal>
-            <Skills />
-          </SectionReveal>
-        </div>
+        <SectionReveal>
+          <Skills />
+        </SectionReveal>
 
         <SectionDivider />
 
         {/* ── Design Philosophy ───────────────────────────────────────────── */}
-        <div id="japanese-habits" className="relative">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 z-0"
-            style={{
-              background:
-                'radial-gradient(ellipse 65% 55% at 50% 50%, rgba(225,6,0,0.035) 0%, transparent 65%)',
-            }}
-          />
+        <div id="japanese-habits" className="relative bg-[#F9FAFB]">
           <SectionReveal>
             <Japanese />
           </SectionReveal>
@@ -200,9 +170,11 @@ export default function Home() {
         <SectionDivider />
 
         {/* ── Testimonials ────────────────────────────────────────────────── */}
-        <SectionReveal>
-          <Testimonials />
-        </SectionReveal>
+        <div className="bg-[#F9FAFB]">
+          <SectionReveal>
+            <Testimonials />
+          </SectionReveal>
+        </div>
 
         <SectionDivider />
 
@@ -219,7 +191,7 @@ export default function Home() {
         </SectionReveal>
 
         {/* ── Contact / Footer ────────────────────────────────────────────── */}
-        <div id="contact">
+        <div id="contact" className="bg-[#F9FAFB]">
           <Footer />
         </div>
 

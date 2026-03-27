@@ -1,7 +1,8 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -26,111 +27,79 @@ const cards = [
   },
 ];
 
-function WorkCard({ card, index, inView }: { card: typeof cards[number]; index: number; inView: boolean }) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 36 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.14, ease: EASE }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      style={{
-        background:    'rgba(255,255,255,0.02)',
-        border:        hovered
-          ? '1px solid rgba(225,6,0,0.25)'
-          : '1px solid rgba(255,255,255,0.06)',
-        borderRadius:  16,
-        padding:       28,
-        boxShadow:     hovered
-          ? '0 0 28px rgba(225,6,0,0.05), 0 16px 48px rgba(0,0,0,0.4)'
-          : '0 4px 20px rgba(0,0,0,0.15)',
-        transform:     hovered ? 'translateY(-6px)' : 'translateY(0px)',
-        transition:    'border 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease',
-      }}
-      className="flex flex-col gap-5"
-    >
-      {/* Number + accent dot */}
-      <div className="flex items-center gap-3">
-        <span
-          className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#e10600]"
-        >
-          {card.number}
-        </span>
-        <motion.div
-          className="h-px flex-1"
-          initial={{ scaleX: 0, originX: 0 }}
-          animate={inView ? { scaleX: 1 } : {}}
-          transition={{ duration: 0.8, delay: index * 0.14 + 0.3, ease: EASE }}
-          style={{ background: 'rgba(225,6,0,0.2)' }}
-        />
-      </div>
-
-      {/* Title */}
-      <h3
-        className="font-['The_Last_Shuriken',sans-serif] text-[22px] text-[#eaeaea] leading-tight"
-      >
-        {card.title}
-      </h3>
-
-      {/* Divider */}
-      <div
-        className="h-px w-10 transition-all duration-500"
-        style={{ background: hovered ? 'rgba(225,6,0,0.6)' : 'rgba(255,255,255,0.08)' }}
-      />
-
-      {/* Description */}
-      <p
-        className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] tracking-[0.3px]"
-        style={{ color: hovered ? '#b0b5be' : 'rgba(138,143,152,0.8)' }}
-      >
-        {card.description}
-      </p>
-    </motion.div>
-  );
-}
-
 export default function HowIWork() {
-  const ref    = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' });
+  const ref        = useRef<HTMLElement>(null);
+  const inView     = useInView(ref, { once: true, margin: '-8% 0px' });
+  const { theme }  = useTheme();
+  const isDark     = theme === 'dark';
 
   return (
     <section
       ref={ref}
       className="flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-[120px] w-full"
     >
-      {/* ── Header ── */}
+      {/* Header */}
       <motion.div
         className="section-header w-full"
-        initial={{ opacity: 0, y: 28 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.75, ease: EASE }}
+        transition={{ duration: 0.65, ease: EASE }}
       >
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[#B91C1C]">
           Process
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[28px] sm:text-[36px] md:text-[46px] text-[#eaeaea] text-center leading-none">
+        <h2 className="text-[28px] sm:text-[36px] font-bold text-[#111827] text-center leading-tight">
           How I Work
         </h2>
-        <div className="flex items-center justify-center gap-4 mt-1 mx-auto max-w-[600px] px-5 md:px-0">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/18 flex-shrink-0" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[3px] uppercase text-center">
-            Design leadership in practice
-          </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/18 flex-shrink-0" />
-        </div>
-        <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98]/65 tracking-[0.4px] mt-3 text-center max-w-[560px] leading-relaxed">
+        <p className="text-[16px] text-[#6B7280] text-center leading-[1.7] max-w-[520px] mt-2">
           Great products emerge from collaboration, clarity, and disciplined execution.
-          My role is not only to design interfaces but to align teams, simplify complexity,
-          and guide products toward meaningful outcomes.
         </p>
       </motion.div>
 
-      {/* ── Cards ── */}
+      {/* Cards */}
       <div className="w-full max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 card-grid">
         {cards.map((card, i) => (
-          <WorkCard key={card.number} card={card} index={i} inView={inView} />
+          <motion.div
+            key={card.number}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: i * 0.12, ease: EASE }}
+            className="group rounded-xl p-7 transition-all duration-250 hover:-translate-y-[3px] hover:shadow-sm flex flex-col gap-4"
+            style={{
+              background:   isDark ? '#0E0F16' : '#FFFFFF',
+              border:       `1px solid ${isDark ? '#1C1D2A' : '#E5E7EB'}`,
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(185,28,28,0.3)' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = isDark ? '#1C1D2A' : '#E5E7EB' }}
+          >
+            {/* Number line */}
+            <div className="flex items-center gap-3">
+              <span className="text-[11px] font-semibold tracking-[3px] uppercase text-[#B91C1C]">
+                {card.number}
+              </span>
+              <motion.div
+                className="h-px flex-1"
+                style={{ backgroundColor: isDark ? '#1C1D2A' : '#E5E7EB' }}
+                initial={{ scaleX: 0, originX: 0 }}
+                animate={inView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.12 + 0.25, ease: EASE }}
+              />
+            </div>
+
+            {/* Title */}
+            <h3 className="text-[18px] font-semibold leading-snug" style={{ color: isDark ? '#EDEDF5' : '#111827' }}>
+              {card.title}
+            </h3>
+
+            {/* Divider */}
+            <div className="h-px w-8 group-hover:bg-[#B91C1C]/30 transition-colors duration-300"
+              style={{ backgroundColor: isDark ? '#1C1D2A' : '#E5E7EB' }} />
+
+            {/* Description */}
+            <p className="text-[14px] leading-[1.7] text-[#6B7280]">
+              {card.description}
+            </p>
+          </motion.div>
         ))}
       </div>
     </section>

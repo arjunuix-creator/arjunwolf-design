@@ -1,38 +1,46 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { useTheme } from './ThemeProvider';
 import MagneticButton from './MagneticButton';
-
-// Static ink particle data — no Math.random() to prevent hydration mismatch
-const INK_PARTICLES = [
-  { id: 0, angle: 15,  r: 205, size: 2,   delay: 0.00, dur: 3.2 },
-  { id: 1, angle: 62,  r: 215, size: 1.5, delay: 0.55, dur: 4.1 },
-  { id: 2, angle: 108, r: 198, size: 2.5, delay: 1.10, dur: 3.8 },
-  { id: 3, angle: 152, r: 220, size: 1.5, delay: 1.65, dur: 4.5 },
-  { id: 4, angle: 195, r: 208, size: 2,   delay: 2.20, dur: 3.5 },
-  { id: 5, angle: 238, r: 212, size: 1.5, delay: 2.75, dur: 4.2 },
-  { id: 6, angle: 282, r: 201, size: 2,   delay: 3.30, dur: 3.9 },
-  { id: 7, angle: 328, r: 218, size: 1.5, delay: 3.85, dur: 4.0 },
-];
-
-// Brush-stroke waypoints — sweep from lower-left toward the Enso center (~1200, 400)
-// then arc around it and retreat, like a calligraphic ink stroke
-const TRAIL_CX = [60, 200, 420, 660, 880, 1060, 1180, 1210, 1190, 1080, 880, 640, 380, 180, 60];
-const TRAIL_CY = [760, 650, 540, 450, 390,  368,  372,  400,  438,  462,  490, 530, 600, 670, 760];
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.13 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
 };
 
+const bullets = [
+  'Simplified complex financial workflows',
+  'Reduced user errors in data-heavy systems',
+  'Built scalable design systems',
+];
+
+// Waypoints for the floating red comet that sweeps across the hero
+const TRAIL_CX = [60, 200, 420, 660, 880, 1060, 1180, 1210, 1190, 1080, 880, 640, 380, 180, 60];
+const TRAIL_CY = [760, 650, 540, 450, 390,  368,  372,  400,  438,  462,  490, 530, 600, 670, 760];
+
+const TRAIL_TIMES = [0, 0.07, 0.14, 0.21, 0.29, 0.37, 0.44, 0.50, 0.57, 0.64, 0.71, 0.79, 0.86, 0.93, 1];
+
+// Static ink particles orbiting the enso
+const INK_PARTICLES = [
+  { id: 0, angle: 15,  r: 185, size: 2,   delay: 0.00, dur: 3.2 },
+  { id: 1, angle: 62,  r: 195, size: 1.5, delay: 0.55, dur: 4.1 },
+  { id: 2, angle: 108, r: 178, size: 2.5, delay: 1.10, dur: 3.8 },
+  { id: 3, angle: 152, r: 200, size: 1.5, delay: 1.65, dur: 4.5 },
+  { id: 4, angle: 195, r: 188, size: 2,   delay: 2.20, dur: 3.5 },
+  { id: 5, angle: 238, r: 192, size: 1.5, delay: 2.75, dur: 4.2 },
+  { id: 6, angle: 282, r: 181, size: 2,   delay: 3.30, dur: 3.9 },
+  { id: 7, angle: 328, r: 198, size: 1.5, delay: 3.85, dur: 4.0 },
+];
+
+// ── Noise SVG overlay ─────────────────────────────────────────────────────
 function NoiseOverlay() {
   return (
     <svg
@@ -50,137 +58,107 @@ function NoiseOverlay() {
   );
 }
 
+// ── Animated red comet sweeping across the hero ───────────────────────────
 function RedLightTrail() {
-  const transition = {
+  const t = {
     duration: 38,
     repeat: Infinity,
     ease: 'easeInOut' as const,
-    times: [0, 0.07, 0.14, 0.21, 0.29, 0.37, 0.44, 0.50, 0.57, 0.64, 0.71, 0.79, 0.86, 0.93, 1],
+    times: TRAIL_TIMES,
   };
-
   return (
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 pointer-events-none overflow-hidden"
-      style={{ zIndex: 3 }}
-    >
-      <svg
-        className="absolute inset-0 w-full h-full"
-        viewBox="0 0 1280 800"
-        preserveAspectRatio="xMidYMid slice"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+    <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 3 }}>
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1280 800" preserveAspectRatio="xMidYMid slice" fill="none">
         <defs>
-          {/* Radial gradient for the glow body */}
           <radialGradient id="rg-trail" cx="50%" cy="50%" r="50%">
             <stop offset="0%"   stopColor="#FF2A2A" stopOpacity="1" />
             <stop offset="45%"  stopColor="#CC0000" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#800000" stopOpacity="0" />
           </radialGradient>
-
-          {/* Outer ambient halo — very soft, large spread */}
           <filter id="f-halo" x="-200%" y="-200%" width="500%" height="500%">
             <feGaussianBlur stdDeviation="28" />
           </filter>
-
-          {/* Mid soft glow */}
           <filter id="f-glow" x="-150%" y="-150%" width="400%" height="400%">
             <feGaussianBlur stdDeviation="9" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
-
-          {/* Sharp core with micro bloom */}
           <filter id="f-core" x="-80%" y="-80%" width="260%" height="260%">
             <feGaussianBlur stdDeviation="2.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
         </defs>
-
-        {/* Layer 1 — outer ambient halo */}
-        <motion.circle
-          r={58}
-          fill="url(#rg-trail)"
-          filter="url(#f-halo)"
-          opacity={0.11}
-          initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }}
-          animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
-          transition={transition}
-        />
-
-        {/* Layer 2 — mid soft glow */}
-        <motion.circle
-          r={22}
-          fill="url(#rg-trail)"
-          filter="url(#f-glow)"
-          opacity={0.31}
-          initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }}
-          animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
-          transition={transition}
-        />
-
-        {/* Layer 3 — bright core */}
-        <motion.circle
-          r={4.5}
-          fill="#FF3A3A"
-          filter="url(#f-core)"
-          opacity={0.55}
-          initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }}
-          animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
-          transition={transition}
-        />
-
-        {/* Layer 4 — comet tail (slightly behind, fades out) */}
-        <motion.circle
-          r={14}
-          fill="url(#rg-trail)"
-          filter="url(#f-glow)"
-          opacity={0.17}
-          initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }}
-          animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
-          transition={{ ...transition, delay: 0.55 }}
-        />
+        {/* Outer ambient halo */}
+        <motion.circle r={58} fill="url(#rg-trail)" filter="url(#f-halo)" opacity={0.11}
+          initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }} animate={{ cx: TRAIL_CX, cy: TRAIL_CY }} transition={t} />
+        {/* Mid glow */}
+        <motion.circle r={22} fill="url(#rg-trail)" filter="url(#f-glow)" opacity={0.31}
+          initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }} animate={{ cx: TRAIL_CX, cy: TRAIL_CY }} transition={t} />
+        {/* Bright core */}
+        <motion.circle r={4.5} fill="#FF3A3A" filter="url(#f-core)" opacity={0.55}
+          initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }} animate={{ cx: TRAIL_CX, cy: TRAIL_CY }} transition={t} />
+        {/* Comet tail */}
+        <motion.circle r={14} fill="url(#rg-trail)" filter="url(#f-glow)" opacity={0.17}
+          initial={{ cx: TRAIL_CX[0], cy: TRAIL_CY[0] }} animate={{ cx: TRAIL_CX, cy: TRAIL_CY }}
+          transition={{ ...t, delay: 0.55 }} />
       </svg>
     </div>
   );
 }
 
-function AnimatedEnso() {
+// ── Animated enso circle containing 円 ───────────────────────────────────
+function AnimatedEnsoWithWolf({ isDark }: { isDark: boolean }) {
   return (
-    <div className="relative flex items-center justify-center w-[480px] h-[480px] shrink-0">
+    <div className="relative flex items-center justify-center w-[420px] h-[420px] shrink-0">
+
+      {/* Soft red glow at center */}
       <div
         aria-hidden="true"
         className="absolute inset-0 rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(179,0,0,0.08) 0%, transparent 68%)',
-          filter: 'blur(28px)',
+          background: 'radial-gradient(circle, rgba(179,0,0,0.1) 0%, transparent 65%)',
+          filter: 'blur(32px)',
         }}
       />
+
+      {/* Outer enso — slow clockwise rotation */}
       <motion.div
         className="absolute inset-0"
-        animate={{ rotate: 360, scale: [1, 1.03, 1] }}
+        animate={{ rotate: 360, scale: [1, 1.025, 1] }}
         transition={{
-          rotate: { duration: 60, repeat: Infinity, ease: 'linear' },
-          scale: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+          rotate: { duration: 70, repeat: Infinity, ease: 'linear' },
+          scale:  { duration: 5, repeat: Infinity, ease: 'easeInOut' },
         }}
         style={{ willChange: 'transform' }}
       >
-        <Image src="/enzo.svg" alt="Enso ink circle" fill priority className="object-contain" style={{ opacity: 0.45 }} />
+        <img
+          alt=""
+          src="/enzo.svg"
+          className="w-full h-full object-contain"
+          style={{ opacity: 0.42 }}
+          draggable={false}
+        />
       </motion.div>
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 480 480"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+
+      {/* Inner enso — slow counter-rotation */}
+      <motion.div
+        className="absolute inset-[20%]"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
+        style={{ willChange: 'transform' }}
       >
+        <img
+          alt=""
+          src="/enzo.svg"
+          className="w-full h-full object-contain"
+          style={{ opacity: 0.08 }}
+          draggable={false}
+        />
+      </motion.div>
+
+      {/* Red circle trace animation */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 420 420" fill="none">
         <motion.circle
-          cx="240" cy="240" r="200"
+          cx="210" cy="210" r="175"
           stroke="#FF2A2A" strokeWidth="1" strokeLinecap="round"
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 0.72, opacity: [0, 0.18, 0.18, 0] }}
@@ -190,24 +168,8 @@ function AnimatedEnso() {
           }}
         />
       </svg>
-      <motion.div
-        className="absolute inset-[18%]"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
-        style={{ willChange: 'transform' }}
-      >
-        <Image src="/enzo.svg" alt="" fill className="object-contain" style={{ opacity: 0.09 }} />
-      </motion.div>
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, delay: 1.2, ease: EASE }}
-      >
-        <span className="font-['Gingsul_Demo',serif] text-[80px] select-none" style={{ color: 'rgba(234,234,234,0.08)' }}>
-          円
-        </span>
-      </motion.div>
+
+      {/* Ink particles orbiting */}
       {INK_PARTICLES.map(p => {
         const rad = (p.angle * Math.PI) / 180;
         const px  = Math.cos(rad) * p.r;
@@ -223,184 +185,204 @@ function AnimatedEnso() {
               left: '50%', top: '50%',
               marginLeft: -(p.size / 2), marginTop: -(p.size / 2),
             }}
-            animate={{ x: [px, px + 6, px], y: [py, py - 10, py], opacity: [0, 0.5, 0], scale: [0.3, 1, 0.3] }}
+            animate={{ x: [px, px + 5, px], y: [py, py - 9, py], opacity: [0, 0.45, 0], scale: [0.3, 1, 0.3] }}
             transition={{ duration: p.dur, delay: p.delay, repeat: Infinity, ease: 'easeInOut' }}
           />
         );
       })}
+
+      {/* 円 kanji centered */}
       <motion.div
-        aria-hidden="true"
-        className="absolute w-[6px] h-[6px] rounded-full"
-        style={{ top: '8%', right: '22%', backgroundColor: '#e10600' }}
-        animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.5, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-      />
-    </div>
-  );
-}
-
-function ScrollIndicator() {
-  return (
-    <div className="flex flex-col items-start gap-[6px]">
-      <div className="flex items-center gap-3">
-        <div className="flex flex-col gap-[3px]">
-          <div className="w-[18px] h-[1px]" style={{ background: 'rgba(138,143,152,0.35)' }} />
-          <div className="w-[10px] h-[1px]" style={{ background: 'rgba(138,143,152,0.2)' }} />
-        </div>
-        <span className="font-['Inter',sans-serif] text-[11px] tracking-[3px] uppercase" style={{ color: 'rgba(138,143,152,0.7)' }}>
-          Explore My World
-        </span>
-      </div>
-      <motion.span
-        className="ml-[30px] text-[16px]"
-        style={{ color: 'rgba(138,143,152,0.35)' }}
-        animate={{ y: [0, 7, 0] }}
-        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+        className="relative z-10 flex items-center justify-center"
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, delay: 0.8, ease: EASE }}
       >
-        ↓
-      </motion.span>
+        <span
+          className="select-none leading-none"
+          style={{
+            fontSize: '64px',
+            fontFamily: "'The Last Shuriken', 'Inter', system-ui, sans-serif",
+            color: isDark ? '#EDEDF5' : '#111827',
+            opacity: 0.85,
+            display: 'block',
+          }}
+        >
+          円
+        </span>
+      </motion.div>
+
     </div>
   );
 }
 
+// ── Hero ──────────────────────────────────────────────────────────────────
 export default function Hero() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex items-center">
+    <section
+      className={`relative w-full min-h-screen overflow-hidden flex items-center
+        ${isDark ? '' : 'bg-white border-b border-[#E5E7EB]'}`}
+      style={isDark ? { background: '#07080D' } : undefined}
+    >
+      {/* Dark-mode-only atmospheric layers */}
+      {isDark && (
+        <>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle at 35% 50%, rgba(179,0,0,0.2) 0%, transparent 60%)',
+              zIndex: 0,
+            }}
+          />
+          <NoiseOverlay />
+          <RedLightTrail />
+        </>
+      )}
 
-      {/* Layer 0 — full-bleed radial background glow */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at 35% 50%, rgba(179,0,0,0.26) 0%, transparent 60%)',
-          zIndex: 0,
-        }}
-      />
+      {/* Two-column layout */}
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-8
+        grid grid-cols-1 lg:grid-cols-[1fr_420px] items-center
+        pt-[80px] pb-[80px] gap-8 lg:gap-24">
 
-      <NoiseOverlay />
-      <RedLightTrail />
-
-      {/* Shared layout container — identical to Navbar inner container */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-12
-        grid grid-cols-1 lg:grid-cols-[60%_40%] items-center
-        pt-[80px] pb-[80px] gap-8 lg:gap-0">
-
-        {/* ── Left — text content ── */}
+        {/* ── Left: text ── */}
         <motion.div
           variants={stagger}
           initial="hidden"
           animate="visible"
-          className="flex flex-col gap-[44px] lg:gap-[60px] items-start text-left translate-y-[40px]"
+          className="flex flex-col gap-6 max-w-[680px]"
           data-cursor-safe
         >
-          {/* Name + role */}
-          <motion.div variants={fadeUp} className="flex flex-col items-start">
-            <h1 className="font-['The_Last_Shuriken',sans-serif] text-[52px] sm:text-[68px] md:text-[80px] lg:text-[96px] leading-[1] text-[#eaeaea]">
-              Arjun CR
-            </h1>
-            <p
-              className="font-['Blast_Dragon',sans-serif] text-[13px] sm:text-[16px] lg:text-[22px] leading-none tracking-[3px] mt-3"
-              style={{ color: '#e10600' }}
-            >
-              Lead UI/UX Designer
-            </p>
-          </motion.div>
+          {/* H1 */}
+          <motion.h1
+            variants={fadeUp}
+            className={`font-bold text-[56px] sm:text-[68px] md:text-[80px] leading-[1.0] tracking-tight
+              ${isDark ? 'text-[#eaeaea]' : 'text-[#111827]'}`}
+          >
+            Arjun CR
+          </motion.h1>
 
-          {/* Main statement */}
-          <motion.div variants={fadeUp} className="flex flex-col gap-[18px]">
-            <p
-              className="font-['Blast_Dragon',sans-serif] text-[15px] sm:text-[17px] lg:text-[18px] leading-[34px] tracking-[1.5px]"
-              style={{ color: '#8a8f98' }}
-            >
-              I turn complex ideas into simple,{' '}
-              <span style={{ color: '#FF2A2A', textShadow: '0 0 24px rgba(255,42,42,0.45)' }}>
-                human-centered
-              </span>{' '}
-              product experiences.
-            </p>
-            <p
-              className="font-['Blast_Dragon',sans-serif] text-[13px] sm:text-[14px] lg:text-[15px] leading-[28px] tracking-[1px]"
-              style={{ color: 'rgba(138,143,152,0.6)' }}
-            >
-              Lead Product Designer with 12+ years of experience across fintech, enterprise, SaaS, and more — specializing in systems thinking and AI-augmented design.
-            </p>
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-1">
-              {[
-                'Simplifying complex workflows',
-                'Building scalable design systems',
-                'Driving UX strategy across teams',
-              ].map((item) => (
-                <span key={item} className="flex items-center gap-2">
-                  <span style={{ color: '#B30000', fontSize: '10px' }}>▸</span>
-                  <span
-                    className="font-['Blast_Dragon',sans-serif] text-[12px] sm:text-[13px] tracking-[1px]"
-                    style={{ color: 'rgba(138,143,152,0.55)' }}
-                  >
-                    {item}
-                  </span>
-                </span>
-              ))}
-            </div>
-          </motion.div>
+          {/* Identity label */}
+          <motion.p
+            variants={fadeUp}
+            className="text-[11px] font-semibold tracking-[3px] uppercase text-[#B91C1C]"
+          >
+            Lead UI/UX Designer
+          </motion.p>
 
-          {/* CTA buttons */}
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 sm:gap-4">
+          {/* Subheader */}
+          <motion.p
+            variants={fadeUp}
+            className={`text-[20px] sm:text-[22px] leading-[1.6] max-w-[560px]
+              ${isDark ? 'text-[#C0C0D4]' : 'text-[#374151]'}`}
+          >
+            I simplify complex products into{' '}
+            <strong
+              className="font-semibold text-[#B91C1C]"
+            >
+              clear, usable
+            </strong>{' '}
+            systems.
+          </motion.p>
+
+          {/* Industry tags */}
+          <motion.p
+            variants={fadeUp}
+            className={`text-[13px] font-semibold tracking-[1.5px] ${isDark ? 'text-[#9090A8]' : 'text-[#6B7280]'}`}
+          >
+            Fintech&nbsp;·&nbsp;SaaS&nbsp;·&nbsp;Enterprise
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-3 pt-2">
             <MagneticButton>
-              <motion.a
+              <a
                 href="#works"
-                className="relative flex items-center justify-center px-7 py-4 rounded-[8px]
-                  font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] text-white whitespace-nowrap"
-                style={{ backgroundColor: '#B30000', boxShadow: '0 0 20px rgba(179,0,0,0.45), 0 0 40px rgba(179,0,0,0.2)' }}
-                whileHover={{ scale: 1.04, backgroundColor: '#CC0000', boxShadow: '0 6px 30px rgba(255,42,42,0.65), 0 2px 60px rgba(179,0,0,0.3)' }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="inline-flex items-center gap-2 justify-center px-6 py-3 rounded-[8px]
+                  bg-[#B91C1C] text-white font-medium text-[14px] whitespace-nowrap
+                  shadow-[0_2px_8px_rgba(185,28,28,0.25)]
+                  hover:bg-[#991B1B] hover:-translate-y-[3px] hover:shadow-[0_8px_24px_rgba(185,28,28,0.45)]
+                  active:translate-y-0 active:shadow-[0_2px_8px_rgba(185,28,28,0.25)]
+                  transition-all duration-200 ease-out group"
               >
-                View Case Studies
-              </motion.a>
+                View Work
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
+              </a>
             </MagneticButton>
             <MagneticButton>
-              <motion.a
-                href="/resume/arjun_cr_Lead_productdesigner_2026.pdf"
-                download="arjun_cr_Lead_productdesigner_2026"
-                className="flex items-center justify-center px-7 py-4 rounded-[8px]
-                  font-['Blast_Dragon',sans-serif] text-[14px] sm:text-[15px] whitespace-nowrap border"
-                style={{ color: 'rgba(138,143,152,0.75)', backgroundColor: 'rgba(20,23,28,0.85)', borderColor: 'rgba(138,143,152,0.15)', boxShadow: 'none' }}
-                whileHover={{ scale: 1.04, backgroundColor: 'rgba(179,0,0,0.11)', borderColor: 'rgba(179,0,0,0.4)', boxShadow: '0 0 20px rgba(179,0,0,0.2), 0 0 40px rgba(179,0,0,0.08)' }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
+              <a
+                href="#contact"
+                className={`inline-flex items-center gap-2 justify-center px-6 py-3 rounded-[8px]
+                  font-medium text-[14px] whitespace-nowrap border
+                  hover:-translate-y-[3px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)]
+                  active:translate-y-0 transition-all duration-200 ease-out group
+                  ${isDark
+                    ? 'border-[#1C1D2A] text-[#9090A8] hover:border-[#B91C1C] hover:text-[#B91C1C] hover:shadow-[0_8px_20px_rgba(185,28,28,0.12)]'
+                    : 'border-[#E5E7EB] text-[#374151] hover:border-[#B91C1C] hover:text-[#B91C1C] hover:shadow-[0_8px_20px_rgba(185,28,28,0.10)]'
+                  }`}
               >
-                Download Resume
-              </motion.a>
+                Get in Touch
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
+              </a>
             </MagneticButton>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div variants={fadeUp}>
-            <ScrollIndicator />
           </motion.div>
         </motion.div>
 
-        {/* ── Right — animated Enso — grid cell, bleeds right ── */}
+        {/* ── Right: Enso + Wolf ── */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 0.6, scale: 1 }}
+          animate={{ opacity: isDark ? 0.9 : 0.6, scale: 1 }}
           transition={{ duration: 1.4, delay: 0.4, ease: EASE }}
-          className="hidden lg:flex items-center justify-center pointer-events-none translate-x-[100px] -translate-y-[40px]"
+          className="hidden lg:flex items-center justify-center pointer-events-none
+            translate-x-[60px] -translate-y-[20px]"
         >
-          <AnimatedEnso />
+          <AnimatedEnsoWithWolf isDark={isDark} />
         </motion.div>
-
       </div>
 
-      {/* Bottom section-transition fade — blends hero into page background */}
-      <div
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 right-0 h-[140px] pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, transparent, rgba(7,7,7,0.95))',
-          zIndex: 5,
-        }}
-      />
+      {/* Explore my world */}
+      <motion.a
+        href="#next-section"
+        aria-label="Explore my world"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 group"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.2, ease: EASE }}
+      >
+        <span
+          className={`text-[10px] font-semibold tracking-[3px] uppercase transition-colors duration-200
+            ${isDark ? 'text-[#52526A] group-hover:text-[#B91C1C]' : 'text-[#9CA3AF] group-hover:text-[#B91C1C]'}`}
+          style={{ fontFamily: "'The Last Shuriken', system-ui, sans-serif" }}
+        >
+          Explore my world
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <svg
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            className={`transition-colors duration-200 ${isDark ? 'text-[#52526A] group-hover:text-[#B91C1C]' : 'text-[#9CA3AF] group-hover:text-[#B91C1C]'}`}
+          >
+            <path d="M8 3v10M3.5 8.5l4.5 4.5 4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </motion.div>
+      </motion.a>
+
+      {/* Dark-mode bottom fade */}
+      {isDark && (
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 right-0 h-[120px] pointer-events-none"
+          style={{
+            background: 'linear-gradient(to bottom, transparent, rgba(13,14,20,0.95))',
+            zIndex: 5,
+          }}
+        />
+      )}
     </section>
   );
 }

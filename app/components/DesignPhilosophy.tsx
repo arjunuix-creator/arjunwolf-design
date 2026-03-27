@@ -5,41 +5,36 @@ import { motion, useInView } from 'framer-motion';
 
 const philosophies = [
   {
-    kanji: '間',
-    romanji: 'MA',
+    label: 'MA — Space',
     title: 'Space Creates Clarity',
     description:
-      'Emptiness is not absence — it is intention. Whitespace reduces cognitive load, guides the eye, and lets the important breathe. The pause between notes makes the music.',
+      'Emptiness is not absence — it is intention. Whitespace reduces cognitive load, guides the eye, and lets the important breathe.',
     index: '01',
   },
   {
-    kanji: '改善',
-    romanji: 'KAIZEN',
+    label: 'KAIZEN — Improvement',
     title: 'Continuous UX Improvement',
     description:
       'Design is never finished. Every release is a hypothesis. I embrace iteration — not as failure, but as the only path to products that truly serve people over time.',
     index: '02',
   },
   {
-    kanji: '侘寂',
-    romanji: 'WABI-SABI',
+    label: 'WABI-SABI — Simplicity',
     title: 'Beauty in Simplicity',
     description:
-      'Calm, meaningful experiences emerge from restraint. I find elegance not in ornamentation, but in the removal of everything that doesn\'t belong.',
+      'Calm, meaningful experiences emerge from restraint. Elegance comes not from ornamentation, but from removing everything that doesn\'t belong.',
     index: '03',
   },
 ];
 
 const containerVariants = {
   hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.18 },
-  },
+  visible: { transition: { staggerChildren: 0.14 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 48 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
 };
 
 export default function DesignPhilosophy() {
@@ -54,19 +49,19 @@ export default function DesignPhilosophy() {
     >
       {/* Header */}
       <motion.div
-        className="flex flex-col items-center gap-3 mb-20"
-        initial={{ opacity: 0, y: 30 }}
+        className="flex flex-col items-center gap-3 mb-14"
+        initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
       >
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[12px] font-semibold tracking-[3px] uppercase text-[#B91C1C]">
           Design Philosophy
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[28px] text-[#eaeaea] text-center leading-none">
+        <h2 className="text-[28px] sm:text-[36px] font-bold text-[#111827] text-center leading-tight">
           Three Principles
         </h2>
-        <p className="font-['Kanzuri',serif] text-[18px] text-[#8a8f98] text-center tracking-[1px] mt-2 max-w-[500px] leading-[32px]">
-          Rooted in Japanese philosophy. Applied to digital craft.
+        <p className="text-[16px] text-[#6B7280] text-center leading-[1.7] max-w-[460px] mt-1">
+          Rooted in timeless principles. Applied to digital craft.
         </p>
       </motion.div>
 
@@ -75,47 +70,34 @@ export default function DesignPhilosophy() {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2px] w-full max-w-[1280px]"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px w-full max-w-[1200px] border border-[#E5E7EB] rounded-xl overflow-hidden bg-[#E5E7EB]"
       >
-        {philosophies.map((p, i) => (
+        {philosophies.map((p) => (
           <motion.div
-            key={p.romanji}
+            key={p.label}
             variants={cardVariants}
-            className="group relative bg-[#14171c] p-[52px] flex flex-col gap-6 overflow-hidden
-              hover:bg-[#181c22] transition-colors duration-500"
-            style={{
-              borderLeft: i > 0 ? '1px solid rgba(138,143,152,0.12)' : undefined,
-            }}
+            className="group bg-white p-10 flex flex-col gap-5 hover:bg-[#FAFAFA] transition-colors duration-300"
           >
             {/* Index */}
-            <span className="font-['Inter',sans-serif] text-[11px] text-[#8a8f98]/40 tracking-[3px] uppercase">
+            <span className="text-[11px] font-semibold text-[#9CA3AF] tracking-[3px] uppercase">
               {p.index}
             </span>
 
-            {/* Kanji — large background character */}
-            <div
-              className="absolute right-6 top-8 font-['Gingsul_Demo',serif] text-[120px] leading-none
-                text-white/[0.03] group-hover:text-white/[0.06] transition-all duration-700
-                select-none pointer-events-none"
-            >
-              {p.kanji}
-            </div>
-
-            {/* Romanji accent */}
-            <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#e10600] tracking-[4px] uppercase">
-              {p.romanji}
+            {/* Label */}
+            <p className="text-[12px] font-semibold text-[#B91C1C] tracking-[2px] uppercase">
+              {p.label}
             </p>
 
             {/* Title */}
-            <h3 className="font-['The_Last_Shuriken',sans-serif] text-[28px] text-[#eaeaea] leading-tight">
+            <h3 className="text-[20px] font-bold text-[#111827] leading-snug">
               {p.title}
             </h3>
 
-            {/* Bottom line accent */}
-            <div className="w-8 h-[1px] bg-[#e10600]/40 group-hover:w-16 transition-all duration-500" />
+            {/* Divider */}
+            <div className="w-8 h-px bg-[#E5E7EB] group-hover:bg-[#B91C1C]/30 transition-colors duration-400" />
 
             {/* Description */}
-            <p className="font-['Kanzuri',serif] text-[16px] text-[#8a8f98] leading-[30px] tracking-[0.4px]">
+            <p className="text-[15px] text-[#6B7280] leading-[1.7]">
               {p.description}
             </p>
           </motion.div>

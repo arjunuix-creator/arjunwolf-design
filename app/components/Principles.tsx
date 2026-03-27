@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -47,6 +48,8 @@ const BRUSH_PATH =
 
 function PrincipleCard({ p, i, inView }: { p: Principle; i: number; inView: boolean }) {
   const [hovered, setHovered] = useState(false);
+  const { theme } = useTheme();
+  const isDark    = theme === 'dark';
 
   return (
     <motion.div
@@ -76,7 +79,7 @@ function PrincipleCard({ p, i, inView }: { p: Principle; i: number; inView: bool
             y: { duration: 8, ease: 'easeInOut', repeat: Infinity, delay: 0.8 },
           }}
         >
-          <span className="font-['Gingsul_Demo',serif] text-[140px] text-[#D4AF37]">
+          <span className="italic text-[140px] text-[#B91C1C]">
             {p.kanji}
           </span>
         </motion.div>
@@ -95,16 +98,18 @@ function PrincipleCard({ p, i, inView }: { p: Principle; i: number; inView: bool
           className="w-[56px] h-[56px] rounded-full border flex items-center justify-center
             transition-all duration-500"
           style={{
-            borderColor:     hovered ? 'rgba(212,175,55,0.7)' : 'rgba(212,175,55,0.3)',
-            background:      hovered ? '#181c22' : '#14171c',
-            boxShadow:       hovered ? '0 0 18px rgba(212,175,55,0.18)' : 'none',
+            borderColor: hovered ? 'rgba(185,28,28,0.7)' : 'rgba(185,28,28,0.25)',
+            background:  hovered
+              ? (isDark ? '#2A0A0A' : '#FEF2F2')
+              : (isDark ? '#140606' : '#FFF5F5'),
+            boxShadow:   hovered ? '0 0 18px rgba(185,28,28,0.12)' : 'none',
           }}
         >
           <span
             className="text-[20px] transition-all duration-300"
             style={{
-              color:      hovered ? '#D4AF37' : 'rgba(212,175,55,0.7)',
-              textShadow: hovered ? '0 0 12px rgba(212,175,55,0.5)' : 'none',
+              color:      hovered ? '#B91C1C' : 'rgba(185,28,28,0.7)',
+              textShadow: hovered ? '0 0 12px rgba(185,28,28,0.3)' : 'none',
             }}
           >
             {p.icon}
@@ -113,7 +118,7 @@ function PrincipleCard({ p, i, inView }: { p: Principle; i: number; inView: bool
 
         {/* Ritual label + title + red accent line */}
         <div className="flex flex-col items-center gap-1">
-          <span className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#D4AF37] tracking-[2.5px] uppercase">
+          <span className="text-[13px] font-semibold text-[#B91C1C] tracking-[2.5px] uppercase">
             {p.ritual}
           </span>
 
@@ -138,14 +143,14 @@ function PrincipleCard({ p, i, inView }: { p: Principle; i: number; inView: bool
                 className="w-full h-full"
                 aria-hidden="true"
               >
-                <path d={BRUSH_PATH} fill="rgba(180,0,0,0.25)" />
+                <path d={BRUSH_PATH} fill="rgba(185,28,28,0.1)" />
               </svg>
             </motion.div>
 
             {/* ── Title — z-index 1, sits above brush ── */}
             <h3
-              className="font-['The_Last_Shuriken',sans-serif] text-[22px] text-[#eaeaea] leading-tight"
-              style={{ position: 'relative', zIndex: 1 }}
+              className="font-bold text-[22px] leading-tight"
+              style={{ position: 'relative', zIndex: 1, color: isDark ? '#EDEDF5' : '#111827' }}
             >
               {p.value}
             </h3>
@@ -156,14 +161,14 @@ function PrincipleCard({ p, i, inView }: { p: Principle; i: number; inView: bool
             initial={{ width: 0 }}
             animate={inView ? { width: hovered ? '64px' : '40px' } : {}}
             transition={{ duration: hovered ? 0.4 : 0.5, delay: inView && !hovered ? CARD_DELAYS[i] + 0.2 : 0, ease: EASE }}
-            style={{ background: hovered ? 'rgba(225,6,0,0.7)' : '#B30000' }}
+            style={{ background: hovered ? 'rgba(185,28,28,0.7)' : '#B91C1C' }}
           />
         </div>
 
         {/* Detail */}
         <p
-          className="font-['Kanzuri',serif] text-[14px] leading-[26px] tracking-[0.3px] transition-colors duration-400"
-          style={{ color: hovered ? '#b0b5be' : 'rgba(138,143,152,0.75)' }}
+          className="italic text-[14px] leading-[26px] tracking-[0.3px] transition-colors duration-400"
+          style={{ color: hovered ? '#374151' : '#6B7280' }}
         >
           {p.detail}
         </p>
@@ -188,13 +193,13 @@ export default function Principles() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: EASE }}
       >
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#D4AF37] tracking-[4px] uppercase">
+        <p className="text-[13px] font-semibold text-[#B91C1C] tracking-[4px] uppercase">
           How I Live
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[#eaeaea] text-center">
+        <h2 className="font-bold text-[#111827] text-center">
           Principles I Live By
         </h2>
-        <p className="font-['Kanzuri',serif] text-[18px] text-[#8a8f98] text-center max-w-[520px] leading-[32px] mt-[40px]">
+        <p className="italic text-[18px] text-[#6B7280] text-center max-w-[520px] leading-[32px] mt-[40px]">
           Clarity of work begins in how you live. These daily rituals shape the way I design.
         </p>
       </motion.div>
@@ -205,7 +210,7 @@ export default function Principles() {
         {/* Horizontal connecting line */}
         <motion.div
           className="hidden lg:block absolute top-[56px] left-[12.5%] right-[12.5%] h-[1px]
-            bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent"
+            bg-gradient-to-r from-transparent via-[#B91C1C]/20 to-transparent"
           initial={{ scaleX: 0, opacity: 0 }}
           animate={inView ? { scaleX: 1, opacity: 1 } : {}}
           transition={{ duration: 1.4, delay: 0.3, ease: EASE }}

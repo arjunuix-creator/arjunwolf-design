@@ -10,21 +10,17 @@ export default function SectionDivider() {
   const inView = useInView(ref, { once: true, margin: '-10% 0px' });
 
   return (
-    <div
-      className="flex items-center justify-center px-6 w-full
-        mt-0 mb-0"
-    >
-      <div ref={ref} style={{ position: 'relative', width: '100%', maxWidth: '1280px' }}>
+    <div className="flex items-center justify-center px-6 w-full">
+      <div ref={ref} style={{ position: 'relative', width: '100%', maxWidth: '1200px' }}>
         <motion.div
           style={{
             height:          '1px',
-            background:      'linear-gradient(to right, transparent, rgba(255,40,40,0.35), transparent)',
-            boxShadow:       '0 0 12px rgba(255,40,40,0.15)',
+            background:      'linear-gradient(to right, transparent, #E5E7EB, transparent)',
             transformOrigin: 'center',
           }}
           initial={{ scaleX: 0, opacity: 0 }}
           animate={inView ? { scaleX: 1, opacity: 1 } : {}}
-          transition={{ duration: 1.1, ease: EASE }}
+          transition={{ duration: 0.9, ease: EASE }}
         />
       </div>
     </div>

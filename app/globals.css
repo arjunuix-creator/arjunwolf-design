@@ -1,17 +1,14 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
-}
-
 :root {
-  --background: #070707;
-  --foreground: #eaeaea;
-  --surface: #14171c;
-  --accent-red: #B30000;
-  --accent-red-bright: #FF2A2A;
-  --accent-gold: #D4AF37;
-  --text-muted: #8a8f98;
+  --background: #FAFAFA;
+  --foreground: #111827;
+  --surface: #F3F4F6;
+  --border: #E5E7EB;
+  --accent-red: #B91C1C;
+  --accent-red-light: #FEF2F2;
+  --text-muted: #6B7280;
+  --text-subtle: #9CA3AF;
 }
 
 @theme inline {
@@ -19,19 +16,19 @@ html {
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-accent-red: var(--accent-red);
-  --color-accent-red-bright: var(--accent-red-bright);
-  --color-accent-gold: var(--accent-gold);
   --color-text-muted: var(--text-muted);
 
-  /* Custom font families — use as font-blast-dragon, font-shuriken, etc. */
-  --font-family-blast-dragon: 'Blast Dragon', 'Inter', system-ui, sans-serif;
-  --font-family-shuriken: 'The Last Shuriken', system-ui, sans-serif;
-  --font-family-kanji: 'Gingsul Demo', serif;
-  --font-family-kanzuri: 'Kanzuri', serif;
+  /* Inter is the sole font family */
   --font-family-inter: var(--font-inter), 'Inter', system-ui, sans-serif;
+
+  /* Legacy font variables kept so any remaining inline references don't break */
+  --font-family-blast-dragon: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-family-shuriken: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-family-kanji: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-family-kanzuri: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
-/* Custom fonts — served from /public/fonts/ */
+/* Custom fonts — kept so any inline font-face references don't 404 */
 @font-face {
   font-family: 'The Last Shuriken';
   src: url('/fonts/The-Last-Shuriken.ttf') format('truetype');
@@ -62,7 +59,7 @@ html {
 }
 
 html {
-  /* Lenis owns all scrolling — native smooth-scroll and padding-top offsets must be off */
+  /* Lenis owns all scrolling */
   scroll-behavior: auto;
 }
 
@@ -80,36 +77,23 @@ html.lenis, html.lenis body {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-family-blast-dragon);
+  font-family: var(--font-family-inter);
   -webkit-font-smoothing: antialiased;
+  cursor: none;
 }
 
-/* Hide default cursor on pointer devices — replaced by SamuraiCursor */
-@media (hover: hover) and (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
+*, *::before, *::after {
+  cursor: none !important;
 }
-
-.font-heading {
-  font-family: var(--font-family-shuriken);
-}
-
-.font-kanji {
-  font-family: var(--font-family-kanji);
-}
-
-.font-quote {
-  font-family: var(--font-family-kanzuri);
-}
-
 
 ::-webkit-scrollbar {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: var(--border);
   border-radius: 2px;
 }
 
@@ -117,8 +101,15 @@ body {
 .scrollbar-hidden::-webkit-scrollbar { display: none; }
 .scrollbar-hidden { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Hide scrollbar for the Works horizontal track (Chrome/Safari) */
-#works [style*="cursor"]::-webkit-scrollbar { display: none; }
+/* ── Text selection ─────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(185, 28, 28, 0.32);
+  color: var(--foreground);
+}
+::-moz-selection {
+  background: rgba(185, 28, 28, 0.32);
+  color: var(--foreground);
+}
 
 /* ── Global section vertical rhythm ─────────────────────────────────────── */
 section {
@@ -135,24 +126,22 @@ section {
 
 @media (max-width: 768px) {
   section {
-    padding-top:    64px;
-    padding-bottom: 64px;
+    padding-top:    72px;
+    padding-bottom: 72px;
   }
 }
-
-/* Works uses global section rhythm — no overrides needed */
 
 /* ── Consistent card grid spacing ───────────────────────────────────────── */
 .card-grid {
-  gap: 48px;
+  gap: 24px;
 }
 @media (max-width: 768px) {
   .card-grid {
-    gap: 32px;
+    gap: 16px;
   }
 }
 
-/* Logo grid is tighter — 8 cols can't absorb 40px without overflow */
+/* Logo grid */
 .logo-grid {
   gap: 20px;
 }
@@ -163,26 +152,15 @@ section {
 }
 
 /* ── Section heading hierarchy spacing ──────────────────────────────────── */
-/*
-  Structure expected:
-    .section-header
-      <p>  ← section label
-      <h2> ← main heading
-      <div>← optional subtitle / decorative row
-      <p>  ← description
-*/
 .section-header {
   display:        flex;
   flex-direction: column;
   align-items:    center;
-  gap:            0;            /* no automatic gap — we set margins explicitly */
-  margin-bottom:  48px;         /* description → section content */
+  gap:            0;
+  margin-bottom:  56px;
 }
 
-/* Every child after the first gets a 12px top gap (label → heading) */
 .section-header > * + * { margin-top: 12px; }
-
-/* Heading gets 16px below to the next element (decorative row or description) */
 .section-header > h2    { margin-bottom: 16px; }
 
 /* ── Shared section container ───────────────────────────────────────────── */
@@ -214,34 +192,28 @@ section {
 
 /* ── Case study paragraph readability ───────────────────────────────────── */
 .case-body {
-  line-height: 1.6;
+  line-height: 1.7;
   max-width: 720px;
 }
 
-/* ── Minimum touch target size (WCAG 2.5.5 / Apple HIG 44pt) ───────────── */
-button,
-a {
+/* ── Minimum touch target size ──────────────────────────────────────────── */
+button {
   min-height: 44px;
 }
 
-/* ── Text selection — site accent red ───────────────────────────────────── */
-::selection {
-  background: rgba(255, 42, 42, 0.75);
-  color: white;
-}
-::-moz-selection {
-  background: rgba(255, 42, 42, 0.75);
-  color: white;
+
+/* ── Heading font — The Last Shuriken ───────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'The Last Shuriken', var(--font-family-inter);
+  letter-spacing: 0.04em;
 }
 
 /* ── Typography hierarchy normalization ─────────────────────────────────── */
-/*
-  Section h2 titles are normalized to 36px with 1.2 line-height.
-  Non-layered CSS beats @layer utilities, so this overrides responsive Tailwind classes.
-*/
 .section-header h2 {
   font-size: 36px;
   line-height: 1.2;
+  font-weight: 700;
+  color: var(--foreground);
 }
 @media (max-width: 768px) {
   .section-header h2 {
@@ -256,15 +228,17 @@ a {
 
 /* Subheadings */
 .subheading {
-  font-size: 20px;
-  line-height: 1.4;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 /* Body text constrained width and rhythm */
 .body-text {
   font-size: 16px;
-  line-height: 1.6;
-  max-width: 720px;
+  line-height: 1.7;
+  max-width: 640px;
+  color: var(--text-muted);
 }
 
 /* ── Premium image presentation ─────────────────────────────────────────── */
@@ -273,10 +247,10 @@ a {
   width: 100%;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* Case study image wrapper — immersive, centered, capped at 1000px */
+/* Case study image wrapper */
 .img-case-study-wrap {
   max-width: 1000px;
   width: 100%;
@@ -288,7 +262,7 @@ a {
   width: 100%;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   display: block;
 }
 @media (max-width: 768px) {
@@ -299,27 +273,117 @@ a {
 
 /* ── CTA button polish ───────────────────────────────────────────────────── */
 .btn-cta {
-  padding: 16px 28px;
+  padding: 14px 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-cta:hover {
-  transform: scale(1.04);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.btn-cta:active {
+  transform: translateY(0);
 }
 
-/* ── Card hover lift — shared across card grids ─────────────────────────── */
+/* ── Card hover lift ─────────────────────────────────────────────────────── */
 .card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .card-hover:hover {
-  transform: translateY(-6px);
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+}
+
+/* ── Animated link underline ─────────────────────────────────────────────── */
+.link-hover {
+  position: relative;
+  text-decoration: none;
+}
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.link-hover:hover::after {
+  width: 100%;
 }
 
 /* ── Section flow improvements ───────────────────────────────────────────── */
-/* Ensure paragraphs within section bodies have proper rhythm */
 .section-body p {
-  line-height: 1.6;
-  max-width: 720px;
+  line-height: 1.7;
+  max-width: 640px;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DARK MODE
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Variables */
+html.dark {
+  --background:       #07080D;
+  --foreground:       #EDEDF5;
+  --surface:          #0E0F16;
+  --border:           #1C1D2A;
+  --text-muted:       #7A7A92;
+  --text-subtle:      #52526A;
+  --accent-red-light: #180909;
+  color-scheme: dark;
+}
+
+html.dark body {
+  background: #07080D;
+  color: #EDEDF5;
+}
+
+/* ── Background overrides ────────────────────────────────────────────────── */
+html.dark .bg-white                { background-color: #07080D  !important; }
+html.dark .bg-\[\#FAFAFA\]        { background-color: #07080D  !important; }
+html.dark .bg-\[\#F9FAFB\]        { background-color: #0B0C12  !important; }
+html.dark .bg-\[\#F3F4F6\]        { background-color: #141520  !important; }
+html.dark .bg-\[\#FEF2F2\]        { background-color: #180909  !important; }
+html.dark .bg-\[\#F0FDF4\]        { background-color: #080F0C  !important; }
+html.dark .bg-\[\#FFF1F2\]        { background-color: #180909  !important; }
+
+/* Section-level backgrounds */
+html.dark section                  { background-color: #07080D; }
+
+/* ── Text overrides ──────────────────────────────────────────────────────── */
+html.dark .text-\[\#111827\]       { color: #EDEDF5  !important; }
+html.dark .text-\[\#1F2937\]       { color: #EDEDF5  !important; }
+html.dark .text-\[\#374151\]       { color: #C0C0D4  !important; }
+html.dark .text-\[\#4B5563\]       { color: #A8A8BE  !important; }
+html.dark .text-\[\#6B7280\]       { color: #7A7A92  !important; }
+html.dark .text-\[\#9CA3AF\]       { color: #52526A  !important; }
+
+/* ── Border overrides ────────────────────────────────────────────────────── */
+html.dark .border-\[\#E5E7EB\]     { border-color: #252632  !important; }
+html.dark .border-\[\#F3F4F6\]     { border-color: #1B1C26  !important; }
+html.dark .border-\[\#D1D5DB\]     { border-color: #2E2E3E  !important; }
+html.dark .border-\[\#BBF7D0\]     { border-color: #1A3520  !important; }
+html.dark .divide-\[\#E5E7EB\]  > * + * { border-color: #252632  !important; }
+
+/* ── Surface backgrounds (cards, pills, tags) ────────────────────────────── */
+html.dark .bg-\[\#F3F4F6\]         { background-color: #1B1C26  !important; }
+
+/* Availability badge */
+html.dark .bg-\[\#F0FDF4\]         { background-color: #0A1410  !important; }
+html.dark .border-\[\#BBF7D0\]     { border-color: #1A3520  !important; }
+
+/* ── Hamburger / icon fills ──────────────────────────────────────────────── */
+html.dark .bg-\[\#374151\]         { background-color: #EDEDF5  !important; }
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+html.dark ::-webkit-scrollbar-track  { background: #0E0F16; }
+html.dark ::-webkit-scrollbar-thumb  { background: #1C1D2A; }
+
+/* ── Selection ───────────────────────────────────────────────────────────── */
+html.dark ::selection      { background: rgba(185,28,28,0.40); color: #EDEDF5; }
+html.dark ::-moz-selection { background: rgba(185,28,28,0.40); color: #EDEDF5; }
+

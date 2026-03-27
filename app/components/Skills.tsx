@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from 'react'
 import gsap from 'gsap'
+import { useTheme } from './ThemeProvider'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -180,10 +181,10 @@ function IconAdobeCC({ color }: { color: string }) {
 type ToolCategory = 'design' | 'ai' | 'collaboration' | 'creative'
 
 const CATEGORY_META: Record<ToolCategory, { label: string; color: string; glow: string; bg: string }> = {
-  design:        { label: 'Design',         color: '#4D9EFF', glow: 'rgba(77,158,255,0.18)',  bg: 'rgba(77,158,255,0.06)'  },
-  ai:            { label: 'AI',             color: '#A855F7', glow: 'rgba(168,85,247,0.18)', bg: 'rgba(168,85,247,0.06)' },
-  collaboration: { label: 'Collaboration',  color: '#22C55E', glow: 'rgba(34,197,94,0.18)',  bg: 'rgba(34,197,94,0.06)'  },
-  creative:      { label: 'Creative',       color: '#F97316', glow: 'rgba(249,115,22,0.18)', bg: 'rgba(249,115,22,0.06)' },
+  design:        { label: 'Design',         color: '#4D9EFF', glow: 'rgba(77,158,255,0.14)',  bg: 'rgba(77,158,255,0.08)'  },
+  ai:            { label: 'AI',             color: '#A855F7', glow: 'rgba(168,85,247,0.14)', bg: 'rgba(168,85,247,0.08)' },
+  collaboration: { label: 'Collaboration',  color: '#22C55E', glow: 'rgba(34,197,94,0.14)',  bg: 'rgba(34,197,94,0.08)'  },
+  creative:      { label: 'Creative',       color: '#F97316', glow: 'rgba(249,115,22,0.14)', bg: 'rgba(249,115,22,0.08)' },
 }
 
 interface Tool {
@@ -215,6 +216,14 @@ function ToolCard({ tool }: { tool: Tool }) {
   const meta      = CATEGORY_META[tool.category]
   const { Icon }  = tool
   const isPrimary = !!tool.primary
+  const { theme } = useTheme()
+  const isDark    = theme === 'dark'
+
+  const bgDefault  = isDark ? (isPrimary ? '#0E0F16' : '#0A0B10') : (isPrimary ? '#FFFFFF' : '#F9FAFB')
+  const bgHover    = isDark ? '#141520' : '#FFFFFF'
+  const borderDef  = isPrimary ? `${meta.color}28` : (isDark ? '#1C1D2A' : '#E5E7EB')
+  const nameColor  = isDark ? (isPrimary ? '#EDEDF5' : '#C0C0D4') : (isPrimary ? '#111827' : '#374151')
+  const subColor   = isDark ? (isPrimary ? '#7A7A92' : '#52526A') : (isPrimary ? '#6B7280' : '#9CA3AF')
 
   return (
     <div
@@ -222,36 +231,30 @@ function ToolCard({ tool }: { tool: Tool }) {
         border transition-all duration-300 ease-out
         hover:-translate-y-[5px] hover:scale-[1.03]"
       style={{
-        background:   isPrimary
-          ? `linear-gradient(135deg, #14181e 0%, #0f1318 100%)`
-          : `linear-gradient(135deg, #111418 0%, #0d1014 100%)`,
-        borderColor:  isPrimary ? `${meta.color}28` : 'rgba(255,255,255,0.06)',
-        boxShadow:    isPrimary
-          ? `0 0 28px 0 ${meta.glow}, 0 4px 20px rgba(0,0,0,0.35)`
-          : 'none',
-        opacity:      isPrimary ? 1 : 0.62,
-        transform:    isPrimary ? 'scale(1.04)' : 'scale(1)',
+        background:  bgDefault,
+        borderColor: borderDef,
+        boxShadow:   isPrimary ? `0 0 28px 0 ${meta.glow}, 0 4px 20px rgba(0,0,0,0.06)` : 'none',
+        opacity:     isPrimary ? 1 : 0.72,
+        transform:   isPrimary ? 'scale(1.04)' : 'scale(1)',
       }}
       onMouseEnter={e => {
         const el = e.currentTarget as HTMLDivElement
-        el.style.boxShadow   = `0 0 ${isPrimary ? 40 : 24}px 0 ${meta.glow}, 0 8px 32px rgba(0,0,0,0.4)`
+        el.style.boxShadow   = `0 0 ${isPrimary ? 40 : 24}px 0 ${meta.glow}, 0 8px 32px rgba(0,0,0,0.08)`
         el.style.borderColor = `${meta.color}45`
-        el.style.background  = `linear-gradient(135deg, #13171c 0%, #0d1014 100%)`
+        el.style.background  = bgHover
         el.style.opacity     = '1'
         el.style.transform   = 'scale(1.04) translateY(-5px)'
       }}
       onMouseLeave={e => {
         const el = e.currentTarget as HTMLDivElement
-        el.style.boxShadow   = isPrimary ? `0 0 28px 0 ${meta.glow}, 0 4px 20px rgba(0,0,0,0.35)` : ''
-        el.style.borderColor = isPrimary ? `${meta.color}28` : ''
-        el.style.background  = isPrimary
-          ? `linear-gradient(135deg, #14181e 0%, #0f1318 100%)`
-          : `linear-gradient(135deg, #111418 0%, #0d1014 100%)`
-        el.style.opacity     = isPrimary ? '1' : '0.62'
+        el.style.boxShadow   = isPrimary ? `0 0 28px 0 ${meta.glow}, 0 4px 20px rgba(0,0,0,0.06)` : ''
+        el.style.borderColor = borderDef
+        el.style.background  = bgDefault
+        el.style.opacity     = isPrimary ? '1' : '0.72'
         el.style.transform   = isPrimary ? 'scale(1.04)' : 'scale(1)'
       }}
     >
-      {/* Top accent line — always visible for primary, hover-only for secondary */}
+      {/* Top accent line */}
       <span
         className="absolute top-0 left-4 right-4 h-[1.5px] rounded-full transition-opacity duration-300 group-hover:opacity-100"
         style={{
@@ -260,7 +263,7 @@ function ToolCard({ tool }: { tool: Tool }) {
         }}
       />
 
-      {/* Icon container — slightly larger for primary */}
+      {/* Icon container */}
       <div
         className="rounded-xl flex items-center justify-center transition-all duration-300"
         style={{
@@ -275,23 +278,20 @@ function ToolCard({ tool }: { tool: Tool }) {
       {/* Text */}
       <div className="flex flex-col gap-[5px]">
         <span
-          className="font-['Blast_Dragon',sans-serif] tracking-[0.5px] transition-colors duration-300 group-hover:text-white"
-          style={{
-            fontSize: isPrimary ? '15px' : '14px',
-            color:    isPrimary ? '#eaeaea' : '#9ca3af',
-          }}
+          className="font-medium tracking-[0.5px] transition-colors duration-300"
+          style={{ fontSize: isPrimary ? '15px' : '14px', color: nameColor }}
         >
           {tool.name}
         </span>
         <span
-          className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[0.3px] leading-relaxed transition-colors duration-300 group-hover:text-[#8a8f98]"
-          style={{ color: isPrimary ? 'rgba(138,143,152,0.75)' : 'rgba(138,143,152,0.4)' }}
+          className="text-[10px] tracking-[0.3px] leading-relaxed transition-colors duration-300"
+          style={{ color: subColor }}
         >
           {tool.subtitle}
         </span>
       </div>
 
-      {/* Category dot — larger + brighter for primary */}
+      {/* Category dot */}
       <span
         className="absolute top-4 right-4 rounded-full transition-all duration-300"
         style={{
@@ -390,23 +390,23 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-[120px] w-full bg-[#070707]"
+      className="flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-[120px] w-full bg-[#FAFAFA]"
     >
 
       {/* ── Capabilities header ─────────────────────────────────────────────── */}
       <div ref={headerRef} className="section-header opacity-0">
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[13px] font-semibold text-[#B91C1C] tracking-[4px] uppercase">
           Expertise
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[30px] md:text-[46px] text-white text-center leading-[1.1] px-5 md:px-0">
+        <h2 className="font-bold text-[30px] md:text-[46px] text-[#111827] text-center leading-[1.1] px-5 md:px-0">
           Design Capabilities
         </h2>
         <div className="flex items-center justify-center gap-4 mt-1 mx-auto max-w-[600px] px-5 md:px-0">
-          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#e10600]/30 flex-shrink-0" />
-          <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[2px] md:tracking-[3px] uppercase text-center">
+          <span className="w-10 h-px bg-gradient-to-r from-transparent to-[#B91C1C]/30 flex-shrink-0" />
+          <p className="text-[12px] text-[#6B7280] tracking-[2px] md:tracking-[3px] uppercase text-center">
             UX Design Expertise
           </p>
-          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#e10600]/30 flex-shrink-0" />
+          <span className="w-10 h-px bg-gradient-to-l from-transparent to-[#B91C1C]/30 flex-shrink-0" />
         </div>
       </div>
 
@@ -416,7 +416,7 @@ export default function Skills() {
         className="hidden md:flex w-full max-w-[1260px] mb-28 opacity-0 min-h-[420px]"
       >
         {/* Left — category list */}
-        <div className="flex flex-col justify-center w-[300px] lg:w-[340px] flex-shrink-0 border-r border-white/[0.06] pr-10 lg:pr-14">
+        <div className="flex flex-col justify-center w-[300px] lg:w-[340px] flex-shrink-0 border-r border-[#E5E7EB] pr-10 lg:pr-14">
           {pillars.map((pillar, i) => (
             <button
               key={pillar.category}
@@ -432,20 +432,20 @@ export default function Skills() {
                 absolute left-0 top-1/2 -translate-y-1/2 w-[2px] rounded-full
                 transition-all duration-500 ease-out
                 ${activeIndex === i
-                  ? 'h-[55%] bg-[#e10600] shadow-[0_0_10px_2px_rgba(225,6,0,0.35)]'
-                  : 'h-0 bg-[#e10600]'}
+                  ? 'h-[55%] bg-[#B91C1C] shadow-[0_0_10px_2px_rgba(185,28,28,0.25)]'
+                  : 'h-0 bg-[#B91C1C]'}
               `} />
               <span className={`
-                font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] pl-5
+                text-[11px] tracking-[2px] pl-5 font-semibold
                 transition-colors duration-300
-                ${activeIndex === i ? 'text-[#e10600]' : 'text-[#8a8f98]'}
+                ${activeIndex === i ? 'text-[#B91C1C]' : 'text-[#6B7280]'}
               `}>
                 {pillar.index}
               </span>
               <span className={`
-                font-['The_Last_Shuriken',sans-serif] text-[22px] lg:text-[26px] leading-none
+                font-bold text-[22px] lg:text-[26px] leading-none
                 transition-colors duration-300
-                ${activeIndex === i ? 'text-white' : 'text-[#8a8f98]'}
+                ${activeIndex === i ? 'text-[#111827]' : 'text-[#6B7280]'}
               `}>
                 {pillar.category}
               </span>
@@ -456,27 +456,27 @@ export default function Skills() {
         {/* Right — content panel */}
         <div ref={panelRef} className="flex-1 pl-12 lg:pl-20 flex flex-col justify-center">
           <div className="flex items-baseline gap-3 mb-3">
-            <span className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[3px]">
+            <span className="text-[11px] font-semibold text-[#B91C1C] tracking-[3px]">
               {activePillar.index}
             </span>
-            <h3 className="font-['The_Last_Shuriken',sans-serif] text-[28px] lg:text-[38px] text-white leading-none">
+            <h3 className="font-bold text-[28px] lg:text-[38px] text-[#111827] leading-none">
               {activePillar.category}
             </h3>
           </div>
-          <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98] tracking-[0.5px] mb-8 leading-relaxed">
+          <p className="text-[13px] text-[#6B7280] tracking-[0.5px] mb-8 leading-relaxed">
             {activePillar.tagline}
           </p>
-          <div className="w-full h-px bg-gradient-to-r from-[#e10600]/50 via-[#e10600]/10 to-transparent mb-10" />
+          <div className="w-full h-px bg-gradient-to-r from-[#B91C1C]/50 via-[#B91C1C]/10 to-transparent mb-10" />
           <div className="grid grid-cols-2 gap-x-14 gap-y-7">
             {activePillar.items.map((item) => (
               <div key={item.name} className="group flex flex-col gap-[6px]">
                 <div className="flex items-center gap-3">
-                  <span className="w-[4px] h-[4px] rounded-full bg-[#e10600]/60 flex-shrink-0 group-hover:bg-[#D4AF37] transition-colors duration-300" />
-                  <span className="font-['Blast_Dragon',sans-serif] text-[15px] text-[#eaeaea] tracking-[0.3px] group-hover:text-white transition-colors duration-300">
+                  <span className="w-[4px] h-[4px] rounded-full bg-[#B91C1C]/60 flex-shrink-0 group-hover:bg-[#B91C1C] transition-colors duration-300" />
+                  <span className="text-[15px] font-medium text-[#111827] tracking-[0.3px] group-hover:text-[#111827] transition-colors duration-300">
                     {item.name}
                   </span>
                 </div>
-                <p className="pl-[19px] font-['Blast_Dragon',sans-serif] text-[11px] text-[#8a8f98]/60 tracking-[0.3px] leading-relaxed">
+                <p className="pl-[19px] text-[11px] text-[#9CA3AF] tracking-[0.3px] leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -490,36 +490,36 @@ export default function Skills() {
         {pillars.map((pillar, i) => {
           const isOpen = openAccordion === i
           return (
-            <div key={pillar.category} className="border-b border-white/[0.06]">
+            <div key={pillar.category} className="border-b border-[#E5E7EB]">
               <button
                 className="w-full flex items-center justify-between py-5 text-left"
                 onClick={() => setOpenAccordion(isOpen ? null : i)}
               >
                 <div className="flex items-center gap-4">
-                  <span className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[2px]">
+                  <span className="text-[11px] font-semibold text-[#B91C1C] tracking-[2px]">
                     {pillar.index}
                   </span>
-                  <span className={`font-['The_Last_Shuriken',sans-serif] text-[22px] leading-none transition-colors duration-300 ${isOpen ? 'text-white' : 'text-[#8a8f98]'}`}>
+                  <span className={`font-bold text-[22px] leading-none transition-colors duration-300 ${isOpen ? 'text-[#111827]' : 'text-[#6B7280]'}`}>
                     {pillar.category}
                   </span>
                 </div>
-                <span className={`font-['Blast_Dragon',sans-serif] text-[20px] text-[#e10600] transition-transform duration-300 ease-out ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
+                <span className={`text-[20px] text-[#B91C1C] transition-transform duration-300 ease-out ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
                   +
                 </span>
               </button>
               <div className={`overflow-hidden transition-all duration-500 ease-out ${isOpen ? 'max-h-[500px] pb-6' : 'max-h-0'}`}>
-                <div className="w-full h-px bg-gradient-to-r from-[#e10600]/40 via-[#e10600]/10 to-transparent mb-5" />
-                <p className="font-['Blast_Dragon',sans-serif] text-[12px] text-[#8a8f98] tracking-[0.5px] mb-5 leading-relaxed">
+                <div className="w-full h-px bg-gradient-to-r from-[#B91C1C]/40 via-[#B91C1C]/10 to-transparent mb-5" />
+                <p className="text-[12px] text-[#6B7280] tracking-[0.5px] mb-5 leading-relaxed">
                   {pillar.tagline}
                 </p>
                 <ul className="flex flex-col gap-5">
                   {pillar.items.map((item) => (
                     <li key={item.name} className="flex flex-col gap-1">
                       <div className="flex items-center gap-3">
-                        <span className="w-[3px] h-[3px] rounded-full bg-[#e10600]/50 flex-shrink-0" />
-                        <span className="font-['Blast_Dragon',sans-serif] text-[14px] text-[#eaeaea]">{item.name}</span>
+                        <span className="w-[3px] h-[3px] rounded-full bg-[#B91C1C]/50 flex-shrink-0" />
+                        <span className="text-[14px] font-medium text-[#111827]">{item.name}</span>
                       </div>
-                      <p className="pl-[18px] font-['Blast_Dragon',sans-serif] text-[11px] text-[#8a8f98]/60 tracking-[0.3px]">
+                      <p className="pl-[18px] text-[11px] text-[#9CA3AF] tracking-[0.3px]">
                         {item.desc}
                       </p>
                     </li>
@@ -533,10 +533,10 @@ export default function Skills() {
 
       {/* ── Tools header ───────────────────────────────────────────────────── */}
       <div ref={toolsHeaderRef} className="flex flex-col items-center gap-3 mb-5 opacity-0 px-5 md:px-0">
-        <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#e10600] tracking-[4px] uppercase">
+        <p className="text-[13px] font-semibold text-[#B91C1C] tracking-[4px] uppercase">
           Arsenal
         </p>
-        <h2 className="font-['The_Last_Shuriken',sans-serif] text-[26px] text-white text-center leading-none">
+        <h2 className="font-bold text-[26px] text-[#111827] text-center leading-none">
           Tools
         </h2>
       </div>
@@ -546,7 +546,7 @@ export default function Skills() {
         {(Object.entries(CATEGORY_META) as [ToolCategory, typeof CATEGORY_META[ToolCategory]][]).map(([key, meta]) => (
           <div key={key} className="flex items-center gap-2">
             <span className="w-[6px] h-[6px] rounded-full" style={{ background: meta.color, boxShadow: `0 0 6px ${meta.color}` }} />
-            <span className="font-['Blast_Dragon',sans-serif] text-[10px] text-[#8a8f98] tracking-[2px] uppercase">
+            <span className="text-[10px] text-[#6B7280] tracking-[2px] uppercase">
               {meta.label}
             </span>
           </div>

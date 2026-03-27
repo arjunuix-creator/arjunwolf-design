@@ -33,7 +33,7 @@ function Reveal({ children, className = '', delay = 0 }: {
 /* ── Label ───────────────────────────────────────────────────────────────── */
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#e10600] tracking-[4px] uppercase mb-3">
+    <p className="text-[11px] text-[#B91C1C] tracking-[4px] uppercase mb-3">
       {children}
     </p>
   );
@@ -42,7 +42,7 @@ function Label({ children }: { children: React.ReactNode }) {
 /* ── Section heading ─────────────────────────────────────────────────────── */
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-['The_Last_Shuriken',sans-serif] text-[2.2rem] md:text-[3rem] text-[#eaeaea] leading-[1.1] mb-6">
+    <h2 className="text-[2.2rem] md:text-[3rem] text-[#111827] leading-[1.1] mb-6">
       {children}
     </h2>
   );
@@ -51,25 +51,25 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 /* ── Divider ─────────────────────────────────────────────────────────────── */
 function Divider() {
   return (
-    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#333] to-transparent" />
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#E5E7EB] to-transparent" />
   );
 }
 
-/* ── Challenge card (matches RMT problem card) ───────────────────────────── */
+/* ── Challenge card ───────────────────────────────────────────────────────── */
 function ChallengeCard({ title, description, index }: {
   title: string;
   description: string;
   index: number;
 }) {
   return (
-    <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300">
-      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+    <div className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300">
+      <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-4">
         0{index + 1}
       </p>
-      <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.3rem] text-[#eaeaea] mb-3">
+      <h3 className="text-[1.3rem] text-[#111827] mb-3">
         {title}
       </h3>
-      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+      <p className="text-[13px] leading-[1.8] text-[#6B7280]">
         {description}
       </p>
     </div>
@@ -83,14 +83,14 @@ function StrategyCard({ title, description, index }: {
   index: number;
 }) {
   return (
-    <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors duration-300">
-      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#D4AF37] uppercase mb-4">
+    <div className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300">
+      <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-4">
         {String(index + 1).padStart(2, '0')}
       </p>
-      <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+      <h3 className="text-[1.2rem] text-[#111827] mb-3">
         {title}
       </h3>
-      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+      <p className="text-[13px] leading-[1.8] text-[#6B7280]">
         {description}
       </p>
     </div>
@@ -100,14 +100,14 @@ function StrategyCard({ title, description, index }: {
 /* ── Metric card ─────────────────────────────────────────────────────────── */
 function MetricCard({ value, label, explanation }: { value: string; label: string; explanation: string }) {
   return (
-    <div className="border border-[#1e2028] rounded-2xl p-8 text-center bg-[#0c0d10] hover:border-[#D4AF37]/40 transition-colors duration-300 flex flex-col items-center">
-      <p className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.5rem] text-[#D4AF37] leading-none mb-3">
+    <div className="border border-[#E5E7EB] rounded-2xl p-8 text-center bg-white hover:border-[#B91C1C]/40 transition-colors duration-300 flex flex-col items-center">
+      <p className="text-[2.8rem] md:text-[3.5rem] text-[#B91C1C] leading-none mb-3">
         {value}
       </p>
-      <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#eaeaea] uppercase mb-4">
+      <p className="text-[11px] tracking-[3px] text-[#111827] uppercase mb-4">
         {label}
       </p>
-      <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] max-w-[200px]">
+      <p className="text-[12px] leading-[1.8] text-[#6B7280] max-w-[200px]">
         {explanation}
       </p>
     </div>
@@ -117,14 +117,14 @@ function MetricCard({ value, label, explanation }: { value: string; label: strin
 /* ── Impact card ─────────────────────────────────────────────────────────── */
 function ImpactCard({ title, description }: { title: string; description: string }) {
   return (
-    <div className="border border-[#1e2028] rounded-2xl p-8 bg-[#0c0d10] hover:border-[#D4AF37]/40 transition-colors duration-300 flex flex-col">
-      <div className="w-8 h-8 rounded-full border border-[#D4AF37]/40 flex items-center justify-center mb-5">
-        <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+    <div className="border border-[#E5E7EB] rounded-2xl p-8 bg-white hover:border-[#B91C1C]/40 transition-colors duration-300 flex flex-col">
+      <div className="w-8 h-8 rounded-full border border-[#B91C1C]/40 flex items-center justify-center mb-5">
+        <span className="w-2 h-2 rounded-full bg-[#B91C1C]" />
       </div>
-      <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.4rem] text-[#eaeaea] mb-3">
+      <h3 className="text-[1.4rem] text-[#111827] mb-3">
         {title}
       </h3>
-      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+      <p className="text-[13px] leading-[1.8] text-[#6B7280]">
         {description}
       </p>
     </div>
@@ -170,14 +170,14 @@ export default function PhAwareCaseStudy() {
 
   return (
     <SmoothScroll>
-      <div className="min-h-screen bg-[#070707] text-[#eaeaea]">
+      <div className="min-h-screen bg-[#FAFAFA] text-[#111827]">
         <Navbar />
 
         {/* ── Back link ──────────────────────────────────────────────────── */}
         <div className="pt-24 pb-0 px-6 max-w-[1100px] mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] text-[#8a8f98] uppercase hover:text-[#e10600] transition-colors"
+            className="inline-flex items-center gap-2 text-[11px] tracking-[3px] text-[#6B7280] uppercase hover:text-[#B91C1C] transition-colors"
           >
             ← Back to Work
           </Link>
@@ -194,10 +194,10 @@ export default function PhAwareCaseStudy() {
               {/* Left — text */}
               <Reveal>
                 <Label>Health Tech · Mobile App</Label>
-                <h1 className="font-['The_Last_Shuriken',sans-serif] text-[2.8rem] md:text-[3.8rem] lg:text-[4.4rem] text-[#eaeaea] leading-[1.05] mb-4">
+                <h1 className="text-[2.8rem] md:text-[3.8rem] lg:text-[4.4rem] text-[#111827] leading-[1.05] mb-4">
                   Designing a Digital Awareness Platform for Pulmonary Arterial Hypertension
                 </h1>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] mb-6 max-w-[480px]">
+                <p className="text-[14px] leading-[2] text-[#6B7280] mb-6 max-w-[480px]">
                   A patient-focused platform that helps people understand symptoms,
                   manage treatment awareness, and access reliable health information.
                 </p>
@@ -211,10 +211,10 @@ export default function PhAwareCaseStudy() {
                     { label: 'Team',     value: 'Solo Designer' },
                   ].map(({ label, value }) => (
                     <div key={label}>
-                      <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-1">
+                      <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-1">
                         {label}
                       </p>
-                      <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#eaeaea]">
+                      <p className="text-[13px] text-[#111827]">
                         {value}
                       </p>
                     </div>
@@ -230,7 +230,7 @@ export default function PhAwareCaseStudy() {
                   width={1000}
                   height={900}
                   className="w-full h-auto object-contain rounded-[12px] block mx-auto max-w-[1000px]"
-                  style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}
+                  style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.06)' }}
                   priority
                 />
               </Reveal>
@@ -249,25 +249,25 @@ export default function PhAwareCaseStudy() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mb-5">
-                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10]">
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-3">Problem</p>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#eaeaea]">
+                <div className="border border-[#E5E7EB] rounded-2xl p-7 bg-white">
+                  <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-3">Problem</p>
+                  <p className="text-[14px] leading-[2] text-[#111827]">
                     Patients with Pulmonary Arterial Hypertension lacked accessible digital tools to understand their diagnosis, navigate treatment pathways, and access reliable health information — leaving them without support during one of the most difficult periods of their lives.
                   </p>
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Role</p>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Product Designer responsible for UX strategy and end-to-end design execution.</p>
+                <div className="border border-[#E5E7EB] rounded-2xl p-6 bg-white">
+                  <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-2">Role</p>
+                  <p className="text-[13px] leading-[1.8] text-[#111827]">Product Designer responsible for UX strategy and end-to-end design execution.</p>
                 </div>
-                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Platform</p>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">Mobile-first health awareness app (iOS & Android).</p>
+                <div className="border border-[#E5E7EB] rounded-2xl p-6 bg-white">
+                  <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-2">Platform</p>
+                  <p className="text-[13px] leading-[1.8] text-[#111827]">Mobile-first health awareness app (iOS & Android).</p>
                 </div>
-                <div className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]">
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-2">Duration</p>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#eaeaea]">6 months</p>
+                <div className="border border-[#E5E7EB] rounded-2xl p-6 bg-white">
+                  <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-2">Duration</p>
+                  <p className="text-[13px] leading-[1.8] text-[#111827]">6 months</p>
                 </div>
               </div>
             </Reveal>
@@ -283,7 +283,7 @@ export default function PhAwareCaseStudy() {
               <Reveal>
                 <Label>Leadership</Label>
                 <SectionHeading>My Role</SectionHeading>
-                <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98]">
+                <p className="text-[14px] leading-[2] text-[#6B7280]">
                   As the sole designer on this engagement, I owned the end-to-end UX
                   process — from discovery through to engineering handoff — while
                   designing a platform that needed to balance clinical credibility with
@@ -300,8 +300,8 @@ export default function PhAwareCaseStudy() {
                     'Built a reusable component system for scalable health content delivery',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-4">
-                      <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-[#e10600] shrink-0" />
-                      <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                      <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-[#B91C1C] shrink-0" />
+                      <p className="text-[13px] leading-[1.9] text-[#6B7280]">
                         {item}
                       </p>
                     </li>
@@ -320,7 +320,7 @@ export default function PhAwareCaseStudy() {
             <Reveal className="mb-8">
               <Label>The Problem</Label>
               <SectionHeading>Real-World Challenges Faced by PAH Patients</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px]">
                 Pulmonary Arterial Hypertension is a rare and complex condition. Patients
                 face significant barriers in understanding their diagnosis, accessing
                 reliable information, and managing the emotional weight of a chronic illness.
@@ -361,10 +361,10 @@ export default function PhAwareCaseStudy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Patient Pain Points */}
               <Reveal>
-                <div className="border border-[#1e2028] rounded-2xl p-8 bg-[#0c0d10] h-full hover:border-[#e10600]/30 transition-colors duration-300">
+                <div className="border border-[#E5E7EB] rounded-2xl p-8 bg-white h-full hover:border-[#B91C1C]/30 transition-colors duration-300">
                   <div className="flex items-center gap-3 mb-6">
-                    <span className="w-2 h-2 rounded-full bg-[#e10600] shrink-0" />
-                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase">
+                    <span className="w-2 h-2 rounded-full bg-[#B91C1C] shrink-0" />
+                    <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase">
                       Patient Pain Points
                     </p>
                   </div>
@@ -375,8 +375,8 @@ export default function PhAwareCaseStudy() {
                       'Limited emotional support during diagnosis and treatment',
                     ].map((point) => (
                       <li key={point} className="flex items-start gap-4">
-                        <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#e10600]/60 shrink-0" />
-                        <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                        <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#B91C1C]/60 shrink-0" />
+                        <p className="text-[13px] leading-[1.9] text-[#6B7280]">
                           {point}
                         </p>
                       </li>
@@ -387,10 +387,10 @@ export default function PhAwareCaseStudy() {
 
               {/* Design Opportunities */}
               <Reveal delay={0.1}>
-                <div className="border border-[#1e2028] rounded-2xl p-8 bg-[#0c0d10] h-full hover:border-[#D4AF37]/30 transition-colors duration-300">
+                <div className="border border-[#E5E7EB] rounded-2xl p-8 bg-white h-full hover:border-[#B91C1C]/30 transition-colors duration-300">
                   <div className="flex items-center gap-3 mb-6">
-                    <span className="w-2 h-2 rounded-full bg-[#D4AF37] shrink-0" />
-                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#D4AF37] uppercase">
+                    <span className="w-2 h-2 rounded-full bg-[#B91C1C] shrink-0" />
+                    <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase">
                       Design Opportunities
                     </p>
                   </div>
@@ -401,8 +401,8 @@ export default function PhAwareCaseStudy() {
                       'Empower patient self-awareness through accessible tools',
                     ].map((opp) => (
                       <li key={opp} className="flex items-start gap-4">
-                        <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#D4AF37]/60 shrink-0" />
-                        <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                        <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#B91C1C]/60 shrink-0" />
+                        <p className="text-[13px] leading-[1.9] text-[#6B7280]">
                           {opp}
                         </p>
                       </li>
@@ -422,7 +422,7 @@ export default function PhAwareCaseStudy() {
             <Reveal className="mb-8">
               <Label>Design Strategy</Label>
               <SectionHeading>Strategy Rooted in Empathy</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px]">
                 Every design decision was anchored in patient needs — prioritising clarity,
                 emotional safety, and accessibility over aesthetic novelty.
               </p>
@@ -467,7 +467,7 @@ export default function PhAwareCaseStudy() {
             <Reveal className="mb-8">
               <Label>System Thinking</Label>
               <SectionHeading>How the Design Addressed Platform Complexity</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px]">
                 Designing for patients navigating a rare chronic illness required more than good visuals — it demanded a structured, scalable approach to information architecture, content delivery, and emotional experience.
               </p>
             </Reveal>
@@ -497,15 +497,15 @@ export default function PhAwareCaseStudy() {
                 ].map(({ num, title, body }) => (
                   <div
                     key={num}
-                    className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#e10600]/30 transition-colors duration-300"
+                    className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors duration-300"
                   >
-                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-4">
+                    <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-4">
                       {num}
                     </p>
-                    <h3 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#eaeaea] mb-3">
+                    <h3 className="text-[1.2rem] text-[#111827] mb-3">
                       {title}
                     </h3>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.9] text-[#8a8f98]">
+                    <p className="text-[13px] leading-[1.9] text-[#6B7280]">
                       {body}
                     </p>
                   </div>
@@ -523,7 +523,7 @@ export default function PhAwareCaseStudy() {
             <Reveal className="mb-10">
               <Label>Methodology</Label>
               <SectionHeading>From Research to Reality</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[560px]">
                 A structured, patient-centred process — from discovery through to a
                 tested, high-fidelity mobile experience.
               </p>
@@ -533,16 +533,16 @@ export default function PhAwareCaseStudy() {
             <Reveal delay={0.1}>
               <div className="hidden md:block relative mb-10">
                 {/* Connecting line */}
-                <div className="absolute top-5 left-[40px] right-[40px] h-px bg-gradient-to-r from-[#e10600]/40 via-[#D4AF37]/40 to-[#e10600]/40" />
+                <div className="absolute top-5 left-[40px] right-[40px] h-px bg-gradient-to-r from-[#B91C1C]/30 via-[#B91C1C]/20 to-[#B91C1C]/30" />
                 <div className="flex items-start gap-0">
                   {processSteps.map(({ step, label }) => (
                     <div key={step} className="flex-1 flex flex-col items-center text-center relative z-10">
-                      <div className="w-10 h-10 rounded-full border-2 border-[#e10600] bg-[#070707] flex items-center justify-center mb-4">
-                        <span className="font-['Blast_Dragon',sans-serif] text-[9px] tracking-[1px] text-[#e10600]">
+                      <div className="w-10 h-10 rounded-full border-2 border-[#B91C1C] bg-white flex items-center justify-center mb-4">
+                        <span className="text-[9px] tracking-[1px] text-[#B91C1C]">
                           {step}
                         </span>
                       </div>
-                      <p className="font-['Blast_Dragon',sans-serif] text-[11px] tracking-[2px] text-[#eaeaea] uppercase">
+                      <p className="text-[11px] tracking-[2px] text-[#111827] uppercase">
                         {label}
                       </p>
                     </div>
@@ -552,15 +552,15 @@ export default function PhAwareCaseStudy() {
 
               {/* Mobile timeline with descriptions */}
               <div className="flex md:hidden flex-col gap-0 relative pl-8 mb-10">
-                <div className="absolute left-[15px] top-5 bottom-5 w-px bg-gradient-to-b from-[#e10600]/40 via-[#D4AF37]/40 to-[#e10600]/40" />
+                <div className="absolute left-[15px] top-5 bottom-5 w-px bg-gradient-to-b from-[#B91C1C]/30 via-[#B91C1C]/20 to-[#B91C1C]/30" />
                 {processSteps.map(({ step, label }) => (
                   <div key={step} className="flex items-center gap-5 mb-7 relative z-10">
-                    <div className="w-[30px] h-[30px] shrink-0 rounded-full border-2 border-[#e10600] bg-[#070707] flex items-center justify-center">
-                      <span className="font-['Blast_Dragon',sans-serif] text-[9px] text-[#e10600]">
+                    <div className="w-[30px] h-[30px] shrink-0 rounded-full border-2 border-[#B91C1C] bg-white flex items-center justify-center">
+                      <span className="text-[9px] text-[#B91C1C]">
                         {step}
                       </span>
                     </div>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[12px] tracking-[2px] text-[#eaeaea] uppercase">
+                    <p className="text-[12px] tracking-[2px] text-[#111827] uppercase">
                       {label}
                     </p>
                   </div>
@@ -574,12 +574,12 @@ export default function PhAwareCaseStudy() {
                 {processSteps.map(({ step, label, description }) => (
                   <div
                     key={step}
-                    className="border border-[#1e2028] rounded-2xl p-6 bg-[#0c0d10]"
+                    className="border border-[#E5E7EB] rounded-2xl p-6 bg-white"
                   >
-                    <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[3px] text-[#e10600] uppercase mb-3">
+                    <p className="text-[10px] tracking-[3px] text-[#B91C1C] uppercase mb-3">
                       {step} — {label}
                     </p>
-                    <p className="font-['Blast_Dragon',sans-serif] text-[13px] leading-[1.8] text-[#8a8f98]">
+                    <p className="text-[13px] leading-[1.8] text-[#6B7280]">
                       {description}
                     </p>
                   </div>
@@ -597,7 +597,7 @@ export default function PhAwareCaseStudy() {
             <Reveal className="mb-8">
               <Label>Design System</Label>
               <SectionHeading>A Visual Identity That Builds Trust</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[640px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[640px]">
                 Every visual decision — from type scale to colour palette — was made to
                 lower anxiety and raise confidence. The system needed to feel clinical
                 enough to be credible and warm enough to feel human.
@@ -608,11 +608,11 @@ export default function PhAwareCaseStudy() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 {/* Typography */}
-                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors flex flex-col">
-                  <h4 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#D4AF37] mb-4">
+                <div className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors flex flex-col">
+                  <h4 className="text-[1.2rem] text-[#B91C1C] mb-4">
                     Typography
                   </h4>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] mb-5">
+                  <p className="text-[12px] leading-[1.8] text-[#6B7280] mb-5">
                     Clean, readable UI typefaces chosen for health information — legible
                     at small sizes, calming at large display sizes.
                   </p>
@@ -623,11 +623,11 @@ export default function PhAwareCaseStudy() {
                       { name: 'Body',      weight: 'Regular', size: '16px' },
                       { name: 'Caption',   weight: 'Medium',  size: '12px' },
                     ].map(({ name, weight, size }) => (
-                      <div key={name} className="flex items-center justify-between border-b border-[#1e2028] pb-2 last:border-0 last:pb-0">
-                        <p className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#eaeaea]">{name}</p>
+                      <div key={name} className="flex items-center justify-between border-b border-[#E5E7EB] pb-2 last:border-0 last:pb-0">
+                        <p className="text-[11px] text-[#111827]">{name}</p>
                         <div className="text-right">
-                          <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[1px] text-[#D4AF37]">{size}</p>
-                          <p className="font-['Blast_Dragon',sans-serif] text-[9px] text-[#8a8f98]">{weight}</p>
+                          <p className="text-[10px] tracking-[1px] text-[#B91C1C]">{size}</p>
+                          <p className="text-[9px] text-[#6B7280]">{weight}</p>
                         </div>
                       </div>
                     ))}
@@ -635,27 +635,27 @@ export default function PhAwareCaseStudy() {
                 </div>
 
                 {/* Color Strategy */}
-                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors flex flex-col">
-                  <h4 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#D4AF37] mb-4">
+                <div className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors flex flex-col">
+                  <h4 className="text-[1.2rem] text-[#B91C1C] mb-4">
                     Color Strategy
                   </h4>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] mb-5">
+                  <p className="text-[12px] leading-[1.8] text-[#6B7280] mb-5">
                     Soft reds and neutrals that evoke calm and trust — carefully calibrated
                     to feel reassuring rather than alarming.
                   </p>
                   <div className="flex flex-col gap-3 mt-auto">
                     {[
-                      { label: 'Primary',   hex: '#C0392B', bg: 'bg-[#C0392B]' },
-                      { label: 'Soft Red',  hex: '#E8827A', bg: 'bg-[#E8827A]' },
-                      { label: 'Warm White',hex: '#F5F0EF', bg: 'bg-[#F5F0EF]' },
+                      { label: 'Primary',    hex: '#C0392B', bg: 'bg-[#C0392B]' },
+                      { label: 'Soft Red',   hex: '#E8827A', bg: 'bg-[#E8827A]' },
+                      { label: 'Warm White', hex: '#F5F0EF', bg: 'bg-[#F5F0EF]' },
                       { label: 'Mid Neutral',hex: '#8A8F98', bg: 'bg-[#8A8F98]' },
-                      { label: 'Deep BG',  hex: '#0D0E11', bg: 'bg-[#0D0E11]' },
+                      { label: 'Deep BG',    hex: '#0D0E11', bg: 'bg-[#0D0E11]' },
                     ].map(({ label, hex, bg }) => (
                       <div key={hex} className="flex items-center gap-3">
-                        <div className={`${bg} w-8 h-8 rounded-lg shrink-0 border border-white/10`} />
+                        <div className={`${bg} w-8 h-8 rounded-lg shrink-0 border border-[#E5E7EB]`} />
                         <div>
-                          <p className="font-['Blast_Dragon',sans-serif] text-[11px] text-[#eaeaea] leading-tight">{label}</p>
-                          <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[1px] text-[#8a8f98] mt-0.5">{hex}</p>
+                          <p className="text-[11px] text-[#111827] leading-tight">{label}</p>
+                          <p className="text-[10px] tracking-[1px] text-[#6B7280] mt-0.5">{hex}</p>
                         </div>
                       </div>
                     ))}
@@ -663,11 +663,11 @@ export default function PhAwareCaseStudy() {
                 </div>
 
                 {/* Component System */}
-                <div className="border border-[#1e2028] rounded-2xl p-7 bg-[#0c0d10] hover:border-[#D4AF37]/30 transition-colors flex flex-col">
-                  <h4 className="font-['The_Last_Shuriken',sans-serif] text-[1.2rem] text-[#D4AF37] mb-4">
+                <div className="border border-[#E5E7EB] rounded-2xl p-7 bg-white hover:border-[#B91C1C]/30 transition-colors flex flex-col">
+                  <h4 className="text-[1.2rem] text-[#B91C1C] mb-4">
                     Component System
                   </h4>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[12px] leading-[1.8] text-[#8a8f98] mb-5">
+                  <p className="text-[12px] leading-[1.8] text-[#6B7280] mb-5">
                     Reusable cards and modules built for content-heavy health information —
                     composable, accessible, and consistent across all screens.
                   </p>
@@ -677,15 +677,15 @@ export default function PhAwareCaseStudy() {
                       { category: 'Navigation',    items: ['Tab Bar', 'Breadcrumb', 'Back'] },
                       { category: 'Actions',       items: ['Primary', 'Ghost', 'Link'] },
                     ].map(({ category, items }) => (
-                      <div key={category} className="border-b border-[#1e2028] pb-3 last:border-0 last:pb-0">
-                        <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[2px] text-[#D4AF37] uppercase mb-2">
+                      <div key={category} className="border-b border-[#E5E7EB] pb-3 last:border-0 last:pb-0">
+                        <p className="text-[10px] tracking-[2px] text-[#B91C1C] uppercase mb-2">
                           {category}
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {items.map((item) => (
                             <span
                               key={item}
-                              className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[1px] text-[#8a8f98] border border-[#2a2d36] rounded-md px-2 py-1"
+                              className="text-[10px] tracking-[1px] text-[#6B7280] border border-[#E5E7EB] rounded-md px-2 py-1"
                             >
                               {item}
                             </span>
@@ -709,7 +709,7 @@ export default function PhAwareCaseStudy() {
             <Reveal className="mb-10">
               <Label>Final Product</Label>
               <SectionHeading>Key Screens That Tell the Story</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[560px]">
                 High-fidelity screens from the shipped product — showing the core patient
                 education, awareness, and navigation flows across the mobile app.
               </p>
@@ -721,7 +721,7 @@ export default function PhAwareCaseStudy() {
                 width={1400}
                 height={900}
                 className="w-full h-auto object-contain rounded-[12px] block mx-auto max-w-[1000px]"
-                style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}
+                style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.06)' }}
               />
             </Reveal>
           </section>
@@ -735,7 +735,7 @@ export default function PhAwareCaseStudy() {
             <Reveal className="mb-8">
               <Label>Outcomes</Label>
               <SectionHeading>Designing for Real Impact</SectionHeading>
-              <p className="font-['Blast_Dragon',sans-serif] text-[14px] leading-[2] text-[#8a8f98] max-w-[560px]">
+              <p className="text-[14px] leading-[2] text-[#6B7280] max-w-[560px]">
                 The platform created a measurable shift in how patients engage with their
                 health — moving from confusion and anxiety to clarity and confidence.
               </p>
@@ -779,22 +779,22 @@ export default function PhAwareCaseStudy() {
 
           {/* ── Next Project CTA ───────────────────────────────────────────── */}
           <Reveal>
-            <div className="border-t border-[#1e2028] pt-10 pb-12 md:pb-20">
+            <div className="border-t border-[#E5E7EB] pt-10 pb-12 md:pb-20">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                 <div>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[10px] tracking-[4px] text-[#8a8f98] uppercase mb-3">
+                  <p className="text-[10px] tracking-[4px] text-[#6B7280] uppercase mb-3">
                     Next Case Study
                   </p>
-                  <h2 className="font-['The_Last_Shuriken',sans-serif] text-[2rem] md:text-[2.8rem] text-[#eaeaea] leading-[1.1] mb-2">
+                  <h2 className="text-[2rem] md:text-[2.8rem] text-[#111827] leading-[1.1] mb-2">
                     Finova Expense Tracker
                   </h2>
-                  <p className="font-['Blast_Dragon',sans-serif] text-[13px] text-[#8a8f98]">
+                  <p className="text-[13px] text-[#6B7280]">
                     Vibe Coding · SaaS Finance App
                   </p>
                 </div>
                 <Link
                   href="/work/finova"
-                  className="group inline-flex items-center gap-3 font-['Blast_Dragon',sans-serif] text-[11px] tracking-[3px] uppercase px-8 py-4 border border-[#e10600] text-[#e10600] rounded-full hover:bg-[#e10600] hover:text-white transition-all duration-300"
+                  className="group inline-flex items-center gap-3 text-[11px] tracking-[3px] uppercase px-8 py-4 border border-[#B91C1C] text-[#B91C1C] rounded-full hover:bg-[#B91C1C] hover:text-white transition-all duration-300"
                 >
                   Next Case Study
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
